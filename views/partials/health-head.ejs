@@ -1,0 +1,248 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>MonashTechTitans</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
+    <!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <script src="https://d3js.org/d3.v6.js"></script> <!--D3-->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="./javascripts/control.js"></script>
+    <script type="text/javascript">
+        
+        // globals
+        let animate = false;
+        
+        
+        // DOM loaded callback
+		document.addEventListener('DOMContentLoaded', function() {
+            
+            // carousel
+            const myCarousel = document.getElementById('carouselBasicExample');
+
+            // event lsiteners
+            myCarousel.addEventListener('slide.bs.carousel', changeSlide);
+
+
+        }, false);
+
+        // callback functions
+
+        // individual hover events for each tab (the Agile way)
+        function hoverMen(){
+
+            let inset = document.getElementById("men-tab-inset");
+            let header = document.getElementById("men-tab-header");
+
+            inset.style.display = "block";
+            header.classList = "left-flex text-center";
+
+        }
+
+        function hoverMenOut(){
+
+            let inset = document.getElementById("men-tab-inset");
+            let header = document.getElementById("men-tab-header");
+
+            inset.style.display = "none";
+            header.classList = "left-flex text-center justify-content-center d-flex align-items-center";
+
+        }
+
+        function hoverWomen(){
+
+            let inset = document.getElementById("women-tab-inset");
+            let header = document.getElementById("women-tab-header");
+
+            inset.style.display = "block";
+            header.classList = "left-flex text-center";
+
+        }
+
+        function hoverWomenOut(){
+
+            let inset = document.getElementById("women-tab-inset");
+            let header = document.getElementById("women-tab-header");
+
+            inset.style.display = "none";
+            header.classList = "left-flex text-center justify-content-center d-flex align-items-center";
+
+        }
+
+        function hoverYouth(){
+
+            let inset = document.getElementById("youth-tab-inset");
+            let header = document.getElementById("youth-tab-header");
+
+            inset.style.display = "block";
+            header.classList = "left-flex text-center";
+
+        }
+
+        function hoverYouthOut(){
+
+            let inset = document.getElementById("youth-tab-inset");
+            let header = document.getElementById("youth-tab-header");
+
+            inset.style.display = "none";
+            header.classList = "left-flex text-center justify-content-center d-flex align-items-center";
+
+        }
+
+        function rightHover(el){
+            el.previousElementSibling.style.width = "90%";
+        }
+
+        function rightOut(el){
+            el.previousElementSibling.style.width = "55%";
+        }
+
+        function hoverLeft(el){
+            el.style.width = "90%";
+        }
+
+        function hoverLeftOut(el){
+            el.style.width = "55%";
+        }
+
+        function start(name){
+            // hide cover
+            let el = document.getElementById('carousel-item-cover');
+            el.classList = "carousel-item img-div";
+
+            // show slide
+            if(name == 'men'){
+                
+                // show slide
+                let el = document.getElementById('carousel-item-men');
+                el.classList = "carousel-item active img-div";
+
+                // show guidelines
+                document.getElementById("main").style.display = "none";
+                document.getElementById("men").style.display = "block";
+
+                // update indicator
+                for(let i in indicators.children){
+                    indicators.children[i].classList = "";
+                }
+                indicators.children[1].classList = "active";
+            }
+            else if(name == 'women'){
+                
+                // show slide
+                let el = document.getElementById('carousel-item-women');
+                el.classList = "carousel-item active img-div";
+
+                // show guidelines
+                document.getElementById("main").style.display = "none";
+                document.getElementById("women").style.display = "block";
+
+                // update indicator
+                for(let i in indicators.children){
+                    indicators.children[i].classList = "";
+                }
+                indicators.children[2].classList = "active";
+            }
+            else if(name == 'youth'){
+                
+                // show slide
+                let el = document.getElementById('carousel-item-youth');
+                el.classList = "carousel-item active img-div";
+
+                // show guidelines
+                document.getElementById("main").style.display = "none";
+                document.getElementById("youth").style.display = "block";
+
+                // update indicator
+                for(let i in indicators.children){
+                    indicators.children[i].classList = "";
+                }
+                indicators.children[3].classList = "active";
+            }
+
+        }
+
+        function playPause(){
+    
+            // get carousel
+            const myCarousel = document.getElementById('carouselBasicExample');
+            
+
+            // stop or play
+            if(animate){
+                var carousel = new window.mdb.Carousel(myCarousel);
+                carousel.dispose();
+                carousel.pause();
+                document.getElementById("videoControl").classList = "fas fa-play video";
+                animate = false;
+
+                // hide indicators
+                let indicators = document.getElementById('indicators');
+                indicators.style.display = 'none';
+
+                // hide controls
+                let l_control = document.getElementById('leftControl');
+                l_control.style.display = 'none';
+                let r_control = document.getElementById('rightControl');
+                r_control.style.display = 'none';
+            }
+            else{
+                myCarousel.setAttribute("data-mdb-ride", "carousel");
+                var carousel = new window.mdb.Carousel(myCarousel);
+                document.getElementById("videoControl").classList = "fas fa-pause video";
+                animate = true;
+
+                // show indicators
+                let indicators = document.getElementById('indicators');
+                indicators.style.display = 'flex';
+
+                // show controls
+                let l_control = document.getElementById('leftControl');
+                l_control.style.display = 'block';
+                let r_control = document.getElementById('rightControl');
+                r_control.style.display = 'block';
+            }   
+            
+        }
+
+
+        function changeSlide(){
+            let slideNext = event.to;
+               
+                if(slideNext == 0){
+                    document.getElementById("main").style.display = "block";
+                    document.getElementById("men").style.display = "none";
+                    document.getElementById("women").style.display = "none";
+                    document.getElementById("youth").style.display = "none";
+                }
+                else if(slideNext == 1){
+                    document.getElementById("main").style.display = "none";
+                    document.getElementById("men").style.display = "block";
+                    document.getElementById("women").style.display = "none";
+                    document.getElementById("youth").style.display = "none";
+
+                }
+                else if(slideNext == 2){
+                    document.getElementById("main").style.display = "none";
+                    document.getElementById("men").style.display = "none";
+                    document.getElementById("women").style.display = "block";
+                    document.getElementById("youth").style.display = "none";
+
+                }
+                else if(slideNext == 3){
+                    document.getElementById("main").style.display = "none";
+                    document.getElementById("men").style.display = "none";
+                    document.getElementById("women").style.display = "none";
+                    document.getElementById("youth").style.display = "block";
+
+                }
+        }
+
+    </script>
+</head>
