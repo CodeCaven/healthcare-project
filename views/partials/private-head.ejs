@@ -16,13 +16,23 @@
     <script src="./javascripts/control.js"></script>
     <script type="text/javascript">
         
-        
+        // all data from the database
+        let private_age = <%-JSON.stringify(ejs_age_list)%>;
+        let private_care = <%-JSON.stringify(ejs_care_list)%>;
+        let private_charge = <%-JSON.stringify(ejs_charge_list)%>;
+        let private_cost = <%-JSON.stringify(ejs_cost_list)%>;
+        let private_fund = <%-JSON.stringify(ejs_fund_list)%>;
         
         
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
             
-           console.log("ready");
+           // log data
+           console.log(private_age);
+           console.log(private_care);
+           console.log(private_charge);
+           console.log(private_cost);
+           console.log(private_fund);
 
 
         }, false);

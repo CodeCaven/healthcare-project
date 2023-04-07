@@ -27,8 +27,8 @@ a {
 .left-flex{
     width:55%;
     height: 18vh;
-    background-color: var(--mdb-dark);
-    color:white;
+    background-color: lightblue;
+    color:var(--mdb-dark);
     transition: 0.6s;
     border-top-left-radius: 0.6rem;
     border-bottom-left-radius: 0.6rem;
@@ -62,7 +62,8 @@ a {
 }
 
 .stat-text{
-  color:#00B7FF;
+  color:var(--mdb-dark);
+  font-weight:700;
 }
 
 .video{
@@ -73,6 +74,11 @@ a {
   cursor:pointer;
 }
 
+.display-3 {
+  font-size: calc(1.4236rem + 2.08318vw);
+  font-weight: 900;
+  line-height: 1;
+}
 
 
 

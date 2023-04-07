@@ -21,7 +21,7 @@ const fs = require('fs');
     pool.getConnection(function(err, connection) {
       // no release here?, see below
       if(!err) {
-        console.log("Database is connected");
+        console.log("Healthcare Database is connected");
         //console.log("Navigate to http://localhost:3000");
       } else {
         console.log("Error while connecting to database");
