@@ -1,13 +1,16 @@
 var db = require('../models/modelDB');
 
 // Display HomePage.
-exports.home = function(req, res) {
+exports.private = function(req, res) {
     
+    // sql
     let item_sql = "SELECT * FROM item ";
     let local_gov_sql = "SELECT * FROM local_government";
     let centres_sql = "SELECT * FROM collection_centre cc, local_government lg WHERE " +
                         " cc.council_id = lg.council_id";
     let performance_sql = "SELECT * FROM local_government_performance";
+
+    // storage for render
     let items_list; 
     let local_govs; 
     let trends; 
@@ -43,7 +46,7 @@ exports.home = function(req, res) {
 
 	// wait for all the promises and call next function
     Promise.all([p1, p2, p3]).then(
-        result => res.render('index', {ejs_items: items_list,
+        result => res.render('privatehealth', {ejs_items: items_list,
                                         ejs_govs: local_govs,
                                         ejs_trends: trends,
                                         ejs_centres: centres})
@@ -51,14 +54,8 @@ exports.home = function(req, res) {
         error => error_handle(error)
     );
     
-    // render to client
-    //res.render('index', {ejs_items: items}); 
-        //res.send("To implement ...");
-    // handle errors from promises
     function error_handle(e){
         console.log(e.name + ": " + e.message);
     }
-
-    
 
 };
