@@ -25,15 +25,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Navbar brand -->
             <a class="navbar-brand mt-2 mt-lg-0" href="./">
-              <i class="fas fa-heart-pulse text-secondary"></i>
+              <i class="fas fa-heart-pulse" style="color:salmon"></i>
             </a>
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-secondary fw-bold" href="#" onclick="guides()">Good Health Guidelines</a>
+                <a class="nav-link fw-bold" href="#">Good Health Guidelines</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-secondary fw-bold" href="#">The Private Healthcare System</a>
+                <a class="nav-link fw-bold" href="#" onclick="private()">The Private Healthcare System</a>
               </li>
             </ul>
             <!-- Left links -->
@@ -43,15 +43,15 @@
           <!-- Right elements -->
           <div class="d-flex align-items-center">
             <!-- Icon -->
-            <a class="text-secondary me-3" href="https://www.facebook.com/bootstrap.info" rel="nofollow" target="_blank">
+            <a class="me-3" href="https://www.facebook.com/bootstrap.info" rel="nofollow" target="_blank">
               <i class="fab fa-facebook-f"></i>
             </a>
             <!-- Icon -->
-            <a class="text-secondary me-3" href="https://icons.getbootstrap.com/icons/google/" rel="nofollow" target="_blank">
+            <a class="me-3" href="https://icons.getbootstrap.com/icons/google/" rel="nofollow" target="_blank">
               <i class="fab fa-google"></i>
             </a>
             <!-- Icon -->
-            <a class="text-secondary me-3" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
+            <a class="me-3" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
               <i class="fab fa-github"></i>
             </a>
   
@@ -64,18 +64,89 @@
   
     </header>
 
-    <!--Main Page-->
-    <div class="container position-relative">
+    <!--Title-->
+    <div class="container">
       <div class="row align-items-center">
         <div class="col-md-5 col-lg-6 order-md-1 pt-8"><img class="img-fluid" src="/images/hero-header.png" alt="" /></div>
         <div class="col-md-7 col-lg-6 text-center text-md-start pt-5 pt-md-9">
           <h1 class="mb-4 display-3 fw-bold">Private healthcare <br class="d-block d-lg-none d-xl-block" />in Australia.</h1>
-          <p class="mt-3 mb-4 fs-1">Costs,  admissions, funds, charge types and care types.</p>
+          <p class="mt-3 mb-4 fs-1">Costs, admissions, funds, charge types and care types.</p>
         </div>
       </div>
     </div>
-    
-  
+
+    <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-10 col-lg-10 pt-8 fs-5">
+            For new arrivals to Australia, the healthcare system can seem confusing. It is a complex structure 
+            that is difficult to navigate and many visitors are forced into the private system to gain a visa. 
+            So let's explore the private healthcare system in Australia by viewing recent statistics and trends.
+          </div>
+        </div>
+      </div>
+
+      </br>
+      <!--Trends-->
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12 pt-8">
+            <h1>Trends in the private health system</h1>
+          </br>
+            <div class="row align-items-center">
+              <div class="col-lg-3" id="multiplesVis1" style="height:30vh;"></div>
+              <div class="col-lg-3" id="multiplesVis2" style="height:30vh;"></div>
+              <div class="col-lg-3" id="multiplesVis3" style="height:30vh;"></div>
+              <div class="col-lg-3" id="multiplesVis4" style="height:30vh;"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+     </br>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-12 col-lg-12 pt-8 fs-5">
+          The average expected stay in a private health facility has been decreasing gradually for the last 10 years 
+          and the most recent year (2021) recorded 2.1 days as the expected stay duration. The average charge for a stay at
+          a private health care facility was $3342 in 2021. This has increased by over $600 since 2010. There were 585 
+          registered private hospital in Australia in 2021 and this number as been gradually increasing for the last decade.
+          The private healthcare system services over 4.4 million people per year. <span class="fst-italic">Hover over a chart to read the values 
+          for each year.</span>
+        </div>
+      </div>
+    </div>
+
+    <!--Users-->
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12 pt-8">
+          <h1>Users of the private health system</h1>
+        </br>
+          <div class="row align-items-center">
+            <div class="col-lg-3" id="usersStream" style="height:30vh;"></div>
+            
+          </div>
+        </div>
+      </div>
+  </div>
+
+    <!--Conditions-->
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12 pt-8">
+          <h1>Conditions being treated in the private health system</h1>
+        </br>
+          <div class="row align-items-center">
+            <div class="col-lg-3" id="careStream" style="height:30vh;"></div>
+            
+          </div>
+        </div>
+      </div>
+  </div>
+      
+    <!--Tooltip-->
+    <div class="tooltipCustom" id="tooltip"></div>
+
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-light text-muted">
   

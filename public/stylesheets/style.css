@@ -80,6 +80,40 @@ a {
   line-height: 1;
 }
 
+.axis-grid line {
+  stroke: #def;
+  stroke-width: 0.1vh;
+}
+
+.axis-dark{
+  color: white;
+  stroke-width: 0.3vh;
+  opacity: 0.7;
+}
+
+.axis-light{
+  color: var(--mdb-dark);
+  stroke-width: 0.3vh;
+  opacity: 1;
+}
+
+.tooltipCustom{
+  position: absolute;
+  visibility: hidden;
+  padding: 5px;
+  text-align: center;
+  z-index: 100;
+  font-size: 1em;
+  background-color: whitesmoke;
+  font-weight: 200;
+  height: 20vh;
+  width:15vw;
+  color: var(--mdb-dark);
+  border-radius: 0.5rem;
+  border-color: var(--mdb-dark);
+  border-width: 0.3rem;
+}
+
 
 
 

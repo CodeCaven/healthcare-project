@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
     <!-- MDB -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
-    <script src="https://d3js.org/d3.v6.js"></script> <!--D3-->
+    <!--<script src="https://d3js.org/d3.v6.js"></script> D3 v6-->
+    <script src="https://d3js.org/d3.v4.min.js"></script> <!--D3 v4 for events-->
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="./javascripts/control.js"></script>
     <script type="text/javascript">
@@ -22,7 +23,10 @@
         let private_charge = <%-JSON.stringify(ejs_charge_list)%>;
         let private_cost = <%-JSON.stringify(ejs_cost_list)%>;
         let private_fund = <%-JSON.stringify(ejs_fund_list)%>;
-        
+
+        // global units
+        let vhu;
+        let vwu;
         
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
@@ -34,8 +38,256 @@
            console.log(private_cost);
            console.log(private_fund);
 
+           // global units
+           vhu = window.innerHeight/100;
+           vwu = window.innerWidth/100;
+           console.log("height and width window units");
+           console.log(vhu);
+           console.log(vwu);
+           
+           small_multiples("multiplesVis1", "ave_length_stay_days", "Average Stay (Days)");
+           small_multiples("multiplesVis2", "average_hospital_charge_per_separation", "Average Charge");
+           small_multiples("multiplesVis3", "number_of_hospitals_reporting", "Total Private Hospitals");
+           small_multiples("multiplesVis4", "separations", "Total Patients");
+
 
         }, false);
+
+        function small_multiples(div, attr, title){
+           
+
+            // get width and height of plot area
+            var plot_area = document.getElementById(div);
+            var plot_height = plot_area.offsetHeight;
+            var plot_width = plot_area.offsetWidth;
+
+            // plot dimensions
+            //console.log(plot_area.offsetHeight);
+            //console.log(plot_area.offsetWidth);
+
+            // set the dimensions and margins of the plot 
+            var margin = {top: 3*vhu, 
+                        right: 3*vwu, 
+                        bottom: 4*vhu, 
+                        left: 3*vwu};
+
+            // chart width and height (leaving names from old code)
+            var lineChartWidth = plot_width - margin.left - margin.right;
+            var height = plot_height - margin.top - margin.bottom;
+
+            // remove any elements in plot area
+            while (plot_area.firstChild) {
+                plot_area.removeChild(plot_area.firstChild);
+            }
+
+            // append the svg object to the plot area
+            var svg = d3.select("#"+div)
+            .append("svg")
+                .attr("width", plot_width)
+                .attr("height", plot_height)
+            .append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
+
+            // background
+            svg.
+            append("rect")
+                .attr("id", "backLine")
+                .attr("width", lineChartWidth)
+                .attr("height", height)
+                .attr("fill", "white")
+                .attr("x",0)
+                .attr("y",0);
+
+            // define a clipPath: everything out of this area won't be drawn (else draws in margin)
+            svg.append("defs").append("svg:clipPath")
+                .attr("id", attr) 
+                .append("svg:rect")
+                .attr("width", lineChartWidth)
+                .attr("height", height)
+                .attr("x",0)
+                .attr("y",0);
+
+            // add the clip path
+            var all_streams = svg.append('g')
+                .attr("clip-path", "url(#" + attr + ")");
+
+            //Read the data
+            var x_values = [];
+            var y_values = [];
+            var d3_data = [];
+            for(let i in private_cost){
+                x_values.push(private_cost[i]["separation_year"]);
+                y_values.push(private_cost[i][attr]);
+                d3_data.push({'x':private_cost[i]["separation_year"], 'y':private_cost[i][attr]});
+            }
+
+            console.log(x_values);
+            console.log(y_values);
+
+            // y-scale
+            var yScale = d3.scaleLinear()
+            .domain([0, 2*d3.max(y_values)])
+            .range([height, 0]);
+
+            // x-scale
+            var xScale = d3.scaleLinear()
+            .domain([d3.min(x_values), d3.max(x_values)])
+            .range([0, lineChartWidth]);
+
+            // area under curve
+            var area = d3.area().curve(d3.curveMonotoneX)
+                    .x(function(d) {return xScale(d.x);})
+                    .y0(height)
+                    .y1(function(d) { return yScale(d.y);});
+
+            // gradient fill
+            var gradFill = svg
+            .append('defs')
+            .append('linearGradient')
+            .attr('id', 'chromFill')
+            .attr('x1', '0%')
+            .attr('y1', '0%')
+            .attr('x2', '0%')
+            .attr('y2', '100%')
+
+
+            gradFill.append('stop')
+            .attr('offset', '0%')
+            .style('stop-color', 'var(--mdb-info)')
+            .style('stop-opacity', 1);
+
+            gradFill.append('stop')
+            .attr('offset', '50%')
+            .style('stop-color', 'var(--mdb-info)')
+            .style('stop-opacity', 1);
+
+            gradFill.append('stop')
+            .attr('offset', '100%')
+            .style('stop-color', 'whitesmoke')
+            .style('stop-opacity', 1);
+
+            // x-axis 
+            var x_axis = d3.axisBottom().scale(xScale)
+                .tickSize(vhu/2).ticks(5).tickSizeOuter(0).tickFormat(d => d);
+
+            // grid x 
+            var xAxisGrid = d3.axisBottom().scale(xScale)
+            .tickSize(-height).tickFormat('').ticks(5).tickSizeOuter(0);
+
+            // grid call x
+            var x_axis_grid_call = svg.append("g")
+            .attr('class', 'axis-grid')
+            .attr('transform', 'translate(0,' + height + ')')
+            .call(xAxisGrid);
+
+            // y-axis
+            var y_axis = d3.axisLeft().ticks(5).scale(yScale)
+            .tickSize(vhu/2).tickSizeOuter(0).tickFormat(d => d);
+
+            // grid y
+            var yAxisGrid = d3.axisLeft().scale(yScale).
+            tickSize(-lineChartWidth).tickFormat('').ticks(5).tickSizeOuter(0);
+
+            // grid y call
+            svg.append("g")
+            .attr('class', 'axis-grid')
+            .call(yAxisGrid);
+
+            // title
+            svg.append("text")
+                .attr("class", "label")
+                .attr("text-anchor", "middle")
+                .attr("fill", 'var(--mdb-dark)')
+                .attr("stroke", 'var(--mdb-dark)')
+                .attr("x", lineChartWidth / 2)
+                .attr("y", -vhu)
+                .text(title);
+
+            // xlabel
+            svg.append("text")
+                .attr("class", "label")
+                .attr("text-anchor", "middle")
+                .attr("fill", 'var(--mdb-dark)')
+                .attr("stroke", 'var(--mdb-dark)')
+                .attr("x", lineChartWidth / 2)
+                .attr("y", height + margin.bottom)
+                .text("YEAR");
+
+            // plot the density distribution (area)
+            svg.append("path")
+                .datum(d3_data)
+                .attr("fill", "url(#chromFill)") //url(#chromFill)
+                .attr("fill-opacity", 1)
+                .attr("stroke-width", "0.3vh")
+                .attr("stroke", 'var(--mdb-info)') 
+                .attr("stroke-opacity", 0.5)
+                .attr("class", "lineArea")
+                .attr("d", area)
+                .on("mousemove", function(d){
+
+                    // get tooltip
+                    var tooltip = d3.select("#tooltip");
+                    
+                    // get year from mouse
+                    var mouse = d3.mouse(this);
+                    var key_date = Math.ceil(xScale.invert(mouse[0]));
+
+                    
+                    // find y value
+                    var y_value = 0;
+                    for(let i in d){
+                        if(d[i].x == key_date){
+                            y_value = d[i].y;
+                        }
+                    }
+
+                    // <i class='fas fa-heart-pulse" style="color:salmon'></i>
+                    // create html
+                    var htmlString = "<strong>" +  title + "</strong><br>"
+                                    + "YEAR = " + key_date + "<br>" + 
+                                    "<i class='fas fa-heart-pulse' style='color:salmon'></i><br>" +
+                                    "<strong>" +  y_value + "</strong><br>";
+                                    
+                    // create html
+                    var htmlStringCharge = "<strong>" +  title + "</strong><br>"
+                                    + "YEAR = " + key_date + "<br>" + 
+                                    "<i class='fas fa-heart-pulse' style='color:salmon'></i><br>" +
+                                    "<strong>$" +  Math.ceil(y_value) + "</strong><br>";
+                    
+                    // set html and position
+                    var toolX = mouse[0] + 'px';
+                    tooltip.style('left', (d3.event.pageX+10) + 'px');
+                    tooltip.style('top', (d3.event.pageY-100) + 'px');
+                    tooltip.html(htmlString);
+                    if(title == "Average Charge"){
+                        tooltip.html(htmlStringCharge);
+                    }
+                    tooltip.style("visibility", "visible");
+
+                    
+                })
+                .on("mouseout", function(event, d){
+                        var tooltip = d3.select("#tooltip");
+                        tooltip.style("visibility", "hidden");  
+                });
+
+            // y-axis calls
+            svg.append("g")
+                .call(y_axis)
+                //.style('stroke-width', '0.4vh')
+                .style('font-size', '1.2vh')
+                .attr('class', 'axis-light');
+
+            // x-axis call 
+            svg.append("g")
+                .attr("transform", "translate(0," + (height) + ")") 
+                .call(x_axis)
+                //.style('stroke-width', '0.4vh')
+                .style('font-size', '1.5vh')
+                .attr('class', 'axis-light');
+
+        }
 
         
     </script>

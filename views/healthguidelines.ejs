@@ -25,15 +25,15 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Navbar brand -->
             <a class="navbar-brand mt-2 mt-lg-0" href="./">
-              <i class="fas fa-heart-pulse text-secondary"></i>
+              <i class="fas fa-heart-pulse" style="color:salmon"></i>
             </a>
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-secondary fw-bold" href="#">Good Health Guidelines</a>
+                <a class="nav-link fw-bold" href="#">Good Health Guidelines</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-secondary fw-bold" href="#" onclick="private()">The Private Healthcare System</a>
+                <a class="nav-link fw-bold" href="#" onclick="private()">The Private Healthcare System</a>
               </li>
             </ul>
             <!-- Left links -->
@@ -43,15 +43,15 @@
           <!-- Right elements -->
           <div class="d-flex align-items-center">
             <!-- Icon -->
-            <a class="text-secondary me-3" href="https://www.facebook.com/bootstrap.info" rel="nofollow" target="_blank">
+            <a class="me-3" href="https://www.facebook.com/bootstrap.info" rel="nofollow" target="_blank">
               <i class="fab fa-facebook-f"></i>
             </a>
             <!-- Icon -->
-            <a class="text-secondary me-3" href="https://icons.getbootstrap.com/icons/google/" rel="nofollow" target="_blank">
+            <a class="me-3" href="https://icons.getbootstrap.com/icons/google/" rel="nofollow" target="_blank">
               <i class="fab fa-google"></i>
             </a>
             <!-- Icon -->
-            <a class="text-secondary me-3" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
+            <a class="me-3" href="https://github.com/mdbootstrap/mdb-ui-kit" rel="nofollow" target="_blank">
               <i class="fab fa-github"></i>
             </a>
   
@@ -157,42 +157,6 @@
   
             </div>
 
-            <div class="col-lg-5 mb-5 mb-lg-0" id="main">
-              <!-- Load Info -->
-              <h3 class="fw-bold mb-4 text-center">Australia's Health Status and Guidelines</h3>
-
-              <!--Inset Men-->
-              <div class="flex-container shadow-4-strong" onclick="start('men')" onmouseover="hoverMen()" onmouseout="hoverMenOut()">
-                <div id="men-tab-header" class="left-flex text-center justify-content-center d-flex align-items-center" onmouseover="hoverLeft(this)" onmouseout="hoverLeftOut(this)"><div style="letter-spacing: 0.15rem;"><strong>Adult Males</strong></div> 
-                  <div id="men-tab-inset" class="inset-text">In 2018, just under half of Australia’s population <span class="stat-text">49%</span>, or 12.4 million people were male.
-                  <p class="fst-italic fw-bold text-decoration-underline">Click to learn more</p></div>
-                </div>
-                <div class="right-flex" style="background-image:url('../images/men.jpg')" onmouseover="rightHover(this)" onmouseout="rightOut(this)"></div>
-              </div>
-
-              <!--Inset Women-->
-              <div class="flex-container shadow-4-strong" onclick="start('women')" onmouseover="hoverWomen()" onmouseout="hoverWomenOut()">
-                <div id="women-tab-header" class="left-flex text-center justify-content-center d-flex align-items-center" onmouseover="hoverLeft(this)" onmouseout="hoverLeftOut(this)"><div style="letter-spacing: 0.15rem;"><strong>Adult Females</strong></div> 
-                  <div id="women-tab-inset" class="inset-text">In 2018, just over half of Australia’s population <span class="stat-text">51%</span> or 12.6 million people were female.
-                    <p class="fst-italic fw-bold text-decoration-underline">Click to learn more</p></div>
-                </div>
-                <div class="right-flex" style="background-image:url('../images/female.jpg')" onmouseover="rightHover(this)" onmouseout="rightOut(this)"></div>
-              </div>
-
-              <!--Inset Youth-->
-              <div class="flex-container shadow-4-strong" onclick="start('youth')" onmouseover="hoverYouth()" onmouseout="hoverYouthOut()">
-                <div id="youth-tab-header" class="left-flex text-center justify-content-center d-flex align-items-center" onmouseover="hoverLeft(this)" onmouseout="hoverLeftOut(this)"><div style="letter-spacing: 0.15rem;"><strong>Young People</strong>
-                  </div> 
-                  <div id="youth-tab-inset" class="inset-text">In 2020, an estimated 3.2 million young people aged 15–24 lived in Australia, making up <span class="stat-text">12%</span> of the population.
-                    <p class="fst-italic fw-bold text-decoration-underline">Click to learn more</p></div>
-                </div>
-                <div class="right-flex" style="background-image:url('../images/children.jpg')" onmouseover="rightHover(this)" onmouseout="rightOut(this)"></div>
-              </div>
-              
-              <p class="fst-italic fw-bold text-center fs-6">Click on a tile or play the slideshow to learn more</p>
-
-          </div>
-  
               <div class="col-lg-5 mb-5 mb-lg-0" id="men" style="display:none;">
                   <!-- Male Text Info -->
                   <h3 class="fw-bold mb-4 text-center">Health Guidelines for Male</h3>
@@ -285,6 +249,42 @@
                   <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information on smoking and alcohol</a>
   
               </div>
+
+              <div class="col-lg-5 mb-5 mb-lg-0" id="main">
+                <!-- Load Info -->
+                <h3 class="fw-bold mb-4 text-center">Australia's Health Status and Guidelines</h3>
+  
+                <!--Inset Men-->
+                <div class="flex-container shadow-4-strong" onclick="start('men')" onmouseover="hoverMen()" onmouseout="hoverMenOut()">
+                  <div id="men-tab-header" class="left-flex text-center justify-content-center d-flex align-items-center" onmouseover="hoverLeft(this)" onmouseout="hoverLeftOut(this)"><div style="letter-spacing: 0.15rem;"><strong>Adult Males</strong></div> 
+                    <div id="men-tab-inset" class="inset-text">In 2018, just under half of Australia’s population <span class="stat-text">49%</span>, or 12.4 million people were male.
+                    <p class="fst-italic fw-bold text-decoration-underline">Click to learn more</p></div>
+                  </div>
+                  <div class="right-flex" style="background-image:url('../images/men.jpg')" onmouseover="rightHover(this)" onmouseout="rightOut(this)"></div>
+                </div>
+  
+                <!--Inset Women-->
+                <div class="flex-container shadow-4-strong" onclick="start('women')" onmouseover="hoverWomen()" onmouseout="hoverWomenOut()">
+                  <div id="women-tab-header" class="left-flex text-center justify-content-center d-flex align-items-center" onmouseover="hoverLeft(this)" onmouseout="hoverLeftOut(this)"><div style="letter-spacing: 0.15rem;"><strong>Adult Females</strong></div> 
+                    <div id="women-tab-inset" class="inset-text">In 2018, just over half of Australia’s population <span class="stat-text">51%</span> or 12.6 million people were female.
+                      <p class="fst-italic fw-bold text-decoration-underline">Click to learn more</p></div>
+                  </div>
+                  <div class="right-flex" style="background-image:url('../images/female.jpg')" onmouseover="rightHover(this)" onmouseout="rightOut(this)"></div>
+                </div>
+  
+                <!--Inset Youth-->
+                <div class="flex-container shadow-4-strong" onclick="start('youth')" onmouseover="hoverYouth()" onmouseout="hoverYouthOut()">
+                  <div id="youth-tab-header" class="left-flex text-center justify-content-center d-flex align-items-center" onmouseover="hoverLeft(this)" onmouseout="hoverLeftOut(this)"><div style="letter-spacing: 0.15rem;"><strong>Young People</strong>
+                    </div> 
+                    <div id="youth-tab-inset" class="inset-text">In 2020, an estimated 3.2 million young people aged 15–24 lived in Australia, making up <span class="stat-text">12%</span> of the population.
+                      <p class="fst-italic fw-bold text-decoration-underline">Click to learn more</p></div>
+                  </div>
+                  <div class="right-flex" style="background-image:url('../images/children.jpg')" onmouseover="rightHover(this)" onmouseout="rightOut(this)"></div>
+                </div>
+                
+                <p class="fst-italic fw-bold text-center fs-6">Click on a tile or play the slideshow to learn more</p>
+  
+            </div>
   
           </div>
   
