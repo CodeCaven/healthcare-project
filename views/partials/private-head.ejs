@@ -50,6 +50,9 @@
            small_multiples("multiplesVis3", "number_of_hospitals_reporting", "Total Private Hospitals");
            small_multiples("multiplesVis4", "separations", "Total Patients");
 
+           draw_stream_graph("usersStream", "users", private_age, "age_group");
+           draw_stream_graph("careStream", "care", private_care, "care_type");
+
 
         }, false);
 
@@ -121,9 +124,6 @@
                 y_values.push(private_cost[i][attr]);
                 d3_data.push({'x':private_cost[i]["separation_year"], 'y':private_cost[i][attr]});
             }
-
-            console.log(x_values);
-            console.log(y_values);
 
             // y-scale
             var yScale = d3.scaleLinear()
@@ -242,7 +242,6 @@
                         }
                     }
 
-                    // <i class='fas fa-heart-pulse" style="color:salmon'></i>
                     // create html
                     var htmlString = "<strong>" +  title + "</strong><br>"
                                     + "YEAR = " + key_date + "<br>" + 
@@ -288,6 +287,200 @@
                 .attr('class', 'axis-light');
 
         }
+
+    
+    function draw_stream_graph(div, streamType, private_data, attr){
+
+        // get width and height of plot area
+        var plot_area = document.getElementById(div);
+        var plot_height = plot_area.offsetHeight;
+        var plot_width = plot_area.offsetWidth;
+
+        console.log(plot_area);
+        console.log(plot_area.offsetHeight);
+        console.log(plot_area.offsetWidth);
+
+         // set the dimensions and margins of the plot 
+         var margin = {top: 3*vhu, 
+                        right: 3*vwu, 
+                        bottom: 4*vhu, 
+                        left: 3*vwu};
+
+        // chart width and height (leaving names from old code)
+        var lineChartWidth = plot_width - margin.left - margin.right;
+        var height = plot_height - margin.top - margin.bottom;
+
+        // remove any elements in plot area
+        while (plot_area.firstChild) {
+            plot_area.removeChild(plot_area.firstChild);
+        }
+
+        // append the svg object to the plot area
+        var svg = d3.select("#"+div)
+        .append("svg")
+            .attr("width", plot_width)
+            .attr("height", plot_height)
+        .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
+
+        // background
+        svg.
+        append("rect")
+            .attr("id", "backLine")
+            .attr("width", lineChartWidth)
+            .attr("height", height)
+            .attr("fill", "black")
+            .attr("x",0)
+            .attr("y",0);
+
+        // define a clipPath: everything out of this area won't be drawn (else draws in margin)
+        svg.append("defs").append("svg:clipPath")
+            .attr("id", streamType) 
+            .append("svg:rect")
+            .attr("width", lineChartWidth)
+            .attr("height", height)
+            .attr("x",0)
+            .attr("y",0);
+
+        // add the clip path
+        var all_streams = svg.append('g')
+            .attr("clip-path", "url(#" +  streamType + ")");
+        
+
+        // data and keys
+        var allKeys = [];
+        var d3_data = [];
+        for(let i in private_data){
+            if(private_data[i]['hospital_type'] == "Private - Total"){
+                // HERE: remove Total
+                var new_row = {"date":private_data[i]["separation_year"],
+                                attr: private_data[i][attr],
+                                "patient_days": private_data[i]["patient_days"]};
+                d3_data.push(new_row);
+                allKeys.push(private_data[i][attr]);
+            }
+        }
+
+        // stackKeys
+        let stackKeys = [...new Set(allKeys)];
+        console.log(stackKeys.length);
+        console.log(stackKeys);
+        console.log(d3_data);
+
+        // x scale
+        const xScale = d3.scaleLinear()
+            .domain([2010, 2021])
+            .range([ 0, lineChartWidth]);
+
+        
+        var yScale = d3.scaleLinear()
+            .domain([0, 4000000]) 
+            .range([height, 0]);
+        
+        /*
+        // HERE: keys length and colour schemes by key lengths (11 and 14)
+
+        // color palettes by chatgpt!!!!
+
+        // blues ["#0074D9", "#3D85C6", "#4A90E2", "#2B9EB3", "#00BFFF", "#1E90FF", "#6495ED"]
+        // categories1 ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#F012BE"]
+        // yellowsreds ["#FFD700", "#FFFF00", "#FF6347", "#FF7F50", "#FFC300", "#FFA500", "#DC143C"]
+        // pastels ["#FFB6C1", "#87CEEB", "#B0E0E6", "#98FB98", "#FFDAB9", "#FFC0CB", "#DDA0DD"]
+
+
+        const colour = d3.scaleOrdinal()
+            .domain(stackKeys) // chatgpt color scheme!
+            .range(["#0074D9", "#3D85C6", "#4A90E2", "#2B9EB3", "#00BFFF", "#1E90FF", "#6495ED"]);
+
+        // create stacked areas
+        var stackedData = d3.stack()
+        .offset(d3.stackOffsetNone)
+        .order(d3.stackOrderNone)
+        .keys(stackKeys);
+
+        var stack = stackedData(d3_data);
+
+        var area = d3.area().curve(d3.curveLinear) //d3.curveBasis
+                .x(function(d) { return xScale(d.data.date);})
+                .y0(function(d) { return yScale(d[0]);})
+                .y1(function(d) { return yScale(d[1]);});
+
+        // plot the streams
+        all_streams
+        .selectAll("layers")
+        .data(stack)
+        .enter()
+        .append("path")
+        .attr("class", "streams")
+        .style("fill", function(d) { return colour(d.key); })
+        .style("fill-opacity", 0.5)
+        .style("stroke", function(d) { return colour(d.key); })
+        .style("stroke-opacity", 0.8)
+        .style("stroke-width", 0.5)
+        .style("cursor", "pointer")
+        .on("mouseover", function(event, d){
+            // text location boundaries
+            var x = event.layerX;
+            var y = event.layerY;
+            var anchor = "middle"; 
+            if(x >= lineChartWidth -100){
+                x = lineChartWidth - 200;
+                anchor = "start";
+            };
+            if(x <= 150){
+                x = x + 150;
+            }
+            if(y >= height -100){
+                y = height - 100;
+            }
+            
+            // add text (name)
+            all_streams.append("text")
+            .attr("class", "hover-text")
+            .attr("x", x)
+            .attr("y", y)
+            .attr("dy", "1em")
+            .attr("font-size", "1em")
+            .attr("fill", "white")
+            .attr("stroke", "white")
+            .style("text-anchor", anchor)
+            .style("text-shadow", "0.1vh 0.1vh gray")
+            .text(d.key);
+
+
+            // highlight
+            d3.selectAll(".streams").style("opacity", function(e){
+                if(e.key == d.key){return 1;}
+                return 0.1;
+            });
+            
+        })
+        .on("mouseout", function(event, d){
+            d3.selectAll(".streams").style("opacity", 1);
+            d3.selectAll(".hover-text").remove();
+        })
+        .attr("d", area);
+
+        // x-axis
+        var x_axis = d3.axisBottom().scale(xScale)
+            .tickSize(10)
+            .ticks(6)
+            .tickFormat(d => d)
+            .tickSizeOuter(0);
+
+        // x-axis append (bottom)
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .attr("class", "axes")
+            .call(x_axis);
+
+        // y-axis
+        //svg.append("g")
+        //.attr("class", "axes")
+            //.call(d3.axisLeft(yScale));
+        */
+    }
 
         
     </script>
