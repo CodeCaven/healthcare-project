@@ -104,14 +104,12 @@ a {
   text-align: center;
   z-index: 100;
   font-size: 1em;
-  background-color: whitesmoke;
-  font-weight: 200;
-  height: 20vh;
-  width:15vw;
-  color: var(--mdb-dark);
+  background-color: var(--mdb-dark);
+  font-weight: 700;
+  height: fit-content;
+  width:200px;
+  color: white;
   border-radius: 0.5rem;
-  border-color: var(--mdb-dark);
-  border-width: 0.3rem;
 }
 
 
