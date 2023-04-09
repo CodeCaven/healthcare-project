@@ -45,14 +45,49 @@
            console.log(vhu);
            console.log(vwu);
            
+           // plot graphs
            small_multiples("multiplesVis1", "ave_length_stay_days", "Average Stay (Days)");
            small_multiples("multiplesVis2", "average_hospital_charge_per_separation", "Average Charge");
            small_multiples("multiplesVis3", "number_of_hospitals_reporting", "Total Private Hospitals");
            small_multiples("multiplesVis4", "separations", "Total Patients");
 
            draw_stream_graph("usersStream", "users", private_age, "age_group");
-           draw_stream_graph("careStream", "care", private_care, "care_type");
+           draw_stream_graph_charge("careStream", "charge", private_charge, "charge_component");
 
+           // load tables
+           var cost_table = document.getElementById('table-cost');
+           for(let i in private_cost){
+            // new row
+             var table_row = document.createElement("tr");
+
+            // entries
+            var table_td_1 = document.createElement("td");
+            table_td_1.innerHTML = private_cost[i]["ave_length_stay_days"];
+            table_row.append(table_td_1);
+
+            var table_td_2 = document.createElement("td");
+            table_td_2.innerHTML = private_cost[i]["average_hospital_charge_per_separation"];
+            table_row.append(table_td_2);
+
+            var table_td_4 = document.createElement("td");
+            table_td_4.innerHTML = private_cost[i]["number_of_hospitals_reporting"];
+            table_row.append(table_td_4);
+
+            var table_td_5 = document.createElement("td");
+            table_td_5.innerHTML = private_cost[i]["separation_year"];
+            table_row.append(table_td_5);
+
+            var table_td_6 = document.createElement("td");
+            table_td_6.innerHTML = private_cost[i]["separations"];
+            table_row.append(table_td_6);
+
+            var table_td_7 = document.createElement("td");
+            table_td_7.innerHTML = private_cost[i]["separations_with_charge"];
+            table_row.append(table_td_7);
+
+            cost_table.append(table_row);
+             
+           }
 
         }, false);
 
@@ -397,6 +432,7 @@
         var lightColors = ["#FADADD", "#F5D5E3", "#E8D8C3", "#D5ECC2", "#BEE3F8", "#C3C9E9", "#B1D4E0", "#FAD6A5", "#F7D6CF", "#EAE0C8", "#D6D2B6", "#CFE5C5", "#D1B2F2"];
         var brightColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#FF6F61", "#6B5B95", "#88D8B0", "#E27D60", "#41B3A3", "#FAC863", "#D9AFD9"];
         var categoryColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#F012BE", "#39CCCC", "#01FF70", "#85144b", "#3D9970", "#7FDBFF", "#F012BE"];
+        var categoryColors2 = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf", "#ffbb78", "#98df8a", "#aec7e8"];
         // blues ["#0074D9", "#3D85C6", "#4A90E2", "#2B9EB3", "#00BFFF", "#1E90FF", "#6495ED"]
         // categories1 ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#F012BE"]
         // yellowsreds ["#FFD700", "#FFFF00", "#FF6347", "#FF7F50", "#FFC300", "#FFA500", "#DC143C"]
@@ -405,7 +441,7 @@
 
         const colour = d3.scaleOrdinal()
             .domain(stackKeys) // chatgpt color scheme!
-            .range(categoryColors);
+            .range(categoryColors2);
 
         // create stacked areas
         var stackedData = d3.stack()
@@ -435,34 +471,17 @@
         .style("stroke-width", 0.5)
         .style("cursor", "pointer")
         .on("mouseover", function(d){
-            // text location boundaries
-            var x = d3.event.layerX;
-            var y = d3.event.layerY;
-            var anchor = "middle"; 
-            if(x >= lineChartWidth -100){
-                x = lineChartWidth - 200;
-                anchor = "start";
-            };
-            if(x <= 150){
-                x = x + 150;
-            }
-            if(y >= height -100){
-                y = height - 100;
-            }
+           
+            var htmlString = d.key + "<br><i class='fas fa-heart-pulse' style='color:salmon'></i>" 
+                                    + "<br> Age group";
+            // get tooltip
+            var tooltip = d3.select("#tooltip");
+            tooltip.style('width' ,'100px');
+            tooltip.style('left', (d3.event.pageX+10) + 'px');
+            tooltip.style('top', (d3.event.pageY-100) + 'px');
+            tooltip.html(htmlString);
+            tooltip.style("visibility", "visible");
             
-            // add text (name)
-            all_streams.append("text")
-            .attr("class", "hover-text")
-            .attr("x", x)
-            .attr("y", y)
-            .attr("dy", "1em")
-            .attr("font-size", "1em")
-            .attr("fill", "var(--mdb-dark)")
-            .attr("stroke", "var(--mdb-dark)")
-            .style("text-anchor", anchor)
-            .style("text-shadow", "0.1vh 0.1vh gray")
-            .text(d.key);
-
 
             // highlight
             d3.selectAll(".streams"+attr).style("opacity", function(e){
@@ -473,7 +492,10 @@
         })
         .on("mouseout", function(event, d){
             d3.selectAll(".streams"+attr).style("opacity", 1);
-            d3.selectAll(".hover-text").remove();
+
+            var tooltip = d3.select("#tooltip");
+            tooltip.style('width' ,'200px');
+            tooltip.style("visibility", "hidden");  
         })
         .attr("d", area);
 
@@ -487,14 +509,233 @@
         // x-axis append (bottom)
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .attr("class", "axes")
+            .style('font-size', '1.5vh')
+            .attr('class', 'axis-light')
             .call(x_axis);
 
         // y-axis
         svg.append("g")
-        .attr("class", "axes")
-            .call(d3.axisLeft(yScale));
+        .style('font-size', '1.2vh')
+        .attr('class', 'axis-light')
+        .call(d3.axisLeft(yScale));
+
+        // ylabel
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("class", "label")
+            .attr("y", 0 - margin.left)
+            .attr("x",0 - (height / 2))
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text("Patient Days");
         
+    }
+
+    function draw_stream_graph_charge(div, streamType, private_data, attr){
+
+            // get width and height of plot area
+            var plot_area = document.getElementById(div);
+            var plot_height = plot_area.offsetHeight;
+            var plot_width = plot_area.offsetWidth;
+
+            console.log(plot_area);
+            console.log(plot_area.offsetHeight);
+            console.log(plot_area.offsetWidth);
+
+            // set the dimensions and margins of the plot 
+            var margin = {top: 3*vhu, 
+                            right: 3*vwu, 
+                            bottom: 4*vhu, 
+                            left: 6*vwu};
+
+            // chart width and height (leaving names from old code)
+            var lineChartWidth = plot_width - margin.left - margin.right;
+            var height = plot_height - margin.top - margin.bottom;
+
+            // remove any elements in plot area
+            while (plot_area.firstChild) {
+                plot_area.removeChild(plot_area.firstChild);
+            }
+
+            // append the svg object to the plot area
+            var svg = d3.select("#"+div)
+            .append("svg")
+                .attr("width", plot_width)
+                .attr("height", plot_height)
+            .append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
+
+            // background
+            svg.
+            append("rect")
+                .attr("id", "backLine")
+                .attr("width", lineChartWidth)
+                .attr("height", height)
+                .attr("fill", "white")
+                .attr("x",0)
+                .attr("y",0);
+
+            // define a clipPath: everything out of this area won't be drawn (else draws in margin)
+            svg.append("defs").append("svg:clipPath")
+                .attr("id", streamType) 
+                .append("svg:rect")
+                .attr("width", lineChartWidth)
+                .attr("height", height)
+                .attr("x",0)
+                .attr("y",0);
+
+            // add the clip path
+            var all_streams = svg.append('g')
+                .attr("clip-path", "url(#" +  streamType + ")");
+
+
+            // data and keys
+            var allKeys = [];
+            var d3_data = [];
+            var filter_attr = ["Total", "95 and over", "Not reported"];
+
+            var new_row = {"date":private_data[0]["separation_year"]};
+            for(let i in private_data){
+                if(private_data[i]['hospital_type'] == "Private - Other"){
+                    var category = private_data[i][attr];
+                    if(!(filter_attr.includes(category))){
+                        if(category == '0'){
+                            category = '< 1';
+                        }
+
+                        if(new_row["date"] == private_data[i]["separation_year"]){
+                            new_row[category] = private_data[i]["separations_with_charge_reported"];
+                            allKeys.push(category);
+                        }
+                        else{
+                            d3_data.push(new_row);
+                            new_row = {"date":private_data[i]["separation_year"]};
+                            new_row[category] = private_data[i]["separations_with_charge_reported"];
+                        }
+                    }
+                }
+            }
+
+            // stackKeys
+            let stackKeys = [...new Set(allKeys)];
+            console.log(stackKeys);
+            console.log(d3_data);
+
+            // x scale
+            const xScale = d3.scaleLinear()
+                .domain([2010, 2020])
+                .range([ 0, lineChartWidth]);
+
+
+            var yScale = d3.scaleLinear()
+                .domain([0, 7000000]) 
+                .range([height, 0]);
+
+
+            // HERE: keys length and colour schemes by key lengths (11 and 14)
+
+            // color palettes by chatgpt!!!!
+            var lightColors = ["#FADADD", "#F5D5E3", "#E8D8C3", "#D5ECC2", "#BEE3F8", "#C3C9E9", "#B1D4E0", "#FAD6A5", "#F7D6CF", "#EAE0C8", "#D6D2B6", "#CFE5C5", "#D1B2F2"];
+            var brightColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#FF6F61", "#6B5B95", "#88D8B0", "#E27D60", "#41B3A3", "#FAC863", "#D9AFD9"];
+            var categoryColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#F012BE", "#39CCCC", "#01FF70", "#85144b", "#3D9970", "#7FDBFF", "#F012BE"];
+            var categoryColors2 = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf", "#ffbb78", "#98df8a", "#aec7e8"];
+            // blues ["#0074D9", "#3D85C6", "#4A90E2", "#2B9EB3", "#00BFFF", "#1E90FF", "#6495ED"]
+            // categories1 ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#F012BE"]
+            // yellowsreds ["#FFD700", "#FFFF00", "#FF6347", "#FF7F50", "#FFC300", "#FFA500", "#DC143C"]
+            // pastels ["#FFB6C1", "#87CEEB", "#B0E0E6", "#98FB98", "#FFDAB9", "#FFC0CB", "#DDA0DD"]
+
+
+            const colour = d3.scaleOrdinal()
+                .domain(stackKeys) // chatgpt color scheme!
+                .range(brightColors);
+
+            // create stacked areas
+            var stackedData = d3.stack()
+            .offset(d3.stackOffsetNone)
+            .order(d3.stackOrderDescending)
+            .keys(stackKeys);
+
+            var stack = stackedData(d3_data);
+            console.log(stack);
+
+            var area = d3.area().curve(d3.curveMonotoneX) //d3.curveBasis
+                    .x(function(d) { return xScale(d.data.date);})
+                    .y0(function(d) { return yScale(d[0]);})
+                    .y1(function(d) { return yScale(d[1]);});
+
+            // plot the streams
+            all_streams
+            .selectAll("layers"+attr)
+            .data(stack)
+            .enter()
+            .append("path")
+            .attr("class", "streams"+attr)
+            .style("fill", function(d) { return colour(d.key); })
+            .style("fill-opacity", 0.5)
+            .style("stroke", function(d) { return colour(d.key); })
+            .style("stroke-opacity", 0.8)
+            .style("stroke-width", 0.5)
+            .style("cursor", "pointer")
+            .on("mouseover", function(d){
+            
+                var htmlString = d.key + "<br><i class='fas fa-heart-pulse' style='color:salmon'></i>" 
+                                        + "<br> Charge Type";
+                // get tooltip
+                var tooltip = d3.select("#tooltip");
+                tooltip.style('width' ,'150px');
+                tooltip.style('left', (d3.event.pageX+10) + 'px');
+                tooltip.style('top', (d3.event.pageY-100) + 'px');
+                tooltip.html(htmlString);
+                tooltip.style("visibility", "visible");
+                
+
+                // highlight
+                d3.selectAll(".streams"+attr).style("opacity", function(e){
+                    if(e.key == d.key){return 1;}
+                    return 0.1;
+                });
+                
+            })
+            .on("mouseout", function(event, d){
+                d3.selectAll(".streams"+attr).style("opacity", 1);
+
+                var tooltip = d3.select("#tooltip");
+                tooltip.style('width' ,'200px');
+                tooltip.style("visibility", "hidden");  
+            })
+            .attr("d", area);
+
+            // x-axis
+            var x_axis = d3.axisBottom().scale(xScale)
+                .tickSize(10)
+                .ticks(6)
+                .tickFormat(d => d)
+                .tickSizeOuter(0);
+
+            // x-axis append (bottom)
+            svg.append("g")
+                .attr("transform", "translate(0," + height + ")")
+                .style('font-size', '1.5vh')
+                .attr('class', 'axis-light')
+                .call(x_axis);
+
+            // y-axis
+            svg.append("g")
+            .style('font-size', '1.2vh')
+            .attr('class', 'axis-light')
+            .call(d3.axisLeft(yScale));
+
+            // ylabel
+            svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("class", "label")
+                .attr("y", 0 - margin.left)
+                .attr("x",0 - (height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .text("Admissions");
+
     }
 
         
