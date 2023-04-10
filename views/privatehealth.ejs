@@ -154,12 +154,18 @@
 
 </br>
 <!--Tables-->
+
+<!--Trend Table-->
 <div class="container">
   <div class="row align-items-center">
     <div class="col-lg-12 pt-8">
       <h1>Explore further</h1>
       <div class="col-md-12 col-lg-12 pt-8 fs-5">
-        The data for the visualisations seen on this page were sourced from ... Explore the full datasets below.
+        The Australian Government collects data and reports on the private healthcare sector and private healthcare facilities. 
+        These reports are released regularly and made available through the 
+        <a href="https://www.health.gov.au/resources/collections/hospital-data-resources#annual-reports">Department of Health and Aged Care</a>.
+        The datasets used for the visualisations on this page were extracted from these publicly available reports. 
+         Explore the full datasets below.
       </div>
     </br>
     </div>
@@ -168,7 +174,7 @@
       <div class="row align-items-center">
     <div class="col-lg-12">
       <h3>Trends Table</h3>
-      <table class="table table-success table-hover table-sm">
+      <table data-page-length='10' class="table table-info table-hover table-sm" id="table-cost">
         <thead class="table-dark">
           <tr>
             <th data-field="ave_length_stay_days">
@@ -191,7 +197,7 @@
             </th>
           </tr>
         </thead>
-        <tbody id="table-cost">
+        <tbody id="table-cost-body">
 
         </tbody>
       </table>
@@ -203,8 +209,92 @@
   </div>
 </div>
 
+<!--Users Table-->
+<div class="container">
+  <div class="row align-items-center">
+    
+    <div class="container">
+      <div class="row align-items-center">
+    <div class="col-lg-12">
+      <h3>Users Table</h3>
+      <table data-page-length='10' class="table table-info table-hover table-sm" id="table-user">
+        <thead class="table-dark">
+          <tr>
+            <th data-field="ave_length_stay_days">
+                Average Stay (Days)
+            </th>
+            <th data-field="average_hospital_charge_per_separation">
+                Charge Per Separation 
+            </th>
+            <th data-field="number_of_hospitals_reporting">
+                Number of Hospital
+            </th>
+            <th data-field="separation_year">
+                Year
+            </th>
+            <th data-field="separations">
+                Separations
+            </th>
+            <th data-field="separations_with_charge">
+                Separations with Charge
+            </th>
+          </tr>
+        </thead>
+        <tbody id="table-user-body">
 
+        </tbody>
+      </table>
+
+     </div>
+    </div>
+  </div>
+
+  </div>
+</div>
       
+<!--Users Table-->
+<div class="container">
+  <div class="row align-items-center">
+    
+    <div class="container">
+      <div class="row align-items-center">
+    <div class="col-lg-12">
+      <h3>Charge Types Table</h3>
+      <table data-page-length='10' class="table table-info table-hover table-sm" id="table-charge">
+        <thead class="table-dark">
+          <tr>
+            <th data-field="ave_length_stay_days">
+                Average Stay (Days)
+            </th>
+            <th data-field="average_hospital_charge_per_separation">
+                Charge Per Separation 
+            </th>
+            <th data-field="number_of_hospitals_reporting">
+                Number of Hospital
+            </th>
+            <th data-field="separation_year">
+                Year
+            </th>
+            <th data-field="separations">
+                Separations
+            </th>
+            <th data-field="separations_with_charge">
+                Separations with Charge
+            </th>
+          </tr>
+        </thead>
+        <tbody id="table-charge-body">
+
+        </tbody>
+      </table>
+
+     </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
     <!--Tooltip-->
     <div class="tooltipCustom" id="tooltip"></div>
 
@@ -332,5 +422,13 @@
   
      <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+    
+    <!-- Jquery for datatables -->
+    <script
+			  src="https://code.jquery.com/jquery-3.6.4.min.js"
+			  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+			  crossorigin="anonymous"></script>
+    <!-- Datatables -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
   </body>
 </html>
