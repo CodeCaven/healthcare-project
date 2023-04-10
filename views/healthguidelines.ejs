@@ -30,7 +30,7 @@
             <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link fw-bold" href="#">Good Health Guidelines</a>
+                <a class="nav-link fw-bold" href="#" onclick="guides()">Good Health Guidelines</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link fw-bold" href="#" onclick="private()">The Private Healthcare System</a>
@@ -91,14 +91,14 @@
                   <i class="fas fa-play video" id="videoControl" onclick="playPause()"></i>
                   <!-- Single item -->
                   <div class="carousel-item active img-div" id="carousel-item-cover">
-                    <img src="/images/cover.jpg" class="vh-100 w-100"
+                    <img src="/images/epic1-cover.PNG" class="vh-100 w-100"
                       alt="cover"/>
                     <div class="carousel-caption d-none d-md-block caption-cover">
                       <p class="caption-text">In 2017-18, over half (56.4%) of Australians aged 15 years and over considered themselves to be in excellent or very good health, 
                       while 14.7% reported being in fair or poor health. 
-                      This has remained constant over the last 10 years.</h2>
+                      This has remained constant over the last 10 years.</p>
                       <p class="caption-text"> Around one in eight (13.0% or 2.4 million) adults experienced high or very high levels of psychological distress, 
-                        an increase from 2014-15 (11.7% or 2.1 million)</h2>
+                        an increase from 2014-15 (11.7% or 2.1 million)</p>
 
                     </div>
                   </div>
@@ -108,7 +108,7 @@
                     <img src="/images/men.jpg" class="vh-100 w-100"
                       alt="men" />
                     <div class="carousel-caption d-none d-md-block caption">
-                      <h4 class="caption-text">Adult Male</h4>
+                      <h3 class="caption-text">Adult Male</h3>
                       <p class="caption-text">In 2018, just under half of Australia’s population 49%, or 12.4 million people were male.</p>
                     </div>
                   </div>
@@ -119,7 +119,7 @@
                     <img src="/images/female.jpg" class="vh-100 w-100"
                       alt="women" />
                     <div class="carousel-caption d-none d-md-block caption">
-                      <h4 class="caption-text">Adult Female</h4>
+                      <h3 class="caption-text">Adult Female</h3>
                       <p class="caption-text">In 2018, just over half of Australia’s population 51% or 12.6 million people were female.</p>
                     </div>
                   </div>
@@ -129,7 +129,7 @@
                     <img src="/images/children.jpg" class="d-block vh-100 w-100"
                       alt="children" />
                     <div class="carousel-caption d-none d-md-block caption">
-                      <h4 class="caption-text">Young People</h4>
+                      <h3 class="caption-text">Young People</h3>
                       <p class="caption-text">In 2020, an estimated 3.2 million young people aged 15–24 lived in Australia, making up 12% of the whole population</p>
                     </div>
                   </div>
@@ -175,14 +175,14 @@
                   <li><i class="fas fa-utensils me-2"></i>Eat 6 serves of vegetables and fruit in different type and colour</li>
                   <li><i class="fas fa-person-walking me-2"></i>5 hours moderate intensity physical activity each week</li>
                   <li><i class="fas fa-person-walking me-2"></i>2.5 hours of vigorous intensity physical activity each week</li>
-                  <li><i class="fas fa-xmark text-danger me-2"></i>Don't do drugs</li>
+                  <li><i class="fas fa-check text-success me-2"></i>Check in with your local GP</li>
                   <li><i class="fas fa-xmark text-danger me-2"></i>Don't siting or lying down all day</li>
                   </ul>
-  
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information in relate to Diet</a>
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information in relate to overweight</a>
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information on smoking and alcohol</a>
-  
+                  <div class="btn-group shadow-0" role="group" aria-label="Guidelines and Information">
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/male-health/contents/lifestyle-and-risk-factors/diet" role="button" data-mdb-ripple-color="primary">Australian male diet guidelines</a>
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/male-health/contents/lifestyle-and-risk-factors/overweight-and-obesity" role="button" data-mdb-ripple-color="primary">Obesity risk factors for males</a>
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/male-health/contents/lifestyle-and-risk-factors/tobacco-smoking-alcohol-and-illicit-drugs" role="button" data-mdb-ripple-color="primary">Smoking and alcohol risk factors for males</a>
+                  </div>
               </div>
   
               <div class="col-lg-5 mb-5 mb-lg-0" style="display:none" id="women">
@@ -206,14 +206,14 @@
                   <li><i class="fas fa-utensils me-2"></i>Eat 4 serves of vegetables and fruit in different type and colour</li>
                   <li><i class="fas fa-person-walking me-2"></i>2.5 hours moderate intensity physical activity each week</li>
                   <li><i class="fas fa-person-walking me-2"></i>1.25 hours of vigorous intensity physical activity each week</li>
-                  <li><i class="fas fa-xmark text-danger me-2"></i>Don't do drugs</li>
+                  <li><i class="fas fa-check text-success me-2"></i>Be active and social</li>
                   <li><i class="fas fa-xmark text-danger me-2"></i>Don't siting or lying down all day</li>
                   </ul>
-  
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information in relate to Diet</a>
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information in relate to overweight</a>
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information on smoking and alcohol</a>
-  
+                  <div class="btn-group shadow-0" role="group" aria-label="Guidelines and Information">
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/female-health/contents/lifestyle-risk-factors/diet" role="button" data-mdb-ripple-color="primary">Australian female diet guidelines</a>
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/female-health/contents/lifestyle-risk-factors/overweight-and-obesity" role="button" data-mdb-ripple-color="primary">Obesity risk factors for females</a>
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/female-health/contents/lifestyle-risk-factors/tobacco-smoking-alcohol-and-illicit-drugs" role="button" data-mdb-ripple-color="primary">Smoking and alcohol risk factors for females</a>
+                  </div>
               </div>
   
               <div class="col-lg-5 mb-5 mb-lg-0" style="display:none;" id="youth">
@@ -236,14 +236,14 @@
                   <ul class="list-unstyled">
                   <li><i class="fas fa-utensils me-2"></i>Eat up to 10 different color vegetables and fruit</li>
                   <li><i class="fas fa-person-walking me-2"></i> At least 60 minutes each day of moderate to vigorous physical activity</li>
-                  <li><i class="fas fa-xmark text-danger me-2"></i>Don't do drugs</li>
+                  <li><i class="fas fa-check text-success me-2"></i>Play sport and keep active</li>
                   <li><i class="fas fa-xmark text-danger me-2"></i>Limiting time sitting and playing computer games</li>
                   </ul>
-  
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information in relate to Nutrition</a>
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information in relate to Mental Health</a>
-                  <a class="btn btn-link btn-rounded" href="#" role="button" data-mdb-ripple-color="primary">More Information on smoking and alcohol</a>
-  
+                  <div class="btn-group shadow-0" role="group" aria-label="Guidelines and Information">
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/children-youth/nutrition" role="button" data-mdb-ripple-color="primary">Australia's youth nutrition guidelines</a>
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/children-youth/mental-illness" role="button" data-mdb-ripple-color="primary">Information on mental health for young people</a>
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/alcohol/alcohol-tobacco-other-drugs-australia/contents/priority-populations/younger-people" role="button" data-mdb-ripple-color="primary">Information on the effects smoking and alcohol</a>
+                  </div>
               </div>
 
               <div class="col-lg-5 mb-5 mb-lg-0" id="main">

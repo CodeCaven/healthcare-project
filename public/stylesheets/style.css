@@ -17,11 +17,13 @@ a {
 }
 
 .caption-cover{
-  top:10%;
+  top:15%;
+  left:40%;
 }
 
 .caption-text{
-  font-weight:500;
+  
+  color: var(--mdb-dark);
 }
 
 .left-flex{
