@@ -88,6 +88,7 @@ a {
   position: absolute;
   margin: 1rem;
   cursor:pointer;
+  color:var(--mdb-white);
 }
 
 .display-3 {
