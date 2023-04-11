@@ -13,7 +13,7 @@ a {
 }
 
 .caption{
-  top:2%;
+  top:50%;
 }
 
 .caption-cover{
@@ -23,14 +23,28 @@ a {
 
 .caption-text{
   
-  color: var(--mdb-dark);
+  color: var(--mdb-white);
+}
+
+.caption-div{
+  background-color: rgba(0, 0, 0, .5);
+  height: fit-content;
+  border-radius: 0.6rem;
+  padding:0.5rem;
+}
+
+.caption-cover-div{
+  background-color: rgba(0, 0, 0, .3);
+  height: fit-content;
+  border-radius: 0.6rem;
+  padding:0.5rem;
 }
 
 .left-flex{
     width:55%;
     height: 18vh;
-    background-color: lightblue;
-    color:var(--mdb-dark);
+    background-color: var(--mdb-info);
+    color:var(--mdb-white);
     transition: 0.6s;
     border-top-left-radius: 0.6rem;
     border-bottom-left-radius: 0.6rem;
@@ -64,7 +78,7 @@ a {
 }
 
 .stat-text{
-  color:var(--mdb-dark);
+  color:darkslateblue;
   font-weight:700;
 }
 
