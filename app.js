@@ -7,6 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var epic1Router = require('./routes/epic1');
 var epic2Router = require('./routes/epic2');
+var epic3Router = require('./routes/epic3');
+var epic4Router = require('./routes/epic4');
 
 var app = express();
 
@@ -23,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/healthguidelines', epic1Router);
 app.use('/privatehealth', epic2Router);
+app.use('/maps', epic3Router);
+app.use('/met', epic4Router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

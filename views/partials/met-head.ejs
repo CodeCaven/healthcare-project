@@ -1,0 +1,45 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>MonashTechTitans</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
+    <!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <!-- Bootstrap Datatables-->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    
+
+    <!--<script src="https://d3js.org/d3.v6.js"></script> D3 v6-->
+    <script src="https://d3js.org/d3.v4.min.js"></script> <!--D3 v4 for events-->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="./javascripts/control.js"></script>
+    <script type="text/javascript">
+
+        // global units
+        let vhu;
+        let vwu;
+        
+        // DOM loaded callback
+		document.addEventListener('DOMContentLoaded', function() {
+            
+           // log data
+           console.log("MET calories page");
+
+           // global units
+           vhu = window.innerHeight/100;
+           vwu = window.innerWidth/100;
+           console.log("height and width window units");
+           console.log(vhu);
+           console.log(vwu);
+        
+
+        }, false);
+        
+    </script>
+</head>
