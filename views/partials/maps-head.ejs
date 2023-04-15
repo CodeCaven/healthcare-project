@@ -34,18 +34,6 @@
         // global vars
         let surveys = [];
 
-        
-
-        function handleZoom(e){
-            console.log(e);
-            d3.select('svg')
-            //.attr("transform", "translate(" + e.translate + ") scale(" + e.scale + ")");
-            .attr('transform', 'translate(' + e.transform.x + ',' + e.transform.y + ')  scale(' + e.transform.k + ')');
-                //.attr('transform', e.transform)
-        }
-
-        
-        
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
             
@@ -71,18 +59,13 @@
           surveys = [...new Set(all_surveys)];
           
 
-          // log survey data
-          //for(let i in surveys){
-            //console.log(surveys[i]);
-            //console.log(get_survey(surveys[i], 2017));
-          //}
+          // log survey data index 1 ,2, 5, 6, 7 9 (4 and 2016)
+          for(let i in surveys){
+            console.log(surveys[i]);
+            console.log(get_survey(surveys[i], 2016));
+          }
 
-          // initial choropleth
-          //let map_div = document.getElementById('mapDiv');
-          //let choropleth = Choropleth(get_survey(surveys[1], 2017), {features:phn_geojson, height:500, borders:state_features});
-          //console.log(choropleth);
-          //map_div.append(choropleth);
-
+          // draw choropleth map
           draw_map("mapDiv", get_survey(surveys[1], 2017));
 
         }, false);
@@ -136,7 +119,6 @@
 
             let zoom = d3.zoom()
                 .scaleExtent([0.5, 5])
-                //.translateExtent([[0,0],[width,height]])
                 .on('zoom', zoomed);
 
             // append the svg object to the plot area
@@ -144,22 +126,21 @@
             .append("svg")
                 .attr("width", plot_width)
                 .attr("height", plot_height)
-                .attr("viewBox", [0, 0, plot_width, plot_height])
+                .attr("viewBox", [0, 0, plot_width, plot_height]) // add zoom here to avoid pan jitter
                 .attr("style", "width: 100%; height: auto; height: intrinsic;").call(zoom)
             .append("g")
                 .attr("transform",
-                    "translate(" + margin.left + "," + margin.top + ")");
+                    "translate(" + margin.left + 10*vwu + "," + margin.top + ")");
 
             // create look up map
             var survey_map = new Map(Array.from(survey, d => [d.PHN_code, d]));
-            //console.log(survey_map.get("PHN301")['per_cent']);
 
             // extent of values
             var all_values = d3.map(survey, d => d.per_cent);
             all_values = removeItemAll(all_values, 0); // remove 0s
             
             // color scale https://observablehq.com/@d3/color-schemes
-            var color = d3.scaleSequential(d3.extent(all_values),d3.interpolateCividis);
+            var color = d3.scaleSequential(d3.extent(all_values),d3.interpolateBlues);
 
             // unwind geojson using turf for d3        
             var phn_features = phn_geojson.features;
@@ -184,11 +165,34 @@
             .data(fixed_phn)
             .join("path")
             .attr("d", path)
+            .attr("class", "maparea")
             .attr("fill", function(d){
-                //console.log(d.properties.FIRST_PHN_);
-                console.log(survey_map.get(d.properties.FIRST_PHN_)['per_cent']);
                 return color(survey_map.get(d.properties.FIRST_PHN_)['per_cent']);
-            });     
+            })
+            .on("mousemove", function(event, d){
+
+                // get tooltip
+                var tooltip = d3.select("#tooltip");
+
+                // create html FIRST_STE1
+                var htmlString = "<strong>" +  d.properties.PHN_NAME + "</strong><br>" +
+                                "<i>" +  d.properties.FIRST_STE1 + "</i><br>" +
+                                "<i class='fas fa-heart-pulse' style='color:salmon'></i><br>"
+                                +  survey_map.get(d.properties.FIRST_PHN_)['per_cent'] + "%"; 
+                                
+                               
+                // set html and position
+                tooltip.style('left', (event.pageX+10) + 'px');
+                tooltip.style('top', (event.pageY-100) + 'px');
+                tooltip.html(htmlString);
+                tooltip.style("visibility", "visible");
+                
+                })
+            .on("mouseout", function(event, d){
+                var tooltip = d3.select("#tooltip");
+                tooltip.style("visibility", "hidden");  
+            });
+
             
             // state boundaries
             svg
@@ -197,17 +201,6 @@
             .attr("stroke", "white")
             .attr("stroke-width", "1")
             .attr("stroke-opacity", 0.5);
-
-             // add zoom
-             //svg.call(zoom);
-
-            
-
-            
-            
-            
-            
-            
 
         }
 
