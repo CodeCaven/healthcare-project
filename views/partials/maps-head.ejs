@@ -61,14 +61,23 @@
           surveys = [...new Set(all_surveys)];
           
 
-          // log survey data index 1 ,2, 5, 6, 7 9 (4 and 2016)
+          // log survey data index 1 ,2, 5, 6, 7  (4 and 2016)
           for(let i in surveys){
             console.log(surveys[i]);
-            console.log(get_survey(surveys[i], 2016));
+            console.log(get_survey(surveys[i], 2017));
           }
 
           // draw choropleth map
-          draw_map("mapDiv", get_survey(surveys[1], 2017));
+          let display_survey = get_survey(surveys[6], 2017);
+          draw_map("mapDiv", display_survey);
+
+          // show and init controls
+          dragElement(document.getElementById("controls"));
+          document.getElementById("controls").style.visibility = "visible";
+
+          // set controls header
+          let display_title = display_survey[0]["survey_desc"] + "<br><i class='fas fa-heart-pulse' style='color:salmon'></i>";
+          document.getElementById("controlsheader").innerHTML = display_title;
 
         }, false);
 
@@ -79,6 +88,11 @@
                 if(survey_data[i]["survey_desc"] == desc && survey_data[i]["year"] == year){
                     if(survey_data[i]["PHN_code"] !== "National"){
                         results.push(survey_data[i]);
+                    }
+                    else{
+                        // set national average in controls
+                        let aveString = "The national average is " + survey_data[i]["per_cent"];             
+                        document.getElementById("natAverage").innerHTML = aveString;
                     }
                 }
             }
@@ -176,7 +190,7 @@
             
             // color scale https://observablehq.com/@d3/color-schemes
             domain = d3.extent(all_values);
-            color = d3.scaleSequential(domain,d3.interpolateBlues);
+            color = d3.scaleSequential(domain,d3.interpolateBuGn);
 
             /*** unwind geojson using turf for d3  ***/ 
             var phn_features = phn_geojson.features;
@@ -239,7 +253,7 @@
             svg
             .datum(fixed_state)
             .attr("d", path)
-            .attr("stroke", "var(--mdb-dark)")
+            .attr("stroke", "var(--mdb-white)")
             .attr("stroke-width", "1")
             .attr("stroke-opacity", 0.5);
 
@@ -367,13 +381,6 @@
                         .tickFormat(d => d + "%")
                         .tickSizeOuter(0);
 
-            // add legend axis
-            svg.append("g")
-            .attr('class', 'axis-light')
-            .call(legend_axis)
-            .style('font-size', '1.8vh');
-
-            
             // create data range for legend
             var legend_range = yScale.domain()[1] - yScale.domain()[0];
             var step = legend_range/5000; // granularity of legend
@@ -395,6 +402,17 @@
             legend_data.reverse();
             var rect_height = height/legend_data.length; 
 
+            // back drop
+            /*
+            svg.append("rect")
+            .attr("x", -3*vwu)
+            .attr("y", 0)
+            .attr("width", 3*vwu)
+            .attr("height", height)
+            .attr("fill", "gray")
+            .attr("fill-opacity", 0.5);
+            */
+
             // legend
             svg
             .selectAll("legend")
@@ -410,6 +428,12 @@
                return rect_height;
             })
             .attr("fill", (d) => color(d));
+
+            // add legend axis
+            svg.append("g")
+            .attr('class', 'axis-legend')
+            .call(legend_axis)
+            .style('font-size', '1.8vh');
 
         }
 

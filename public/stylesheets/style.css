@@ -110,7 +110,14 @@ a {
 
 .axis-light{
   color: var(--mdb-dark);
-  stroke-width: 0.5vh;
+  stroke-width: 0.3vh;
+  opacity: 1;
+  font-weight: 700;
+}
+
+.axis-legend{
+  color: var(--mdb-white);
+  stroke-width: 0.2vh;
   opacity: 1;
   font-weight: 700;
 }
@@ -134,6 +141,28 @@ a {
   font-size: 2vh;
   font-weight: 700;
   letter-spacing: 0.3vh;
+}
+
+#controls {
+  position: absolute;
+  z-index: 9;
+  background-color: #f1f1f1;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+  width: 20vw;
+  opacity: 0.8;
+  padding: 10px;
+  border-radius:0.5rem;
+}
+
+#controlsheader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: var(--mdb-dark);
+  color: #fff;
+  height:fit-content;
+  border-radius:0.5rem;
 }
 
 
