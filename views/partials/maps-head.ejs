@@ -132,6 +132,39 @@
                 .attr("transform",
                     "translate(" + margin.left + 10*vwu + "," + margin.top + ")");
 
+            // light filter
+            //** spec lighting filter **//
+            var lightFilterSVG = svg.
+            append("filter")
+            .attr("id", "specular")
+            .attr("primitiveUnits", "objectBoundingBox");
+
+            var feSpecFilterSVG = lightFilterSVG
+            .append("feSpecularLighting")
+            .attr("result", "specOut")
+            .attr("in", "SourceGraphic")
+            .attr("lighting-color", "white")
+            .attr("surfaceScale", "1")
+            .attr("specularExponent", "30")
+            .attr("specularConstant", "0.4");
+
+
+            feSpecFilterSVG
+            .append("fePointLight")
+            .attr("x", "0.25")
+            .attr("y", "0.25")
+            .attr("z", "0.3");
+
+            lightFilterSVG
+            .append("feComposite")
+            .attr("in", "SourceGraphic")
+            .attr("in2", "specOut")
+            .attr("operator", "arithmetic")
+            .attr("k1", "0")
+            .attr("k2", "1")
+            .attr("k3", "1")
+            .attr("k4", "0");
+
             // create look up map
             var survey_map = new Map(Array.from(survey, d => [d.PHN_code, d]));
 
@@ -142,7 +175,7 @@
             // color scale https://observablehq.com/@d3/color-schemes
             var color = d3.scaleSequential(d3.extent(all_values),d3.interpolateBlues);
 
-            // unwind geojson using turf for d3        
+            /*** unwind geojson using turf for d3  ***/ 
             var phn_features = phn_geojson.features;
             var fixed_phn = phn_features.map(function(f) {
                     return turf.rewind(f,{reverse:true});
@@ -183,14 +216,19 @@
                                
                 // set html and position
                 tooltip.style('left', (event.pageX+10) + 'px');
-                tooltip.style('top', (event.pageY-100) + 'px');
+                tooltip.style('top', (event.pageY-200) + 'px');
                 tooltip.html(htmlString);
                 tooltip.style("visibility", "visible");
+
+                // highlight the area
+                d3.selectAll('.maparea').attr("opacity", 0.1);
+                d3.select(this).attr("opacity", 1);
                 
                 })
             .on("mouseout", function(event, d){
                 var tooltip = d3.select("#tooltip");
                 tooltip.style("visibility", "hidden");  
+                d3.selectAll('.maparea').attr("opacity", 1);
             });
 
             
@@ -198,10 +236,82 @@
             svg
             .datum(fixed_state)
             .attr("d", path)
-            .attr("stroke", "white")
+            .attr("stroke", "var(--mdb-dark)")
             .attr("stroke-width", "1")
             .attr("stroke-opacity", 0.5);
 
+            // add major cities
+           svg
+            .selectAll("circle")
+            .data(cities)
+            .enter()
+            .append("circle")
+            .attr("cx", d => projection(d.location)[0])
+            .attr("cy", d => projection(d.location)[1])
+            .attr("r", 5)
+            .attr("filter", "url(#specular)")
+            .attr("stroke", "white")
+            .attr("fill", "var(--mdb-dark)")
+            .attr("stroke-width", 2)
+            .attr("stroke-opacity", 0.5);
+
+            // add major city names with background
+            // https://brettromero.com/d3-js-adding-a-colored-background-to-a-text-element/
+
+            // get bounding box of text
+            svg
+            .selectAll("text")
+            .data(cities)
+            .enter()
+            .append("text")
+            .style("font-size", "0.9rem")
+            .attr("text-anchor", "start")
+            .attr("dx", 10)
+            .text(d => d.city)
+            .call(getBB);
+
+            // Remove the text elements
+            d3.selectAll("text").remove();
+
+            // add rects
+            const xMargin = 4
+            const yMargin = 2
+            svg
+            .selectAll("rect")
+            .data(cities)
+            .enter()
+            .append("rect")
+            .attr("x", d => projection(d.location)[0] + 10)
+            .attr("y", d => projection(d.location)[1])
+            .attr("width", d => d.bbox.width + 2 * xMargin)
+            .attr("height", d => d.bbox.height + 2 * yMargin)
+            .style("fill", "var(--mdb-dark)")
+            .style("fill-opacity", 0.5)
+            .attr('transform', function(d) {
+                return `translate(-${xMargin}, -${d.bbox.height * 0.8 + yMargin})`
+                });
+
+            // re add text
+            svg
+            .selectAll("text")
+            .data(cities)
+            .enter()
+            .append("text")
+            .attr("x", d => projection(d.location)[0])
+            .attr("y", d => projection(d.location)[1])
+            .attr("text-anchor", "start")
+            .attr("dx", 10)
+            .attr("fill", "var(--mdb-white)")
+            .attr("stroke", "var(--mdb-white)")
+            .style("text-shadow", "0.1vh 0.1vh gray")
+            .style("font-size", "0.9rem")
+            .text(d => d.city);
+           
+            // get bb of text
+            function getBB(selection) {
+                selection.each(function(d){d.bbox = this.getBBox();})
+            }
+            
         }
 
         // remove items from array
