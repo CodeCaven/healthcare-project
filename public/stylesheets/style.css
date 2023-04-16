@@ -110,8 +110,9 @@ a {
 
 .axis-light{
   color: var(--mdb-dark);
-  stroke-width: 0.3vh;
+  stroke-width: 0.5vh;
   opacity: 1;
+  font-weight: 700;
 }
 
 .tooltipCustom{
