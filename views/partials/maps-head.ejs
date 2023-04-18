@@ -35,6 +35,9 @@
         let surveys = [];
         let color;
         let domain;
+        let COLOUR_SCHEME = d3.interpolateBuGn;
+        let legend_axis;
+        let legendScale;
 
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
@@ -50,6 +53,9 @@
            console.log("height and width window units");
            console.log(vhu);
            console.log(vwu);
+
+           // radio events
+           document.getElementById('collapseDiv').addEventListener("click", handleSurveys)
             
           // get surveys
           let all_surveys = [];
@@ -68,21 +74,69 @@
           }
 
           // draw choropleth map
-          let display_survey = get_survey(surveys[6], 2017);
+          let display_survey = get_survey(surveys[1], 2017);
           draw_map("mapDiv", display_survey);
 
           // show and init controls
           dragElement(document.getElementById("controls"));
           document.getElementById("controls").style.visibility = "visible";
 
-          // set controls header
-          let display_title = display_survey[0]["survey_desc"] + "<br><i class='fas fa-heart-pulse' style='color:salmon'></i>";
-          document.getElementById("controlsheader").innerHTML = display_title;
 
         }, false);
 
+        // update from controls
+        function handleSurveys(event){
+            
+            let parent = event.target.parentNode;
+            if(parent.getAttribute('name') == 'surveys'){
+
+                // get new survey
+                let survey_index = parseInt(parent.getAttribute('data-index'));
+                let display_survey = get_survey(surveys[survey_index], 2017);
+
+                // create look up map
+                var survey_map = new Map(Array.from(display_survey, d => [d.PHN_code, d]));
+
+                // extent of values
+                var all_values = d3.map(display_survey, d => d.per_cent);
+                all_values = removeItemAll(all_values, 0); // remove 0s
+
+                // color scale https://observablehq.com/@d3/color-schemes
+                domain = d3.extent(all_values);
+                color = d3.scaleSequential(domain,COLOUR_SCHEME); 
+
+                // HERE
+                // add data
+                // dark light theme
+                // colour theme
+                // How does it work
+                // datatables
+                
+                // update legend
+                legendScale.domain(color.domain());
+                d3.select("#legendAxis").transition().duration(1000).call(legend_axis);
+
+                // update map
+                d3.selectAll('.maparea').transition().duration(1000)
+                .attr("fill", function(d){
+                    return color(survey_map.get(d.properties.FIRST_PHN_)['per_cent']);
+                })
+                
+
+            }
+        }
+
         // get individual survey data (only 5 have correct format, no errors)
         function get_survey(desc, year){
+
+            // set controls header 
+            let buttonHTML = '<button class="btn btn-dark" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseDiv" aria-expanded="false" aria-controls="collapseDiv">' +
+                    '<i class="fas fa-bars" style="cursor:pointer;"></i></button>'
+            let display_title = "<i class='fas fa-heart-pulse' style='color:salmon'></i><br>" + 
+            desc + "<br>" + buttonHTML;
+            document.getElementById("controlsheader").innerHTML = display_title;
+            
+            // get survey data
             let results = [];
             for(let i in survey_data){
                 if(survey_data[i]["survey_desc"] == desc && survey_data[i]["year"] == year){
@@ -91,7 +145,7 @@
                     }
                     else{
                         // set national average in controls
-                        let aveString = "The national average is " + survey_data[i]["per_cent"];             
+                        let aveString = "The national average is <strong>" + survey_data[i]["per_cent"] + "</strong>";             
                         document.getElementById("natAverage").innerHTML = aveString;
                     }
                 }
@@ -190,7 +244,7 @@
             
             // color scale https://observablehq.com/@d3/color-schemes
             domain = d3.extent(all_values);
-            color = d3.scaleSequential(domain,d3.interpolateBuGn);
+            color = d3.scaleSequential(domain,COLOUR_SCHEME);
 
             /*** unwind geojson using turf for d3  ***/ 
             var phn_features = phn_geojson.features;
@@ -372,27 +426,27 @@
 
 
             // y scale
-            var yScale = d3.scaleLinear()
+            legendScale = d3.scaleLinear()
                     .domain(color.domain()) // use color domain
                     .range([height, 0]);
 
             // y-axis
-            var legend_axis = d3.axisLeft().scale(yScale)
+            legend_axis = d3.axisLeft().scale(legendScale)
                         .tickFormat(d => d + "%")
                         .tickSizeOuter(0);
 
             // create data range for legend
-            var legend_range = yScale.domain()[1] - yScale.domain()[0];
+            var legend_range = legendScale.domain()[1] - legendScale.domain()[0];
             var step = legend_range/5000; // granularity of legend
 
 
             // interval and step
-            var interval = yScale.domain()[0] - step;
+            var interval = legendScale.domain()[0] - step;
             var legend_data = [interval];
             
             // data
             var new_interval;
-            while(interval <yScale.domain()[1]){
+            while(interval <legendScale.domain()[1]){
                 new_interval = interval + step;
                 interval = parseFloat(new_interval.toFixed(4));
                 legend_data.push(interval);
@@ -432,6 +486,7 @@
             // add legend axis
             svg.append("g")
             .attr('class', 'axis-legend')
+            .attr('id', 'legendAxis')
             .call(legend_axis)
             .style('font-size', '1.8vh');
 

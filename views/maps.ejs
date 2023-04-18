@@ -65,33 +65,37 @@
       <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
       <div id="controlsheader">Click here to move </div>
       <!-- Surveys -->
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-        <label class="form-check-label" for="flexRadioDefault1"> Survey 1 </label>
+      <div class="collapse" id="collapseDiv">
+        <div class="form-check" data-index="1" name="surveys">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked/>
+          <label class="form-check-label" for="flexRadioDefault1"> Survey 1 </label>
+        </div>
+
+        <div class="form-check" data-index="2" name="surveys">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
+          <label class="form-check-label" for="flexRadioDefault2"> Survey 2 </label>
+        </div>
+
+        <div class="form-check" data-index="5" name="surveys">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"/>
+          <label class="form-check-label" for="flexRadioDefault3"> Survey 3 </label>
+        </div>
+
+        <div class="form-check" data-index="6" name="surveys">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"/>
+          <label class="form-check-label" for="flexRadioDefault4"> Survey 4 </label>
+        </div>
+
+        <div class="form-check" data-index="7" name="surveys">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5"/>
+          <label class="form-check-label" for="flexRadioDefault5"> Survey 5 </label>
+        </div>
       </div>
 
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-        <label class="form-check-label" for="flexRadioDefault2"> Survey 2 </label>
-      </div>
+      
 
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"/>
-        <label class="form-check-label" for="flexRadioDefault3"> Survey 3 </label>
-      </div>
-
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"/>
-        <label class="form-check-label" for="flexRadioDefault4"> Survey 4 </label>
-      </div>
-
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5"/>
-        <label class="form-check-label" for="flexRadioDefault5"> Survey 5 </label>
-      </div>
-
-      <br>
-      <p class="fst-italic" id="natAverage">The national average is 88%</p>
+        <br>
+        <p class="fst-italic" id="natAverage">The national average is 88%</p>
 
     </div> 
 
