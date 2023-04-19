@@ -60,44 +60,113 @@
   
     </header>
 
-     <!-- Draggable controls-->
+      <!-- Draggable controls-->
     <div id="controls" style="visibility:hidden;">
       <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
-      <div id="controlsheader">Click here to move </div>
+      <div id="controlsheader" class="controlsheader">Click here to move </div>
       <!-- Surveys -->
-      <div class="collapse" id="collapseDiv">
-        <div class="form-check" data-index="1" name="surveys">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked/>
-          <label class="form-check-label" for="flexRadioDefault1"> Survey 1 </label>
-        </div>
+      <div class="collapse" id="collapseDiv" style="margin-bottom:10px;">
+        <div>
+          <div class="form-check form-check-inline" data-index="1" name="surveys">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
+            <label class="form-check-label" for="inlineRadio1">Survey 1</label>
+          </div>
+          
+          <div class="form-check form-check-inline" data-index="2" name="surveys">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+            <label class="form-check-label" for="inlineRadio2">Survey 4</label>
+          </div>
+      </div>
 
-        <div class="form-check" data-index="2" name="surveys">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"/>
-          <label class="form-check-label" for="flexRadioDefault2"> Survey 2 </label>
+      <div>
+        <div class="form-check form-check-inline" data-index="5" name="surveys">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1" />
+          <label class="form-check-label" for="inlineRadio3">Survey 2</label>
         </div>
-
-        <div class="form-check" data-index="5" name="surveys">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"/>
-          <label class="form-check-label" for="flexRadioDefault3"> Survey 3 </label>
-        </div>
-
-        <div class="form-check" data-index="6" name="surveys">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"/>
-          <label class="form-check-label" for="flexRadioDefault4"> Survey 4 </label>
-        </div>
-
-        <div class="form-check" data-index="7" name="surveys">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5"/>
-          <label class="form-check-label" for="flexRadioDefault5"> Survey 5 </label>
+        
+        <div class="form-check form-check-inline" data-index="6" name="surveys">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2" />
+          <label class="form-check-label" for="inlineRadio4">Survey 5</label>
         </div>
       </div>
 
+      <div>
+        <div class="form-check form-check-inline" data-index="7" name="surveys">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option1" />
+          <label class="form-check-label" for="inlineRadio5">Survey 3</label>
+        </div>
+        
+        <div class="form-check form-check-inline" data-index="4" name="surveys">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option2" />
+          <label class="form-check-label" for="inlineRadio6">Survey 6</label>
+        </div>
+      </div>
+
+      <div>
+        <div class="form-check form-check-inline" data-index="3" name="surveys">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option1" />
+          <label class="form-check-label" for="inlineRadio5">Survey 7</label>
+        </div>
+      </div>
       
+		
+      </div>
 
-        <br>
-        <p class="fst-italic" id="natAverage">The national average is 88%</p>
+      <!-- Colour Schemes -->
+      <div class="controlsheader" data-mdb-toggle="collapse" data-mdb-target="#collapseSchemes" aria-expanded="false" aria-controls="collapseSchemes">
+        Colour Schemes
+      </div>
+      
+      <div class="collapse" id="collapseSchemes" style="margin-bottom:10px;">
+        <div>
+          <div class="form-check form-check-inline" data-colour="blue" name="colours">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio1Colour" value="option1" checked/>
+            <label class="form-check-label" for="inlineRadio1Colour">Blues</label>
+          </div>
 
-    </div> 
+          <div class="form-check form-check-inline" data-colour="magma" name="colours">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4Colour" value="option4" />
+            <label class="form-check-label" for="inlineRadio4Colour">Magma</label>
+          </div>
+          
+          
+      </div>
+
+      <div>
+        <div class="form-check form-check-inline" data-colour="green" name="colours">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio2Colour" value="option2" />
+          <label class="form-check-label" for="inlineRadio2Colour">Greens</label>
+        </div>
+
+        <div class="form-check form-check-inline" data-colour="red" name="colours">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio3Colour" value="option3" />
+          <label class="form-check-label" for="inlineRadio3Colour">Reds</label>
+        </div>
+      </div>
+
+      </div>
+
+      <div class="controlsheader" data-mdb-toggle="collapse" data-mdb-target="#collapseThemes" aria-expanded="false" aria-controls="collapseThemes">
+        Theme
+      </div>
+      <!-- Themes -->
+      <div class="collapse" id="collapseThemes" style="margin-bottom:10px;">
+        <div>
+          <div class="form-check form-check-inline" data-index="5" name="theme">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3Theme" value="option1" checked/>
+            <label class="form-check-label" for="inlineRadio3Theme">Dark</label>
+          </div>
+          
+          <div class="form-check form-check-inline" data-index="6" name="theme">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio4Theme" value="option2" />
+            <label class="form-check-label" for="inlineRadio4Theme">Light</label>
+          </div>
+        </div>
+
+      </div>
+      <p class="fst-italic" id="natAverage">The national average is 88%</p>
+
+    </div>
 
     <!-- main -->
     <div class="container-fluid">

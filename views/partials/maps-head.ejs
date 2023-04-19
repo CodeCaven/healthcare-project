@@ -35,12 +35,22 @@
         let surveys = [];
         let color;
         let domain;
-        let COLOUR_SCHEME = d3.interpolateBuGn;
+        let COLOUR_SCHEME = d3.interpolateBlues;
+        let THEME = "light";
         let legend_axis;
         let legendScale;
+        let survey_map;
+        let colour_schemes = {"blue": d3.interpolateBlues, "red": d3.interpolateReds,
+                                "green": d3.interpolateGreens, "magma": d3.interpolateMagma}
 
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
+
+            // HERE
+            // dark light theme
+            // hover, pan etc instructions
+            // How does it work
+            // datatables
             
            // log data
            console.log(survey_data);
@@ -55,7 +65,8 @@
            console.log(vwu);
 
            // radio events
-           document.getElementById('collapseDiv').addEventListener("click", handleSurveys)
+           document.getElementById('collapseDiv').addEventListener("click", handleSurveys);
+           document.getElementById('collapseSchemes').addEventListener("click", handleSchemes);
             
           // get surveys
           let all_surveys = [];
@@ -70,7 +81,7 @@
           // log survey data index 1 ,2, 5, 6, 7  (4 and 2016)
           for(let i in surveys){
             console.log(surveys[i]);
-            console.log(get_survey(surveys[i], 2017));
+            console.log(get_survey(surveys[i], 2013));
           }
 
           // draw choropleth map
@@ -84,6 +95,49 @@
 
         }, false);
 
+        function handleSchemes(event){
+            let parent = event.target.parentNode;
+            if(parent.getAttribute('name') == 'colours'){
+
+                // set new scheme
+                COLOUR_SCHEME = colour_schemes[parent.getAttribute('data-colour')];
+                color = d3.scaleSequential(domain, COLOUR_SCHEME);
+
+                // update map
+                d3.selectAll('.maparea')
+                .transition().duration(1000)
+                .attr("fill", function(d){
+                    return color(survey_map.get(d.properties.FIRST_PHN_)['per_cent']);
+                });
+
+                // create data range for legend
+                var legend_range = legendScale.domain()[1] - legendScale.domain()[0];
+                var step = legend_range/5000; // granularity of legend
+
+
+                // interval and step
+                var interval = legendScale.domain()[0] - step;
+                var legend_data = [interval];
+                
+                // data
+                var new_interval;
+                while(interval <legendScale.domain()[1]){
+                    new_interval = interval + step;
+                    interval = parseFloat(new_interval.toFixed(4));
+                    legend_data.push(interval);
+                }
+            
+                // reverse array 
+                legend_data.reverse();
+
+                // update legend
+                d3.selectAll('.legend')
+                .data(legend_data)
+                .transition().duration(1000)
+                .attr("fill", (d) => color(d));
+            }
+        }
+
         // update from controls
         function handleSurveys(event){
             
@@ -92,10 +146,17 @@
 
                 // get new survey
                 let survey_index = parseInt(parent.getAttribute('data-index'));
-                let display_survey = get_survey(surveys[survey_index], 2017);
+                let year = 2017;
+                if(survey_index == 4){
+                    year = 2016;
+                }
+                if(survey_index == 3){
+                    year = 2013;
+                }
+                let display_survey = get_survey(surveys[survey_index], year);
 
-                // create look up map
-                var survey_map = new Map(Array.from(display_survey, d => [d.PHN_code, d]));
+                // update look up map
+                survey_map = new Map(Array.from(display_survey, d => [d.PHN_code, d]));
 
                 // extent of values
                 var all_values = d3.map(display_survey, d => d.per_cent);
@@ -105,19 +166,14 @@
                 domain = d3.extent(all_values);
                 color = d3.scaleSequential(domain,COLOUR_SCHEME); 
 
-                // HERE
-                // add data
-                // dark light theme
-                // colour theme
-                // How does it work
-                // datatables
                 
                 // update legend
                 legendScale.domain(color.domain());
                 d3.select("#legendAxis").transition().duration(1000).call(legend_axis);
 
                 // update map
-                d3.selectAll('.maparea').transition().duration(1000)
+                d3.selectAll('.maparea')
+                .transition().duration(1000)
                 .attr("fill", function(d){
                     return color(survey_map.get(d.properties.FIRST_PHN_)['per_cent']);
                 })
@@ -132,8 +188,7 @@
             // set controls header 
             let buttonHTML = '<button class="btn btn-dark" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseDiv" aria-expanded="false" aria-controls="collapseDiv">' +
                     '<i class="fas fa-bars" style="cursor:pointer;"></i></button>'
-            let display_title = "<i class='fas fa-heart-pulse' style='color:salmon'></i><br>" + 
-            desc + "<br>" + buttonHTML;
+            let display_title = "<i class='fas fa-heart-pulse' style='color:salmon'></i><br>" + desc + "<br>" + buttonHTML;
             document.getElementById("controlsheader").innerHTML = display_title;
             
             // get survey data
@@ -236,7 +291,7 @@
             .attr("k4", "0");
 
             // create look up map
-            var survey_map = new Map(Array.from(survey, d => [d.PHN_code, d]));
+            survey_map = new Map(Array.from(survey, d => [d.PHN_code, d]));
 
             // extent of values
             var all_values = d3.map(survey, d => d.per_cent);
@@ -278,6 +333,18 @@
                 // get tooltip
                 var tooltip = d3.select("#tooltip");
 
+                // set colour by theme
+                if(THEME == "dark"){
+                    tooltip.attr("background-color", "whte");
+                    tooltip.attr("color", "var(--mdb-dark)");
+                }
+
+                if(THEME == "light"){
+                    tooltip.attr("background-color", "var(--mdb-dark)");
+                    tooltip.attr("color", "white");
+                }
+
+
                 // create html FIRST_STE1
                 var htmlString = "<strong>" +  d.properties.PHN_NAME + "</strong><br>" +
                                 "<i>" +  d.properties.FIRST_STE1 + "</i><br>" +
@@ -307,7 +374,7 @@
             svg
             .datum(fixed_state)
             .attr("d", path)
-            .attr("stroke", "var(--mdb-white)")
+            .attr("stroke", "var(--mdb-dark)")
             .attr("stroke-width", "1")
             .attr("stroke-opacity", 0.5);
 
@@ -473,6 +540,7 @@
             .data(legend_data)
             .enter()
             .append("rect")
+            .attr("class", "legend")
             .attr("x", 0)
             .attr("y",function(d,i){
                 return i*rect_height;
