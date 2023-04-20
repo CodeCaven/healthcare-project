@@ -80,12 +80,12 @@
 
       <div>
         <div class="form-check form-check-inline" data-index="5" name="surveys">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option1" />
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" />
           <label class="form-check-label" for="inlineRadio3">Survey 2</label>
         </div>
         
         <div class="form-check form-check-inline" data-index="6" name="surveys">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option2" />
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4" />
           <label class="form-check-label" for="inlineRadio4">Survey 5</label>
         </div>
       </div>
@@ -97,14 +97,14 @@
         </div>
         
         <div class="form-check form-check-inline" data-index="4" name="surveys">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option2" />
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option5" />
           <label class="form-check-label" for="inlineRadio6">Survey 6</label>
         </div>
       </div>
 
       <div>
         <div class="form-check form-check-inline" data-index="3" name="surveys">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option1" />
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option6" />
           <label class="form-check-label" for="inlineRadio5">Survey 7</label>
         </div>
       </div>
@@ -120,7 +120,7 @@
       <div class="collapse" id="collapseSchemes" style="margin-bottom:10px;">
         <div>
           <div class="form-check form-check-inline" data-colour="blue" name="colours">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio1Colour" value="option1" checked/>
+            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio1Colour" value="option1"/>
             <label class="form-check-label" for="inlineRadio1Colour">Blues</label>
           </div>
 
@@ -152,12 +152,12 @@
       <!-- Themes -->
       <div class="collapse" id="collapseThemes" style="margin-bottom:10px;">
         <div>
-          <div class="form-check form-check-inline" data-index="5" name="theme">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3Theme" value="option1" checked/>
+          <div class="form-check form-check-inline" data-theme="dark" name="theme">
+            <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio3Theme" value="option1"/>
             <label class="form-check-label" for="inlineRadio3Theme">Dark</label>
           </div>
           
-          <div class="form-check form-check-inline" data-index="6" name="theme">
+          <div class="form-check form-check-inline" data-theme="light" name="theme">
             <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio4Theme" value="option2" />
             <label class="form-check-label" for="inlineRadio4Theme">Light</label>
           </div>
@@ -173,14 +173,77 @@
         <!-- Grid row -->
         <div class="row">
             <!-- MAP-->
-            <div class="col-md-10" id="mapDiv" style="height:100vh; background-color: var(--mdb-dark);"></div>
-
-            <!--LEGEND-->
-            <div class="col-md-2" id="legendDiv" style="height:100vh;  background-color: var(--mdb-dark);"></div>
-
+            <div class="col-md-10 theme" id="mapDiv" style="height:100vh;"></div>
             
-        </div>
+            <div class="col-md-2 theme">
+              <div class="row" style="height:10vh;"></div>
+              <div class="row fst-italic" style="height:10vh;"><!--instructions-->
+                <p>Hover, Zoom and Pan the Map to Explore. </p>
+                <br><br>
+                <p>Scroll below to Learn More.</p>
+              </div> 
+              <div class="row" id="legendDiv" style="height:80vh;"><!--LEGEND-->
+              </div>
+            </div>
+            
+          </div>
     </div>
+    <br>
+    <!--How does it work-->
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12 pt-8">
+          <h1>How does it work?</h1>
+          <div class="col-md-12 col-lg-12 pt-8 fs-5">
+            The maps in this visualisation were generated from data from The Patient Experience Survey which is conducted
+             annually by the Australian Bureau of Statistics. Data is collected from a representative sample of the Australian population. 
+            <a href="https://www.aihw.gov.au/getmedia/4e1bccd8-f870-4f73-bc20-755f1dca87a1/aihw-HPF-64-techinal-note.pdf.aspx">Learn More</a>.
+            Using the survey results, the maps are coloured by their PHN (Private Health Network) area. There are 31 PHN 
+            areas that cover the whole of Australia. These styles of maps are called choropleth maps. Explore the full datsets below.
+          </div>
+        </br>
+        </div>
+        
+        <div class="container">
+          <div class="row align-items-center">
+        <div class="col-lg-12">
+          <table data-page-length='10' class="table table-info table-hover table-sm" id="table-survey">
+            <thead class="table-dark">
+              <tr>
+                <th data-field="PHN_area_name">
+                    PHN_area_name <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                </th>
+                <th data-field="state">
+                    State <i class="fas fa-heart-pulse me-3" style="color:salmon"></i> 
+                </th>
+                <th data-field="per_cent">
+                    % <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                </th>
+                <th data-field="95_upper_bound">
+                    95% Upper Bound <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                </th>
+                <th data-field="95_lower_bound">
+                    95% Lower Bound <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                </th>
+                <th data-field="survey_desc">
+                    Survey <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                </th>
+                <th data-field="year">
+                    Year <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+              </th>
+              </tr>
+            </thead>
+            <tbody id="table-survey-body">
+
+            </tbody>
+          </table>
+
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
     <!--Tooltip-->
     <div class="tooltipCustom" id="tooltip" style="visibility:hidden;"></div>
@@ -284,11 +347,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
     
     <!-- Jquery for datatables -->
-    <!--<script
+    <script
 			  src="https://code.jquery.com/jquery-3.6.4.min.js"
 			  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-			  crossorigin="anonymous"></script>-->
+			  crossorigin="anonymous"></script>
     <!-- Datatables -->
-    <!--<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>-->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
   </body>
 </html>

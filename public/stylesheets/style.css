@@ -120,6 +120,7 @@ a {
   stroke-width: 0.2vh;
   opacity: 1;
   font-weight: 700;
+  transition:1s;
 }
 
 .tooltipCustom{
@@ -171,8 +172,11 @@ a {
   cursor: pointer;
 }
 
-
-
+.theme{
+  background-color: var(--mdb-dark);
+  color:white;
+  transition: 1s;
+}
 
 
 
