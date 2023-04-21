@@ -5,7 +5,8 @@
     <title>MonashTechTitans</title>
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    
     <!-- Google Fonts Roboto -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
     <!-- MDB -->
@@ -20,6 +21,9 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="./javascripts/control.js"></script>
     <script type="text/javascript">
+
+        let met_table = JSON.parse(<%-JSON.stringify(ejs_met)%>);
+
 
         // global units
         let vhu;
@@ -37,9 +41,92 @@
            console.log("height and width window units");
            console.log(vhu);
            console.log(vwu);
+           console.log(met_table);
+
+           // create MET table
+           var met_table_body = document.getElementById('table-met-body');
+           for(let i in met_table){
+            // new row
+             var table_row = document.createElement("tr");
+
+             // loop for activities and icons
+             for(let j in met_table[i]){
+                var table_td_1 = document.createElement("td");
+                table_td_1.innerHTML = met_table[i][j]['activity'];
+
+                var new_icon = document.createElement("i");
+                new_icon.className = met_table[i][j]['icon'] + " icon";
+
+                table_td_1.append(document.createElement("br"));
+                table_td_1.append(new_icon);
+                table_row.append(table_td_1);
+                
+             }
+            met_table_body.append(table_row);
+            
+           }
+           
+          // table events
+          //document.getElementById('table-met').addEventListener("mouseover", tableHover);
+          //document.getElementById('table-met').addEventListener("mouseout", tableLeave);
+          document.getElementById('table-met').addEventListener("click", tableClick);
         
 
         }, false);
+
+        // event handlers
+        function tableHover(event){
+            console.log(event.target.tagName);
+            // hover can be TD, I or TH
+            if(event.target.tagName == "TD"){
+                event.target.style.backgroundColor = "var(--mdb-dark)";
+                event.target.style.color = "white";
+               
+
+            }
+
+            if(event.target.tagName == "I"){
+                event.target.parentNode.style.backgroundColor = "var(--mdb-dark)";
+                event.target.parentNode.style.color = "white";
+
+            }
+        }
+
+        function tableLeave(event){
+            if(event.target.tagName == "TD"){
+                event.target.style.backgroundColor = "#fbfbfb";
+                event.target.style.color = "black";
+            }
+
+            if(event.target.tagName == "I"){
+                event.target.parentNode.style.backgroundColor = "#fbfbfb";
+                event.target.parentNode.style.color = "black";
+            }
+        }
+
+        function tableClick(event){
+            // unhighlight all
+           let cells = document.getElementsByTagName("td");
+           for(let cell of cells){
+                cell.style.backgroundColor = "#fbfbfb";
+                cell.style.color = "black";
+           }
+
+           // highlight cell
+           if(event.target.tagName == "TD"){
+                event.target.style.backgroundColor = "var(--mdb-primary)";
+                event.target.style.color = "white";
+               
+
+            }
+
+            if(event.target.tagName == "I"){
+                event.target.parentNode.style.backgroundColor = "var(--mdb-primary)";
+                event.target.parentNode.style.color = "white";
+
+            }
+
+        }
         
     </script>
 </head>
