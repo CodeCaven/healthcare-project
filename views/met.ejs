@@ -61,9 +61,10 @@
     </header>
 
     <div class="container">
-      <div class="row align-items-center">
-    <div class="col-lg-8">
-      <table data-page-length='10' class="table table-light  table-bordered table-sm text-center" id="table-met">
+      <div class="row ">
+        <!--TABLE-->
+    <div class="col-lg-9">
+      <table data-page-length='10' class="table table-info table-bordered table-sm text-center shadow-5" id="table-met">
         <thead class="table-dark">
           <tr>
             <th data-field="activity-light">
@@ -83,6 +84,48 @@
       </table>
 
      </div>
+     <!--Calculator Display Area-->
+     <div class="col-lg-3 text-center ">
+      <div class="shadow-5 me-2 border p-4 rounded">
+      <p class="rounded fs-5" style="background-color:var(--mdb-dark); color:white;">
+        Calories Calculator <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+      </p>
+      
+      <p class="fs-6"><strong>Step 1:</strong> Select your activity from the Table of Activities</p>
+      
+      <p class = "fs-6"><strong>Step 2:</strong> Enter the number of minutes for your activity</p>
+         <!--minutes-->   
+      <div class="form-outline">
+        <input type="number" min="1" max="120" id="minutes" class="form-control" />
+        <label class="form-label" for="minutes">Enter Duration</label>
+      </div>
+
+      <br>
+      <p class="fs-6"><strong>Step 3:</strong> Enter your weight</p>
+
+        <!--kgs, pounds-->
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked/>
+          <label class="form-check-label" for="inlineRadio1">KGS</label>
+        </div>
+        
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
+          <label class="form-check-label" for="inlineRadio2">POUNDS</label>
+        </div>
+      
+
+       <!--weight-->   
+       <div class="form-outline mt-4">
+        <input type="number" min="1" max="420" id="weight" class="form-control" />
+        <label class="form-label" for="minutes">Enter weight</label>
+      </div>
+      <br>
+      <!--calories-->
+      <p class="fs-6 fst-italic">You have used <span id="calories"><strong>450</strong></span> calories.</p>
+
+    </div>
+    </div>
     </div>
   </div>
 

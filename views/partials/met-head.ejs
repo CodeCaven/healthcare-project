@@ -28,6 +28,10 @@
         // global units
         let vhu;
         let vwu;
+
+        // global vars and storage
+        let activities = {};
+        let display_activity = "Sitting at a desk";
         
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
@@ -53,6 +57,13 @@
              for(let j in met_table[i]){
                 var table_td_1 = document.createElement("td");
                 table_td_1.innerHTML = met_table[i][j]['activity'];
+                activities[met_table[i][j]['activity']] = met_table[i][j]['metscore'];
+
+                // set initial
+                if(met_table[i][j]['activity'] == display_activity){
+                    table_td_1.style.backgroundColor = "var(--mdb-dark)";
+                    table_td_1.style.color = "white";
+                }
 
                 var new_icon = document.createElement("i");
                 new_icon.className = met_table[i][j]['icon'] + " icon";
@@ -65,20 +76,25 @@
             met_table_body.append(table_row);
             
            }
-           
+
           // table events
-          //document.getElementById('table-met').addEventListener("mouseover", tableHover);
-          //document.getElementById('table-met').addEventListener("mouseout", tableLeave);
           document.getElementById('table-met').addEventListener("click", tableClick);
+
         
 
         }, false);
 
         // event handlers
-        function tableHover(event){
-            console.log(event.target.tagName);
-            // hover can be TD, I or TH
-            if(event.target.tagName == "TD"){
+        function tableClick(event){
+            // unhighlight all
+           let cells = document.getElementsByTagName("td");
+           for(let cell of cells){
+                cell.style.backgroundColor = "var(--mdb-table-bg)";
+                cell.style.color = "black";
+           }
+
+           // highlight cell
+           if(event.target.tagName == "TD"){
                 event.target.style.backgroundColor = "var(--mdb-dark)";
                 event.target.style.color = "white";
                
@@ -87,41 +103,6 @@
 
             if(event.target.tagName == "I"){
                 event.target.parentNode.style.backgroundColor = "var(--mdb-dark)";
-                event.target.parentNode.style.color = "white";
-
-            }
-        }
-
-        function tableLeave(event){
-            if(event.target.tagName == "TD"){
-                event.target.style.backgroundColor = "#fbfbfb";
-                event.target.style.color = "black";
-            }
-
-            if(event.target.tagName == "I"){
-                event.target.parentNode.style.backgroundColor = "#fbfbfb";
-                event.target.parentNode.style.color = "black";
-            }
-        }
-
-        function tableClick(event){
-            // unhighlight all
-           let cells = document.getElementsByTagName("td");
-           for(let cell of cells){
-                cell.style.backgroundColor = "#fbfbfb";
-                cell.style.color = "black";
-           }
-
-           // highlight cell
-           if(event.target.tagName == "TD"){
-                event.target.style.backgroundColor = "var(--mdb-primary)";
-                event.target.style.color = "white";
-               
-
-            }
-
-            if(event.target.tagName == "I"){
-                event.target.parentNode.style.backgroundColor = "var(--mdb-primary)";
                 event.target.parentNode.style.color = "white";
 
             }
