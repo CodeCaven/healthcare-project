@@ -32,6 +32,10 @@
         // global vars and storage
         let activities = {};
         let display_activity = "Sitting at a desk";
+        let metric = "KGS";
+        let weight = 75;
+        let minutes = 30;
+        let metric_smalls = {"KGS": " Between 30-200 kgs. ", "POUNDS": " Between 66-440 pounds. "}
         
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
@@ -57,6 +61,7 @@
              for(let j in met_table[i]){
                 var table_td_1 = document.createElement("td");
                 table_td_1.innerHTML = met_table[i][j]['activity'];
+                table_td_1.id = met_table[i][j]['activity'];
                 activities[met_table[i][j]['activity']] = met_table[i][j]['metscore'];
 
                 // set initial
@@ -77,12 +82,42 @@
             
            }
 
-          // table events
+          // events
           document.getElementById('table-met').addEventListener("click", tableClick);
+          document.getElementById('minutes').addEventListener("input", handleMinutes);
+          document.getElementById('weight').addEventListener("input", handleWeight);
+          document.getElementById('metrics').addEventListener("input", handleMetric);
 
-        
+          // set calories
+          document.getElementById('calories').innerHTML = calculate();
+
+          // set radio weight 
+          let metric_radios = document.getElementsByName("metricRadio");
+           for(let i=0; i<metric_radios.length;i++){
+                if(metric_radios[i].value == metric){
+                    metric_radios[i].checked = true;
+                }
+           }
 
         }, false);
+
+        // calories calculator
+        function calculate(){
+            /* THE MATHS */
+            // METs x 3.5 x (your body weight in kilograms) / 200 = calories burned per minute
+            // 1kg = 2.204623 pounds
+            // 1 pound = 0.4535924 kgs
+            // range = [6, 7245]
+
+            if(metric == "KGS"){
+                return parseInt(((activities[display_activity] * 3.5 * weight)/200)*minutes);
+            }
+
+            if(metric == "POUNDS"){
+                return parseInt(((activities[display_activity] * 3.5 * weight * 0.4535924)/200)*minutes);
+            }
+
+        }
 
         // event handlers
         function tableClick(event){
@@ -97,16 +132,66 @@
            if(event.target.tagName == "TD"){
                 event.target.style.backgroundColor = "var(--mdb-dark)";
                 event.target.style.color = "white";
-               
-
+                display_activity = event.target.id;
             }
 
             if(event.target.tagName == "I"){
                 event.target.parentNode.style.backgroundColor = "var(--mdb-dark)";
                 event.target.parentNode.style.color = "white";
+                display_activity = event.target.parentNode.id;
+            }
+            
+            // set calories
+            document.getElementById('calories').innerHTML = calculate();
+        }
 
+        function handleMinutes(event){
+            
+            if( event.target.value > 9 &&  event.target.value < 181){
+                // set minutes
+                minutes = event.target.value;
+                // set calories
+                document.getElementById('calories').innerHTML = calculate();
+            }
+        }
+
+        function handleWeight(event){
+            if(metric == "KGS"){
+                if( event.target.value > 29 &&  event.target.value < 201){
+                    // set minutes
+                    weight = event.target.value;
+                    // set calories
+                    document.getElementById('calories').innerHTML = calculate();
+                }
             }
 
+            if(metric == "POUNDS"){
+                if( event.target.value > 65 &&  event.target.value < 441){
+                    // set minutes
+                    weight = event.target.value;
+                    // set calories
+                    document.getElementById('calories').innerHTML = calculate();
+                }
+            }
+        }
+
+        function handleMetric(event){
+            // set metric
+            metric = event.target.value;
+
+            // update display and range
+            document.getElementById('weightSmall').innerHTML = metric_smalls[metric];
+
+            // update min max
+            if(metric == "KGS"){
+                document.getElementById('weight').setAttribute("min", "30");
+                document.getElementById('weight').setAttribute("max", "200");
+            }
+
+            if(metric == "POUNDS"){
+                document.getElementById('weight').setAttribute("min", "66");
+                document.getElementById('weight').setAttribute("max", "440");
+            }
         }
         
     </script>

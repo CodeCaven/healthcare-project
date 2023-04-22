@@ -61,9 +61,11 @@
     </header>
 
     <div class="container">
-      <div class="row ">
+      
         <!--TABLE-->
+        <div class="row">
     <div class="col-lg-9">
+      <div class="row ">
       <table data-page-length='10' class="table table-info table-bordered table-sm text-center shadow-5" id="table-met">
         <thead class="table-dark">
           <tr>
@@ -84,8 +86,31 @@
       </table>
 
      </div>
+
+     <div class="row text-center">
+      <div class="shadow-5 me-2 border p-4 rounded">
+        <p class="rounded fs-5" style="background-color:var(--mdb-dark); color:white;">
+          Calories Converter <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+        </p>
+        <p class="fs-5"><strong>In bananas....</strong></p>
+        <div id="banDiv"></div>
+        <p class="fs-5"><strong>In potatoes....</strong></p>
+        <div id="potDiv"></div>
+        <p class="fs-5"><strong>In beer....</strong></p>
+        <div id="beerDiv"></div>
+        <p class="fs-5"><strong>In hamburgers....</strong></p>
+        <div id="hamDiv"></div>
+        <p class="fs-5"><strong>In apples....</strong></p>
+        <div id="appDiv"></div>
+      </div>
+    </div>
+      
+    
+    </div>
+
      <!--Calculator Display Area-->
      <div class="col-lg-3 text-center ">
+      <div class="row">
       <div class="shadow-5 me-2 border p-4 rounded">
       <p class="rounded fs-5" style="background-color:var(--mdb-dark); color:white;">
         Calories Calculator <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
@@ -96,37 +121,46 @@
       <p class = "fs-6"><strong>Step 2:</strong> Enter the number of minutes for your activity</p>
          <!--minutes-->   
       <div class="form-outline">
-        <input type="number" min="1" max="120" id="minutes" class="form-control" />
+        <input type="number" min="10" max="180" id="minutes" value="30" class="form-control" />
         <label class="form-label" for="minutes">Enter Duration</label>
+      </div>
+      <div class="col-auto">
+        <span id="minutesSmall" class="form-text"> Between 10-180 minutes. </span>
       </div>
 
       <br>
       <p class="fs-6"><strong>Step 3:</strong> Enter your weight</p>
 
         <!--kgs, pounds-->
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked/>
-          <label class="form-check-label" for="inlineRadio1">KGS</label>
-        </div>
-        
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-          <label class="form-check-label" for="inlineRadio2">POUNDS</label>
-        </div>
+        <div id="metrics">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="metricRadio" id="inlineRadio1" value="KGS" checked/>
+            <label class="form-check-label" for="inlineRadio1">KGS</label>
+          </div>
+          
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="metricRadio" id="inlineRadio2" value="POUNDS" />
+            <label class="form-check-label" for="inlineRadio2">POUNDS</label>
+          </div>
+      </div>
       
 
        <!--weight-->   
        <div class="form-outline mt-4">
-        <input type="number" min="1" max="420" id="weight" class="form-control" />
-        <label class="form-label" for="minutes">Enter weight</label>
+        <input type="number" min="30" max="200" id="weight"  class="form-control" />
+        <label class="form-label" for="weight">Enter weight</label>
+      </div>
+      <div class="col-auto">
+        <span id="weightSmall" class="form-text"> Between 30-200 kgs. </span>
       </div>
       <br>
       <!--calories-->
-      <p class="fs-6 fst-italic">You have used <span id="calories"><strong>450</strong></span> calories.</p>
+      <p class="fs-6 fst-italic">You have used <span><strong id="calories">450</strong></span> calories.</p>
 
+      </div>
     </div>
     </div>
-    </div>
+  </div>
   </div>
 
     <!--Tooltip-->
