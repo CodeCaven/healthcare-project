@@ -83,12 +83,13 @@ a {
 }
 
 .video{
-  font-size: 1.5rem;
+  font-size: 2rem;
   z-index: 1000;
   position: absolute;
   margin: 1rem;
   cursor:pointer;
-  color:var(--mdb-white);
+  color:var(--mdb-dark);
+  right:0;
 }
 
 .display-3 {

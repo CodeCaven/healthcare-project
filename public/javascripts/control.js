@@ -8,6 +8,16 @@ function private(){
     window.location.assign(new_path);
 }
 
+function maps(){
+    var new_path = "http://" + window.location.hostname + ":" + window.location.port + "/maps";
+    window.location.assign(new_path);
+}
+
+function met(){
+    var new_path = "http://" + window.location.hostname + ":" + window.location.port + "/met";
+    window.location.assign(new_path);
+}
+
 
 const cities = [  {    
             city: "Sydney",    
