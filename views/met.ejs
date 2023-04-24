@@ -6,14 +6,13 @@
   <body>
 
     <!--Main Navigation-->
-    <header class="mb-2 mb-lg-4">
   
       <!-- Navbar -->
-      <nav style="z-index: 1;
+      <nav style="z-index: 10;
                    min-height: 58.59px;
                   " class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient text-white sticky-top">
         <!-- Container wrapper -->
-        <div class="container">
+        <div class="container-fluid">
           <!-- Toggle button -->
           <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
             data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -85,110 +84,121 @@
       </nav>
       <!-- Navbar -->
   
-    </header>
 
-    <div class="container">
+    <div class="container-fluid">
       
-        <!--TABLE-->
+
         <div class="row">
-    <div class="col-lg-9">
-      <div class="row ">
-      <table data-page-length='10' class="table table-info table-bordered table-sm text-center shadow-5" id="table-met">
-        <thead class="table-dark">
-          <tr>
-            <th data-field="activity-light">
-                Light Activities <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-            </th>
-            <th data-field="activity-moderate">
-                Moderate Activities <i class="fas fa-heart-pulse me-3" style="color:salmon"></i> 
-            </th>
-            <th data-field="activity-vigorous">
-                Vigorous Activities <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-            </th>
-          </tr>
-        </thead>
-        <tbody id="table-met-body" style="cursor:pointer;">
+          <!--Calculator Display Area-->
+          <div class="col-lg-3 mt-2">
+            <div class="shadow-5 me-2 border p-2 rounded text-center">
+              <p class="rounded fs-5" style="background-color:var(--mdb-dark); color:white;">
+                Calories Calculator <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+              </p>
+              
+              <p class="fs-6"><strong>Step 1:</strong> Select your activity from the Table of Activities</p>
+              
+              <p class = "fs-6"><strong>Step 2:</strong> Enter the number of minutes for your activity</p>
+                 <!--minutes-->   
+              <div class="form-outline">
+                <input type="number" min="10" max="180" id="minutes" value="30" class="form-control" />
+                <label class="form-label" for="minutes">Enter Duration</label>
+              </div>
+              <div class="col-auto">
+                <span id="minutesSmall" class="form-text"> Between 10-180 minutes. </span>
+              </div>
+        
+              <br>
+              <p class="fs-6"><strong>Step 3:</strong> Enter your weight</p>
+        
+                <!--kgs, pounds-->
+                <div id="metrics">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="metricRadio" id="inlineRadio1" value="KGS" checked/>
+                    <label class="form-check-label" for="inlineRadio1">KGS</label>
+                  </div>
+                  
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="metricRadio" id="inlineRadio2" value="POUNDS" />
+                    <label class="form-check-label" for="inlineRadio2">POUNDS</label>
+                  </div>
+              </div>
+              
+        
+               <!--weight-->   
+               <div class="form-outline mt-4">
+                <input type="number" min="30" max="200" id="weight"  value="75" class="form-control" />
+                <label class="form-label" for="weight">Enter weight</label>
+              </div>
+              <div class="col-auto">
+                <span id="weightSmall" class="form-text"> Between 30-200 kgs. </span>
+              </div>
+              <br>
+              <!--calories-->
+              <p class="fs-6 fst-italic">You have used <span><strong id="calories">450</strong></span> calories.</p>
+        
+              </div>
 
-        </tbody>
-      </table>
+          </div>
+                  <!--TABLE-->
+           <div class="col-lg-9 mt-2">
+            <table data-page-length='10' class="table table-info table-bordered table-sm text-center shadow-5" id="table-met">
+              <thead class="table-dark">
+                <tr>
+                  <th data-field="activity-light">
+                      Light Activities <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                  </th>
+                  <th data-field="activity-moderate">
+                      Moderate Activities <i class="fas fa-heart-pulse me-3" style="color:salmon"></i> 
+                  </th>
+                  <th data-field="activity-vigorous">
+                      Vigorous Activities <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="table-met-body" style="cursor:pointer;">
 
-     </div>
-
-     <div class="row text-center">
-      <div class="shadow-5 me-2 border p-4 rounded">
-        <p class="rounded fs-5" style="background-color:var(--mdb-dark); color:white;">
-          Calories Converter <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-        </p>
-        <p class="fs-5"><strong>In bananas....</strong></p>
-        <div id="banDiv"></div>
-        <p class="fs-5"><strong>In potatoes....</strong></p>
-        <div id="potDiv"></div>
-        <p class="fs-5"><strong>In beer....</strong></p>
-        <div id="beerDiv"></div>
-        <p class="fs-5"><strong>In hamburgers....</strong></p>
-        <div id="hamDiv"></div>
-        <p class="fs-5"><strong>In apples....</strong></p>
-        <div id="appDiv"></div>
+              </tbody>
+            </table>
+          </div>
       </div>
-    </div>
-      
-    
-    </div>
 
-     <!--Calculator Display Area-->
-     <div class="col-lg-3 text-center ">
       <div class="row">
-      <div class="shadow-5 me-2 border p-4 rounded">
-      <p class="rounded fs-5" style="background-color:var(--mdb-dark); color:white;">
-        Calories Calculator <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-      </p>
-      
-      <p class="fs-6"><strong>Step 1:</strong> Select your activity from the Table of Activities</p>
-      
-      <p class = "fs-6"><strong>Step 2:</strong> Enter the number of minutes for your activity</p>
-         <!--minutes-->   
-      <div class="form-outline">
-        <input type="number" min="10" max="180" id="minutes" value="30" class="form-control" />
-        <label class="form-label" for="minutes">Enter Duration</label>
-      </div>
-      <div class="col-auto">
-        <span id="minutesSmall" class="form-text"> Between 10-180 minutes. </span>
-      </div>
-
-      <br>
-      <p class="fs-6"><strong>Step 3:</strong> Enter your weight</p>
-
-        <!--kgs, pounds-->
-        <div id="metrics">
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="metricRadio" id="inlineRadio1" value="KGS" checked/>
-            <label class="form-check-label" for="inlineRadio1">KGS</label>
+        <!--Converter-->
+        <div class="col-lg-3 mt-2">
+          <div class="text-center">
+            <div class="shadow-5 me-2 border p-4 rounded">
+              <p class="rounded fs-5" style="background-color:var(--mdb-dark); color:white;">
+                Calories Converter <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+              </p>
+              <p class="fs-5"><strong>In carrots....</strong></p>
+              <div id="carDiv"></div>
+              <p class="fs-5"><strong>In chicken sandwiches....</strong></p>
+              <div id="chiDiv"></div>
+              <p class="fs-5"><strong>In beer....</strong></p>
+              <div id="beerDiv"></div>
+              <p class="fs-5"><strong>In red wine....</strong></p>
+              <div id="wineDiv"></div>
+              
+            </div>
           </div>
-          
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="metricRadio" id="inlineRadio2" value="POUNDS" />
-            <label class="form-check-label" for="inlineRadio2">POUNDS</label>
+        </div>
+        <!--How does it work-->
+        <div class="col-lg-9 mt-2">
+          <h1>How does it work?</h1>
+          <div class="pt-8 fs-5">
+            The maps in this visualisation were generated from data from The Patient Experience Survey which is conducted
+             annually by the Australian Bureau of Statistics. Data is collected from a representative sample of the Australian population. 
+            <a href="https://www.aihw.gov.au/getmedia/4e1bccd8-f870-4f73-bc20-755f1dca87a1/aihw-HPF-64-techinal-note.pdf.aspx">Learn More</a>.
+            Using the survey results, the maps are coloured by their PHN (Private Health Network) area. There are 31 PHN 
+            areas that cover the whole of Australia. These styles of maps are called choropleth maps. Explore the full datsets below.
           </div>
-      </div>
-      
-
-       <!--weight-->   
-       <div class="form-outline mt-4">
-        <input type="number" min="30" max="200" id="weight"  class="form-control" />
-        <label class="form-label" for="weight">Enter weight</label>
-      </div>
-      <div class="col-auto">
-        <span id="weightSmall" class="form-text"> Between 30-200 kgs. </span>
-      </div>
-      <br>
-      <!--calories-->
-      <p class="fs-6 fst-italic">You have used <span><strong id="calories">450</strong></span> calories.</p>
-
+        </div>
       </div>
     </div>
-    </div>
-  </div>
-  </div>
+
+    
+
 
     <!--Tooltip-->
     <div class="tooltipCustom" id="tooltip" style="visibility:hidden;"></div>

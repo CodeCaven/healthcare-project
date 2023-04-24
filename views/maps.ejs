@@ -5,87 +5,86 @@
   <% include ./partials/maps-head %>
   <body>
 
-    <!--Main Navigation *** margins removed-->
-    <header>
+    <!--Main Navigation-->
+   
   
      <!-- Navbar -->
-     <nav style="z-index: 1;
+     <nav style="z-index: 10;
      min-height: 58.59px;
     " class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient text-white sticky-top">
-<!-- Container wrapper -->
-<div class="container">
-<!-- Toggle button -->
-<button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-aria-label="Toggle navigation">
-<i class="fas fa-bars"></i>
-</button>
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+      </button>
 
-<!-- Collapsible wrapper -->
-<div class="collapse navbar-collapse" id="navbarSupportedContent">
-<!-- Navbar brand -->
-<a class="navbar-brand mt-2 mt-lg-0" href="./">
-<i class="fas fa-heart-pulse" style="color:salmon"></i>
-</a>
-<!-- Left links -->
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navbar brand -->
+      <a class="navbar-brand mt-2 mt-lg-0" href="./">
+      <i class="fas fa-heart-pulse" style="color:salmon"></i>
+      </a>
+      <!-- Left links -->
 
-<ul class="navbar-nav">
-<!-- Dropdown -->
-<li class="nav-item dropdown">
-  <a
-    class="nav-link dropdown-toggle"
-    href="#"
-    id="navbarDropdownMenuLink"
-    role="button"
-    data-mdb-toggle="dropdown"
-    aria-expanded="false"
-    style="letter-spacing: 2px;"
-  >
-   Discover More
-  </a>
-  <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
-    <li>
-      <a class="dropdown-item" href="#" onclick="guides()">Good Health Guidelines
-        <i class="fas fa-person-walking ms-2"></i></a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="#" onclick="private()">The Private Healthcare System
-        <i class="fas fa-suitcase-medical ms-2"></i></a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="#" onclick="maps()">Patient Survey Maps
-        <i class="fas fa-map ms-2"></i></a>
-    </li>
-    <li>
-      <a class="dropdown-item" href="#" onclick="met()">Calories Calulator
-        <i class="fas fa-calculator ms-2"></i></a>
-    </li>
-  </ul>
-</li>
-</ul>
-<!-- Left links -->
-</div>
-<!-- Collapsible wrapper -->
+      <ul class="navbar-nav">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdownMenuLink"
+          role="button"
+          data-mdb-toggle="dropdown"
+          aria-expanded="false"
+          style="letter-spacing: 2px;"
+        >
+        Discover More
+        </a>
+        <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
+          <li>
+            <a class="dropdown-item" href="#" onclick="guides()">Good Health Guidelines
+              <i class="fas fa-person-walking ms-2"></i></a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" onclick="private()">The Private Healthcare System
+              <i class="fas fa-suitcase-medical ms-2"></i></a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" onclick="maps()">Patient Survey Maps
+              <i class="fas fa-map ms-2"></i></a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#" onclick="met()">Calories Calulator
+              <i class="fas fa-calculator ms-2"></i></a>
+          </li>
+        </ul>
+      </li>
+      </ul>
+      <!-- Left links -->
+      </div>
+      <!-- Collapsible wrapper -->
 
-<!-- Right elements -->
-<div class="d-flex align-items-center">
-<!-- Icon -->
-<a class="me-3" href="https://icons.getbootstrap.com/icons/google/" rel="nofollow" target="_blank">
-<i class="text-secondary fab fa-google"></i>
-</a>
-<!-- Icon -->
-<a class="me-3" href="https://github.com/CodeCaven/healthcare-project" rel="nofollow" target="_blank">
-<i class="text-secondary fab fa-github"></i>
-</a>
+      <!-- Right elements -->
+      <div class="d-flex align-items-center">
+      <!-- Icon -->
+      <a class="me-3" href="https://icons.getbootstrap.com/icons/google/" rel="nofollow" target="_blank">
+      <i class="text-secondary fab fa-google"></i>
+      </a>
+      <!-- Icon -->
+      <a class="me-3" href="https://github.com/CodeCaven/healthcare-project" rel="nofollow" target="_blank">
+      <i class="text-secondary fab fa-github"></i>
+      </a>
 
-</div>
-<!-- Right elements -->
-</div>
-<!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
-  
-    </header>
+      </div>
+      <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+
 
       <!-- Draggable controls-->
     <div id="controls" style="visibility:hidden;">
@@ -217,11 +216,11 @@ aria-label="Toggle navigation">
     </div>
     <br>
     <!--How does it work-->
-    <div class="container">
+    <div class="container-fluid ms-5 me-5">
       <div class="row align-items-center">
-        <div class="col-lg-12 pt-8">
+        <div class="col-lg-11 pt-8">
           <h1>How does it work?</h1>
-          <div class="col-md-12 col-lg-12 pt-8 fs-5">
+          <div class="pt-8 fs-5">
             The maps in this visualisation were generated from data from The Patient Experience Survey which is conducted
              annually by the Australian Bureau of Statistics. Data is collected from a representative sample of the Australian population. 
             <a href="https://www.aihw.gov.au/getmedia/4e1bccd8-f870-4f73-bc20-755f1dca87a1/aihw-HPF-64-techinal-note.pdf.aspx">Learn More</a>.
@@ -231,9 +230,9 @@ aria-label="Toggle navigation">
         </br>
         </div>
         
-        <div class="container">
+        <div class="container-fluid">
           <div class="row align-items-center">
-        <div class="col-lg-12">
+        <div class="col-lg-11">
           <table data-page-length='10' class="table table-info table-hover table-sm" id="table-survey">
             <thead class="table-dark">
               <tr>
