@@ -35,7 +35,9 @@
         let metric = "KGS";
         let weight = 75;
         let minutes = 30;
-        let metric_smalls = {"KGS": " Between 30-200 kgs. ", "POUNDS": " Between 66-440 pounds. "}
+        let metric_smalls = {"KGS": " Between 30-200 kgs. ", "POUNDS": " Between 66-440 pounds. "};
+        let icon_calories = {"beer": 100, "redwine": 100, "sandwich": 400, "carrots": 33, "pizza": 300};
+        let img_width, img_height = 25;
         
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
@@ -66,7 +68,7 @@
 
                 // set initial
                 if(met_table[i][j]['activity'] == display_activity){
-                    table_td_1.style.backgroundColor = "var(--mdb-dark)";
+                    table_td_1.style.backgroundColor = "var(--mdb-primary)";
                     table_td_1.style.color = "white";
                 }
 
@@ -110,33 +112,174 @@
             // range = [6, 7245]
 
             if(metric == "KGS"){
-                return parseInt(((activities[display_activity] * 3.5 * weight)/200)*minutes);
+                let calories = parseInt(((activities[display_activity] * 3.5 * weight)/200)*minutes);
+                convert(calories);
+                return calories;
             }
 
             if(metric == "POUNDS"){
-                return parseInt(((activities[display_activity] * 3.5 * weight * 0.4535924)/200)*minutes);
+                let calories = parseInt(((activities[display_activity] * 3.5 * weight * 0.4535924)/200)*minutes);
+                convert(calories);
+                return calories;
             }
 
         }
 
+        // calories converter
+        function convert(calories){
+            /* carrots */
+
+            // get number
+            let num_carrots = Math.floor(calories/icon_calories["carrots"]);
+
+            // get div and clear
+            let carrots_div = document.getElementById("carDiv");
+
+            // remove any elements in plot area
+            while (carrots_div.firstChild) {
+                carrots_div.removeChild(carrots_div.firstChild);
+            }
+
+            // add new images
+            for(let i=0; i<num_carrots; i++){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/carrot.svg";
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                if(num_carrots == 0){
+                    img_tag.style.opacity = 0.2;
+                }
+                carrots_div.append(img_tag);
+
+            }
+
+            /* sandwiches */
+
+            // get number
+            let num_sandwich = Math.floor(calories/icon_calories["sandwich"]);
+
+            // get div and clear
+            let sandwich_div = document.getElementById("chiDiv");
+
+            // remove any elements in plot area
+            while (sandwich_div.firstChild) {
+                sandwich_div.removeChild(sandwich_div.firstChild);
+            }
+
+            // add new images
+            for(let i=0; i<num_sandwich; i++){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/sandwich.svg";
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                if(num_sandwich == 0){
+                    img_tag.style.opacity = 0.2;
+                }
+                sandwich_div.append(img_tag);
+
+            }
+
+            /* beer */
+
+            // get number
+            let num_beer = Math.floor(calories/icon_calories["beer"]);
+
+            // get div and clear
+            let beer_div = document.getElementById("beerDiv");
+
+            // remove any elements in plot area
+            while (beer_div.firstChild) {
+                beer_div.removeChild(beer_div.firstChild);
+            }
+
+            // add new images
+            for(let i=0; i<num_beer; i++){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/beer.svg";
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                if(num_beer == 0){
+                    img_tag.style.opacity = 0.2;
+                }
+                beer_div.append(img_tag);
+
+            }
+
+            /* redwine */
+
+            // get number
+            let num_wine = Math.floor(calories/icon_calories["redwine"]);
+
+            // get div and clear
+            let wine_div = document.getElementById("wineDiv");
+
+            // remove any elements in plot area
+            while (wine_div.firstChild) {
+                wine_div.removeChild(wine_div.firstChild);
+            }
+
+            // add new images
+            for(let i=0; i<num_wine; i++){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/redwine.svg";
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                if(num_wine == 0){
+                    img_tag.style.opacity = 0.2;
+                }
+                wine_div.append(img_tag);
+
+            }
+
+            /* pizza */
+
+            // get number
+            let num_pizza = Math.floor(calories/icon_calories["pizza"]);
+
+            // get div and clear
+            let pizza_div = document.getElementById("pizzaDiv");
+
+            // remove any elements in plot area
+            while (pizza_div.firstChild) {
+                pizza_div.removeChild(pizza_div.firstChild);
+            }
+
+            // add new images
+            for(let i=0; i<num_pizza; i++){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/pizza.svg";
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                if(num_pizza == 0){
+                    img_tag.style.opacity = 0.2;
+                }
+                pizza_div.append(img_tag);
+
+            }
+            
+        }
+
         // event handlers
         function tableClick(event){
+
+            // here table color
+            
             // unhighlight all
            let cells = document.getElementsByTagName("td");
            for(let cell of cells){
                 cell.style.backgroundColor = "var(--mdb-table-bg)";
-                cell.style.color = "black";
+                cell.style.color = "var(--mdb-dark)";
            }
 
            // highlight cell
            if(event.target.tagName == "TD"){
-                event.target.style.backgroundColor = "var(--mdb-dark)";
+                event.target.style.backgroundColor = "var(--mdb-primary)";
                 event.target.style.color = "white";
                 display_activity = event.target.id;
             }
 
             if(event.target.tagName == "I"){
-                event.target.parentNode.style.backgroundColor = "var(--mdb-dark)";
+                event.target.parentNode.style.backgroundColor = "var(--mdb-primary)";
                 event.target.parentNode.style.color = "white";
                 display_activity = event.target.parentNode.id;
             }
