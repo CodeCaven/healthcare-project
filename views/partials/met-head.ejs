@@ -86,6 +86,8 @@
 
           // events
           document.getElementById('table-met').addEventListener("click", tableClick);
+          document.getElementById('table-met').addEventListener("mouseover", tableHover);
+          document.getElementById('table-met').addEventListener("mouseout", tableOut);
           document.getElementById('minutes').addEventListener("input", handleMinutes);
           document.getElementById('weight').addEventListener("input", handleWeight);
           document.getElementById('metrics').addEventListener("input", handleMetric);
@@ -311,6 +313,43 @@
         }
 
         // event handlers
+        function tableOut(event){
+            var tooltip = d3.select("#tooltip");
+            tooltip.style("visibility", "hidden");  
+        }
+
+        function tableHover(event){
+            // get met score and activity
+           if(event.target.tagName == "TD"){
+                var met_score = activities[event.target.id];
+                var activity = event.target.id;
+
+            }
+
+            if(event.target.tagName == "I"){
+                var met_score = activities[event.target.parentNode.id];
+                var activity = event.target.parentNode.id;
+            }
+
+            if(event.target.tagName != "TH"){
+                // get tooltip
+                var tooltip = d3.select("#tooltip");
+                        
+                // create html
+                var htmlString = met_score + " METs";
+                            // "<i class='fas fa-heart-pulse' style='color:salmon'></i>";
+                                
+                
+                // set html and position
+                tooltip.style('width', 'fit-content');
+                tooltip.style('left', (event.pageX+10) + 'px');
+                tooltip.style('top', (event.pageY-20) + 'px');
+                tooltip.html(htmlString);
+                tooltip.style("visibility", "visible");
+            }
+
+        }
+
         function tableClick(event){
 
             // here table color
@@ -319,7 +358,7 @@
            let cells = document.getElementsByTagName("td");
            for(let cell of cells){
                 cell.style.backgroundColor = "var(--mdb-table-bg)";
-                cell.style.color = "var(--mdb-dark)";
+                cell.style.color = "var(--mdb-table-color)";// "var(--mdb-dark)";
            }
 
            // highlight cell

@@ -174,8 +174,8 @@ a {
 }
 
 .theme{
-  background-color: var(--mdb-dark);
-  color:white;
+  background-color: var(--mdb-white);
+  color:var(--mdb-dark);
   transition: 1s;
 }
 
