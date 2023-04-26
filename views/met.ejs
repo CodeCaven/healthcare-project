@@ -10,7 +10,7 @@
       <!-- Navbar -->
       <nav style="z-index: 10;
                    min-height: 58.59px;
-                  " class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient text-white sticky-top">
+                  " class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient text-white sticky-top px-5">
         <!-- Container wrapper -->
         <div class="container-fluid">
           <!-- Toggle button -->
@@ -86,15 +86,34 @@
   
 
     <div class="container-fluid">
+
+      <div class="row">
+        <!--Converter-->
+        
+        <!--How does it work-->
+        <div class="col-lg-12">
+          <h1 class="my-5 mx-5">Calories Calculator and Converter</h1>
+          <div class="pt-8 fs-5 my-5 mx-5">
+            Have you ever wondered how much energy you use when exercising or performing your daily activities? Well, it is 
+            possible to find out using metaboloic equivalents, also known as METs. METs can be used to detail the intensity of an activity. 
+            A MET is defined as the ratio of your working metabolic rate, to your resting metabolic rate. When you are sitting or lying 
+            completely still, you would record a MET score of 1. Hence a MET score of 3, would mean an activity that is 3 times as intense 
+            as sitting or lying still. Researchers have recorded a variety of MET scores for many common activities that have been 
+            tabulated below. When you factor in your weight and the duration of your activity, it is easy to convert a MET score 
+            into calories. Try out the <strong>Calories Calculator</strong> below. Just select an activity from the table and enter your weight and duration. 
+            You can then view the <strong>Calories Converter</strong> to see your calories burnt in terms of some common food and drink items. 
+            <a href="https://www.healthline.com/health/what-are-mets#calorie-connection">Learn More.</a>
+          </div>
+        </div>
+      </div>
       
 
         <div class="row">
           <!--Calculator Display Area-->
-          <div class="col-lg-3 mt-2">
-            <div class="shadow-5 me-2 border p-2 rounded text-center">
-              <p class="rounded fs-5" style="background-color:var(--mdb-primary); color:white;">
-                Calories Calculator <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-              </p>
+          <div class="col-lg-3 mt-2 ps-5">
+            <div class="shadow-5 border p-4  border-3 border-dark rounded text-center">
+              <p class="rounded fs-5 p-2" style="background-color:#d8e3f4; color:var(--mdb-dark);">
+                Calories Caclulator <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
               
               <p class="fs-6"><strong>Step 1:</strong> Select your activity from the Table of Activities</p>
               
@@ -138,12 +157,14 @@
               <p class="fs-6 fst-italic">You have used <span><strong id="calories">450</strong></span> calories.</p>
         
               </div>
+            
 
           </div>
+        
                   <!--TABLE-->
-           <div class="col-lg-9 mt-2">
+           <div class="col-lg-6 mt-2">
             <table data-page-length='10' class="table table-bordered table-sm text-center shadow-5" id="table-met">
-              <thead class="table-light">
+              <thead class="table-primary">
                 <tr>
                   <th data-field="activity-light">
                       Light Activities <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
@@ -161,67 +182,47 @@
               </tbody>
             </table>
           </div>
+          <!--Converter-->
+          <div class="col-lg-3 mt-2 pe-5">
+            
+              <div class="shadow-5 border border-3 border-dark p-4 rounded text-center">
+                <p class="rounded fs-5 p-2" style="background-color:#d8e3f4; color:var(--mdb-dark);">
+                  Calories Converter <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
+                </p>
+                <p class="fs-6 mt-2"><strong id="pizzaDivTitle">in pizza slices....</strong></p>
+                <div id="pizzaDiv">
+                  <img src="/svgs/pizza.svg" width="25" height="25">
+                  <img src="/svgs/pizza.svg" width="25" height="25">
+                </div>
+                <p class="fs-6 mt-2"><strong id="chiDivTitle">in chicken sandwiches....</strong></p>
+                <div id="chiDiv">
+                  <img src="/svgs/sandwich.svg" width="25" height="25">
+                  <img src="/svgs/sandwich.svg" width="25" height="25">
+                </div>
+                <p class="fs-6 mt-2"><strong id="beerDivTitle">in mugs of beer....</strong></p>
+                <div id="beerDiv">
+                  <img src="/svgs/beer.svg" width="25" height="25">
+                  <img src="/svgs/beer.svg" width="25" height="25">
+                </div>
+                <p class="fs-6 mt-2"><strong id="wineDivTitle">in glasses of red wine....</strong></p>
+                <div id="wineDiv">
+                  <img src="/svgs/redwine.svg" width="25" height="25" style="opacity:0.2">
+                  <img src="/svgs/redwine.svg" width="25" height="25">
+                </div>
+                <p class="fs-6 mt-2"><strong id="carDivTitle">in carrots....</strong></p>
+                <div id="carDiv">
+                  <img src="/svgs/carrot.svg" width="25" height="25">
+                  <img src="/svgs/carrot.svg" width="25" height="25">
+                </div>
+                
+              </div>
+            
+          </div>
+
+
       </div>
 
-      <div class="row">
-        <!--Converter-->
-        <div class="col-lg-3 mt-2">
-          <div class="text-center">
-            <div class="shadow-5 me-2 border p-4 rounded">
-              <p class="rounded fs-5" style="background-color:var(--mdb-primary); color:white;">
-                Calories Converter <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-              </p>
-              <p class="fs-5"><strong>In carrots....</strong></p>
-              <div id="carDiv">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-                <img src="/svgs/carrot.svg" width="25" height="25">
-              </div>
-              <p class="fs-5 mt-2"><strong>In chicken sandwiches....</strong></p>
-              <div id="chiDiv">
-                <img src="/svgs/sandwich.svg" width="25" height="25">
-                <img src="/svgs/sandwich.svg" width="25" height="25">
-              </div>
-              <p class="fs-5 mt-2"><strong>In mugs of beer....</strong></p>
-              <div id="beerDiv">
-                <img src="/svgs/beer.svg" width="25" height="25">
-                <img src="/svgs/beer.svg" width="25" height="25">
-              </div>
-              <p class="fs-5 mt-2"><strong>In glasses of red wine....</strong></p>
-              <div id="wineDiv">
-                <img src="/svgs/redwine.svg" width="25" height="25" style="opacity:0.2">
-                <img src="/svgs/redwine.svg" width="25" height="25">
-              </div>
-              <p class="fs-5 mt-2"><strong>In pizza slices....</strong></p>
-              <div id="pizzaDiv">
-                <img src="/svgs/pizza.svg" width="25" height="25">
-                <img src="/svgs/pizza.svg" width="25" height="25">
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <!--How does it work-->
-        <div class="col-lg-9 mt-2">
-          <h1>How does it work?</h1>
-          <div class="pt-8 fs-5">
-            The maps in this visualisation were generated from data from The Patient Experience Survey which is conducted
-             annually by the Australian Bureau of Statistics. Data is collected from a representative sample of the Australian population. 
-            <a href="https://www.aihw.gov.au/getmedia/4e1bccd8-f870-4f73-bc20-755f1dca87a1/aihw-HPF-64-techinal-note.pdf.aspx">Learn More</a>.
-            Using the survey results, the maps are coloured by their PHN (Private Health Network) area. There are 31 PHN 
-            areas that cover the whole of Australia. These styles of maps are called choropleth maps. Explore the full datsets below.
-          </div>
-        </div>
-      </div>
+      
     </div>
 
     

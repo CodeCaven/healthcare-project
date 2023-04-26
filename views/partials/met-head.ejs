@@ -68,7 +68,7 @@
 
                 // set initial
                 if(met_table[i][j]['activity'] == display_activity){
-                    table_td_1.style.backgroundColor = "var(--mdb-primary)";
+                    table_td_1.style.backgroundColor = "var(--mdb-dark)";
                     table_td_1.style.color = "white";
                 }
 
@@ -140,18 +140,29 @@
                 carrots_div.removeChild(carrots_div.firstChild);
             }
 
+            // opaque for zero
+            if(num_carrots == 0){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/carrot.svg";
+                img_tag.style.opacity = 0.2;
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                carrots_div.append(img_tag);
+            }
+
             // add new images
             for(let i=0; i<num_carrots; i++){
                 let img_tag = document.createElement("img");
                 img_tag.src = "/svgs/carrot.svg";
                 img_tag.setAttribute("width", img_width);
                 img_tag.setAttribute("height", img_height);
-                if(num_carrots == 0){
-                    img_tag.style.opacity = 0.2;
-                }
                 carrots_div.append(img_tag);
-
             }
+
+            // update title
+            let carrots_div_title = document.getElementById("carDivTitle");
+            carrots_div_title.innerHTML = calories + " calories in carrots";
+
 
             /* sandwiches */
 
@@ -166,18 +177,28 @@
                 sandwich_div.removeChild(sandwich_div.firstChild);
             }
 
+            // opaque for zero
+            if(num_sandwich == 0){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/sandwich.svg";
+                img_tag.style.opacity = 0.2;
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                sandwich_div.append(img_tag);
+            }
+
             // add new images
             for(let i=0; i<num_sandwich; i++){
                 let img_tag = document.createElement("img");
                 img_tag.src = "/svgs/sandwich.svg";
                 img_tag.setAttribute("width", img_width);
                 img_tag.setAttribute("height", img_height);
-                if(num_sandwich == 0){
-                    img_tag.style.opacity = 0.2;
-                }
                 sandwich_div.append(img_tag);
-
             }
+
+            // update title
+            let sandwich_div_title = document.getElementById("chiDivTitle");
+            sandwich_div_title.innerHTML = calories + " calories in chicken sandwiches";
 
             /* beer */
 
@@ -192,18 +213,28 @@
                 beer_div.removeChild(beer_div.firstChild);
             }
 
+            // opaque for zero
+            if(num_beer == 0){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/beer.svg";
+                img_tag.style.opacity = 0.2;
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                beer_div.append(img_tag);
+            }
+
             // add new images
             for(let i=0; i<num_beer; i++){
                 let img_tag = document.createElement("img");
                 img_tag.src = "/svgs/beer.svg";
                 img_tag.setAttribute("width", img_width);
                 img_tag.setAttribute("height", img_height);
-                if(num_beer == 0){
-                    img_tag.style.opacity = 0.2;
-                }
                 beer_div.append(img_tag);
-
             }
+
+            // update title
+            let beer_div_title = document.getElementById("beerDivTitle");
+            beer_div_title.innerHTML = calories + " calories in mugs of beer";
 
             /* redwine */
 
@@ -224,12 +255,22 @@
                 img_tag.src = "/svgs/redwine.svg";
                 img_tag.setAttribute("width", img_width);
                 img_tag.setAttribute("height", img_height);
-                if(num_wine == 0){
-                    img_tag.style.opacity = 0.2;
-                }
                 wine_div.append(img_tag);
-
             }
+
+            // opaque for zero
+            if(num_wine == 0){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/redwine.svg";
+                img_tag.style.opacity = 0.2;
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                wine_div.append(img_tag);
+            }
+
+            // update title
+            let wine_div_title = document.getElementById("wineDivTitle");
+            wine_div_title.innerHTML = calories + " calories in glasses of red wine";
 
             /* pizza */
 
@@ -244,18 +285,28 @@
                 pizza_div.removeChild(pizza_div.firstChild);
             }
 
+            // opaque for zero
+            if(num_pizza == 0){
+                let img_tag = document.createElement("img");
+                img_tag.src = "/svgs/pizza.svg";
+                img_tag.style.opacity = 0.2;
+                img_tag.setAttribute("width", img_width);
+                img_tag.setAttribute("height", img_height);
+                pizza_div.append(img_tag);
+            }
+
             // add new images
             for(let i=0; i<num_pizza; i++){
                 let img_tag = document.createElement("img");
                 img_tag.src = "/svgs/pizza.svg";
                 img_tag.setAttribute("width", img_width);
                 img_tag.setAttribute("height", img_height);
-                if(num_pizza == 0){
-                    img_tag.style.opacity = 0.2;
-                }
                 pizza_div.append(img_tag);
-
             }
+
+            // update title
+            let pizza_div_title = document.getElementById("pizzaDivTitle");
+            pizza_div_title.innerHTML = calories + " calories in slices of pizza";
             
         }
 
@@ -263,7 +314,7 @@
         function tableClick(event){
 
             // here table color
-            
+
             // unhighlight all
            let cells = document.getElementsByTagName("td");
            for(let cell of cells){
@@ -273,13 +324,13 @@
 
            // highlight cell
            if(event.target.tagName == "TD"){
-                event.target.style.backgroundColor = "var(--mdb-primary)";
+                event.target.style.backgroundColor = "var(--mdb-dark)";
                 event.target.style.color = "white";
                 display_activity = event.target.id;
             }
 
             if(event.target.tagName == "I"){
-                event.target.parentNode.style.backgroundColor = "var(--mdb-primary)";
+                event.target.parentNode.style.backgroundColor = "var(--mdb-dark)";
                 event.target.parentNode.style.color = "white";
                 display_activity = event.target.parentNode.id;
             }
