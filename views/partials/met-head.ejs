@@ -68,8 +68,8 @@
 
                 // set initial
                 if(met_table[i][j]['activity'] == display_activity){
-                    table_td_1.style.backgroundColor = "var(--mdb-dark)";
-                    table_td_1.style.color = "white";
+                    table_td_1.style.backgroundColor = "#d8e3f4";//"var(--mdb-dark)";
+                    table_td_1.style.color = "var(--mdb-dark)";
                 }
 
                 var new_icon = document.createElement("i");
@@ -358,19 +358,19 @@
            let cells = document.getElementsByTagName("td");
            for(let cell of cells){
                 cell.style.backgroundColor = "var(--mdb-table-bg)";
-                cell.style.color = "var(--mdb-table-color)";// "var(--mdb-dark)";
+                cell.style.color = "var(--mdb-table-color)";
            }
 
            // highlight cell
            if(event.target.tagName == "TD"){
-                event.target.style.backgroundColor = "var(--mdb-dark)";
-                event.target.style.color = "white";
+                event.target.style.backgroundColor = "#d8e3f4";
+                event.target.style.color = "var(--mdb-dark)";
                 display_activity = event.target.id;
             }
 
             if(event.target.tagName == "I"){
-                event.target.parentNode.style.backgroundColor = "var(--mdb-dark)";
-                event.target.parentNode.style.color = "white";
+                event.target.parentNode.style.backgroundColor = "#d8e3f4"; //"var(--mdb-dark)";
+                event.target.parentNode.style.color = "var(--mdb-dark)";
                 display_activity = event.target.parentNode.id;
             }
             
