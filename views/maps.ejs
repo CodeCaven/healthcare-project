@@ -85,6 +85,33 @@
       </nav>
       <!-- Navbar -->
 
+      <!--How does it work-->
+    <div class="container-fluid">
+      <div class="row">
+        <!--Title-->
+        <div class="col-md-7 text-center text-md-start ps-5 pt-5">
+          <h1 class="mb-4 display-3 fw-bold">Patient Survey Maps</h1>
+          <p class="mt-3 mb-4 fs-1">See how Australians view their Healthcare System.</p>
+        </div>
+        <div class="col-md-5 pe-5"><img class="img-fluid" src="/images/calories1.jpg" alt="" /></div>
+        
+        <!--How does it work-->
+        <div class="col-lg-12">
+          <!--<h1 class="my-5 mx-5">Calories Calculator and Converter</h1>-->
+          <div class="pt-8 fs-5 my-5 mx-5">
+            Have you ever wondered how much energy you use when exercising or performing your daily activities? Well, it is 
+            possible to find out using metaboloic equivalents, also known as METs. METs can be used to detail the intensity of an activity. 
+            A MET is defined as the ratio of your working metabolic rate, to your resting metabolic rate. When you are sitting or lying 
+            completely still, you would record a MET score of 1. Hence a MET score of 3, would mean an activity that is 3 times as intense 
+            as sitting or lying still. Researchers have recorded a variety of MET scores for many common activities that have been 
+            tabulated below. When you factor in your weight and the duration of your activity, it is easy to convert a MET score 
+            into calories. Try out the <strong>Calories Calculator</strong> below. Just select an activity from the table and enter your weight and duration. 
+            You can then view the <strong>Calories Converter</strong> to see your calories burnt in terms of some common food and drink items. 
+            <a href="https://www.healthline.com/health/what-are-mets#calorie-connection">Learn More.</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
       <!-- Draggable controls-->
     <div id="controls" style="visibility:hidden;">
@@ -214,63 +241,7 @@
             
           </div>
     </div>
-    <br>
-    <!--How does it work-->
-    <div class="container-fluid ms-5 me-5">
-      <div class="row align-items-center">
-        <div class="col-lg-11 pt-8">
-          <h1>How does it work?</h1>
-          <div class="pt-8 fs-5">
-            The maps in this visualisation were generated from data from The Patient Experience Survey which is conducted
-             annually by the Australian Bureau of Statistics. Data is collected from a representative sample of the Australian population. 
-            <a href="https://www.aihw.gov.au/getmedia/4e1bccd8-f870-4f73-bc20-755f1dca87a1/aihw-HPF-64-techinal-note.pdf.aspx">Learn More</a>.
-            Using the survey results, the maps are coloured by their PHN (Private Health Network) area. There are 31 PHN 
-            areas that cover the whole of Australia. These styles of maps are called choropleth maps. Explore the full datsets below.
-          </div>
-        </br>
-        </div>
-        
-        <div class="container-fluid">
-          <div class="row align-items-center">
-        <div class="col-lg-11">
-          <table data-page-length='10' class="table table-info table-hover table-sm" id="table-survey">
-            <thead class="table-dark">
-              <tr>
-                <th data-field="PHN_area_name">
-                    PHN_area_name <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-                </th>
-                <th data-field="state">
-                    State <i class="fas fa-heart-pulse me-3" style="color:salmon"></i> 
-                </th>
-                <th data-field="per_cent">
-                    % <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-                </th>
-                <th data-field="95_upper_bound">
-                    95% Upper Bound <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-                </th>
-                <th data-field="95_lower_bound">
-                    95% Lower Bound <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-                </th>
-                <th data-field="survey_desc">
-                    Survey <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-                </th>
-                <th data-field="year">
-                    Year <i class="fas fa-heart-pulse me-3" style="color:salmon"></i>
-              </th>
-              </tr>
-            </thead>
-            <tbody id="table-survey-body">
-
-            </tbody>
-          </table>
-
-        </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+  
     <!--Tooltip-->
     <div class="tooltipCustom" id="tooltip" style="visibility:hidden;"></div>
 
