@@ -461,6 +461,8 @@
                 tooltip.style('top', (event.pageY-200) + 'px');
                 tooltip.html(htmlString);
                 tooltip.style("visibility", "visible");
+                tooltip.style("opacity",0)
+                .transition().duration(500).style("opacity",1);
 
                 // highlight the area
                 d3.selectAll('.maparea').attr("opacity", 0.1);

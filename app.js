@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var loginRouter = require('./routes/login');
 var indexRouter = require('./routes/index');
 var epic1Router = require('./routes/epic1');
 var epic2Router = require('./routes/epic2');
@@ -22,7 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/', loginRouter);
+app.use('/index', indexRouter);
 app.use('/healthguidelines', epic1Router);
 app.use('/privatehealth', epic2Router);
 app.use('/maps', epic3Router);

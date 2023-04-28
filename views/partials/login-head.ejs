@@ -20,10 +20,28 @@
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
             
-            console.log("DOM ready");
+            // form listener
+            document.getElementById('submit').addEventListener("click", handleLogin);
 
 
         }, false);
+
+        function handleLogin(event){
+            var login = document.getElementById('formLogin');
+            console.log(login);
+
+            // not so secure login
+            if(login.value == "GoTheHawks!"){
+                // success
+                var new_path = "http://" + window.location.hostname + ":" + window.location.port + "/index";
+                window.location.assign(new_path);
+            }
+            else{
+                // wrong password
+                var new_path = "http://" + window.location.hostname + ":" + window.location.port;
+                window.location.assign(new_path);
+            }
+        }
 
     </script>
 </head>
