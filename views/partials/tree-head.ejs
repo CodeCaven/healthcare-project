@@ -1,0 +1,84 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>MonashTechTitans</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
+    <!-- MDB -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/jpg" href="/images/favicon.jpg"/> 
+    <script src="https://d3js.org/d3.v6.js"></script> <!--D3-->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="./javascripts/control.js"></script>
+    <script src="./javascripts/iteration-3-data.js"></script>
+    <script type="text/javascript">
+
+        // global graph vars
+        let simulation; 
+        let forceWidth;
+        let forceHeight;
+        let reStartSim;
+        
+        // DOM loaded callback
+		document.addEventListener('DOMContentLoaded', function() {
+            
+            console.log("DOM ready");
+            console.log(healthTree);
+            
+
+        }, false);
+
+
+        function draw_tree(){
+            // get width and height of plot area
+            var plot_area = document.getElementById("plot_tree");
+            var chart_bottom = document.getElementById("chart_bottom");
+            var chart_top = document.getElementById("chart_top");
+            var plot_height = plot_area.offsetHeight;
+            var plot_width = plot_area.offsetWidth;
+
+            // set the dimensions and margins of the graph
+            var margin = {top: 0, right: 0, bottom: 0, left: 0};
+            forceWidth = plot_width - margin.left - margin.right;
+            forceHeight = plot_height - margin.top - margin.bottom;
+
+            // remove any elements in plot area
+            while (plot_area.firstChild) {
+                plot_area.removeChild(plot_area.firstChild);
+            }
+
+            // append the svg object to the plot area
+            var svg = d3.select("#plot_chart")
+            .append("svg")
+                .attr("width", plot_width)
+                .attr("height", plot_height)
+                //.attr("filter", function(){
+                    //if(theme == "dark"){return "url(#backLightDark)";}
+                    //return "url(#backLightDark)";
+                //})
+            .append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
+                }
+
+            // simulation constraints
+            var simEdge = 0;
+            var radius = 20;
+            simulation = d3.forceSimulation().alpha(1).alphaDecay(0.1).velocityDecay(0.4)
+            .force("link", d3.forceLink().strength(2).id(function(d) { return d.id; }))
+            //.force("charge", d3.forceManyBody())
+            .force("boundary", forceBoundary(simEdge, simEdge, forceWidth-simEdge, forceHeight+simEdge).strength(0.005))
+            .force("collide", d3.forceCollide().radius(function(d){
+                return radius;
+            }));
+            //.force("center", d3.forceCenter(forceWidth / 2, forceHeight / 2));
+        
+
+
+
+    </script>
+</head>

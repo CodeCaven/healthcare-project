@@ -10,6 +10,8 @@ var epic1Router = require('./routes/epic1');
 var epic2Router = require('./routes/epic2');
 var epic3Router = require('./routes/epic3');
 var epic4Router = require('./routes/epic4');
+var epic5Router = require('./routes/epic5');
+var epic6Router = require('./routes/epic6');
 
 var app = express();
 
@@ -29,6 +31,8 @@ app.use('/healthguidelines', epic1Router);
 app.use('/privatehealth', epic2Router);
 app.use('/maps', epic3Router);
 app.use('/met', epic4Router);
+app.use('/tree', epic5Router);
+app.use('/symptom', epic6Router);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
