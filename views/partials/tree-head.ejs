@@ -28,6 +28,8 @@
             
             console.log("DOM ready");
             console.log(healthTree);
+
+            draw_tree();
             
 
         }, false);
@@ -52,7 +54,7 @@
             }
 
             // append the svg object to the plot area
-            var svg = d3.select("#plot_chart")
+            var svg = d3.select("#plot_tree")
             .append("svg")
                 .attr("width", plot_width)
                 .attr("height", plot_height)
@@ -63,21 +65,197 @@
             .append("g")
                 .attr("transform",
                     "translate(" + margin.left + "," + margin.top + ")");
-                }
+                
 
             // simulation constraints
             var simEdge = 0;
             var radius = 20;
             simulation = d3.forceSimulation().alpha(1).alphaDecay(0.1).velocityDecay(0.4)
             .force("link", d3.forceLink().strength(2).id(function(d) { return d.id; }))
-            //.force("charge", d3.forceManyBody())
-            .force("boundary", forceBoundary(simEdge, simEdge, forceWidth-simEdge, forceHeight+simEdge).strength(0.005))
+            //.force("charge", d3.forceManyBody())  // force boundary below is a plugin
+            //.force("boundary", forceBoundary(simEdge, simEdge, forceWidth-simEdge, forceHeight+simEdge).strength(0.005))
             .force("collide", d3.forceCollide().radius(function(d){
                 return radius;
-            }));
-            //.force("center", d3.forceCenter(forceWidth / 2, forceHeight / 2));
-        
+            }))
+            .force("center", d3.forceCenter(forceWidth / 2, forceHeight / 2));
 
+            // add links
+            var link = svg.append("g")
+            .selectAll("line")
+            .data(healthTree.links)
+            .enter().append("line")
+            .attr("class", "links")
+            .attr("stroke-width", 5)
+            .style("stroke-opacity", 0.3)
+            .attr("fill", "none")
+            .attr("stroke", function(d){
+                return "black";
+            })
+            .style("opacity", 1);
+
+            // add nodes
+            var node = svg.append("g")
+            .selectAll("circle")
+            .data(healthTree.nodes)
+            .enter().append("circle")
+            .attr("class", "nodes")
+            .attr("r", "1em")
+            //.attr("filter", function(d){
+                //if(d.nodeType != 2){return "url(#specular)"}
+                //return "url(#specular)";
+            //})
+            .attr("fill", function(d){
+                //
+                return "black";
+               //
+                
+            })
+            .attr("stroke", function(d){
+                return "whitesmoke";
+                
+            })
+            .attr("stroke-width", 5)
+            .style("stroke-opacity", function(d){
+               return 0.5;
+            })
+            .style("fill-opacity", function(d){
+               
+                return 1;
+            })
+            .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+
+
+            // add text (description)
+            var title = svg.append("g")
+            .selectAll("headers")
+            .data(healthTree.nodes)
+            .enter().append("text")
+            .attr("class", "names label-force")
+            .text(function(d){
+                return d.description;
+            })
+            .attr("fill", function(){
+                return "var(--mdb-dark)";
+            })
+            .attr("stroke", function(){
+                return "var(--mdb-dark)";
+            })
+            .style("text-anchor", "middle")
+            .call(wrap, 200);
+            
+            /*
+            // add text (description)
+           // var desc = d3.selectAll(".nodes")//.append("g")
+            //.selectAll("descriptors")
+            //.data(healthTree.nodes)
+            node.enter().append("text")
+            .attr("class", "names label-force")
+            .attr("x", function (d) { console.log(d); return d.parent.px; })
+            .attr("y", function (d) { return d.parent.py; })
+            .text(function(d){
+                var testLong = "For new arrivals to Australia, the healthcare system can seem confusing. It is a complex structure " +
+            "that is difficult to navigate and many visitors are forced into the private system to gain a visa. " +
+            "So lets explore the private healthcare system in Australia by viewing recent statistics and trends."
+                return testLong;
+            })
+            .attr("fill", function(){
+                return "var(--mdb-dark)";
+            })
+            .attr("stroke", function(){
+                return "var(--mdb-dark)";
+            })
+            .attr("dy", 2*radius)
+            .style("text-anchor", "middle")
+            .call(wrap, 30);
+
+            */
+
+
+            // simulation link and nodes
+            simulation
+            .nodes(healthTree.nodes)
+            .on("tick", ticked);
+
+            simulation.force("link")
+                .links(healthTree.links)
+                .distance(function(d){
+                        return 200;
+                });
+
+            
+            function wrap(text, width) {
+                text.each(function() {
+                    var text = d3.select(this),
+                        words = text.text().split(/\s+/).reverse(),
+                        word,
+                        line = [],
+                        lineNumber = 0,
+                        lineHeight = 1.1, // ems
+                        x = text.attr("x"),
+                        y = text.attr("y"),
+                        dy = 2, //parseFloat(text.attr("dy")),
+                        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+                    while (word = words.pop()) {
+                    line.push(word);
+                    tspan.text(line.join(" "));
+                    if (tspan.node().getComputedTextLength() > width) {
+                        line.pop();
+                        tspan.text(line.join(" "));
+                        line = [word];
+                        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                    }
+                    }
+                });
+            }
+
+            // ticked function
+            function ticked() {
+                link
+                    .attr("x1", function(d) { return d.source.x; })
+                    .attr("y1", function(d) { return d.source.y; })
+                    .attr("x2", function(d) { return d.target.x; })
+                    .attr("y2", function(d) { return d.target.y; });
+            
+                node
+                    .attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; });
+
+                title
+                .attr("x",  d => d.x)
+                .attr("y", d => d.y);
+
+                d3.selectAll("tspan")
+                .attr("x",  d => d.x)
+                .attr("y", d => d.y);
+
+                //desc
+                //.attr("x",  d => d.x)
+                //.attr("y", d => d.y);
+
+            }
+
+            // drage functions
+            function dragstarted(event, d) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                d.fx = d.x;
+                d.fy = d.y;
+            }
+            
+            function dragged(event, d) {
+                d.fx = event.x;
+                d.fy = event.y;
+            }
+            
+            function dragended(event, d) {
+                if (!event.active) simulation.alphaTarget(0);
+                d.fx = null;
+                d.fy = null;
+            }
+        
+        }
 
 
     </script>
