@@ -7,6 +7,13 @@ a {
   background-image: url('../images/cover.jpg');
 }
 
+#plot_tree_test{
+  background-image: url('../images/cover-aus.jpg');
+  background-repeat: no-repeat;
+  background-position: center; 
+  background-size: 100% 100%;
+}
+
 .img-div{
   height:85vh;
   width:100%;
@@ -197,6 +204,8 @@ a {
   height: 100%;
   }
   }
+
+ 
 
 
 

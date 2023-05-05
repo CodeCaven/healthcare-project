@@ -14,14 +14,14 @@
     <script src="https://d3js.org/d3.v6.js"></script> <!--D3-->
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="./javascripts/control.js"></script>
-    <script src="./javascripts/iteration-3-data.js"></script>
+    <script src="./javascripts/iteration-3-data-graph.js"></script>
     <script type="text/javascript">
 
         // global graph vars
         let simulation; 
         let forceWidth;
         let forceHeight;
-        let reStartSim;
+        
         
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
@@ -34,12 +34,216 @@
 
         }, false);
 
-
         function draw_tree(){
             // get width and height of plot area
             var plot_area = document.getElementById("plot_tree");
-            var chart_bottom = document.getElementById("chart_bottom");
-            var chart_top = document.getElementById("chart_top");
+            var plot_height = plot_area.offsetHeight;
+            var plot_width = plot_area.offsetWidth;
+
+            // set the dimensions and margins of the graph
+            var margin = {top: 50, right: 50, bottom: 150, left: 50};
+            width = plot_width - margin.left - margin.right;
+            height = plot_height - margin.top - margin.bottom;
+
+            // remove any elements in plot area
+            while (plot_area.firstChild) {
+                plot_area.removeChild(plot_area.firstChild);
+            }
+
+            // Declares a tree layout and assigns the size
+            
+            const treemap = d3.tree().size([width, height]);
+            //const treemap = d3.cluster().size([360, 500]);
+            let nodes = d3.hierarchy(healthTree, d => d.children);
+            nodes = treemap(nodes);
+
+            // append the svg object to the plot area
+            var svg = d3.select("#plot_tree")
+            .append("svg")
+                .attr("width", plot_width)
+                .attr("height", plot_height)
+                //.attr("filter", function(){
+                    //if(theme == "dark"){return "url(#backLightDark)";}
+                    //return "url(#backLightDark)";
+                //})
+            .append("g")
+                .attr("transform",
+                    "translate(" + margin.left + "," + margin.top + ")");
+
+            // light filter
+            //** spec lighting filter **//
+            var lightFilterSVG = svg.
+            append("filter")
+            .attr("id", "specular")
+            .attr("primitiveUnits", "objectBoundingBox");
+
+            var feSpecFilterSVG = lightFilterSVG
+            .append("feSpecularLighting")
+            .attr("result", "specOut")
+            .attr("in", "SourceGraphic")
+            .attr("lighting-color", "white")
+            .attr("surfaceScale", "1")
+            .attr("specularExponent", "30")
+            .attr("specularConstant", "0.4");
+
+
+            feSpecFilterSVG
+            .append("fePointLight")
+            .attr("x", "0.25")
+            .attr("y", "0.25")
+            .attr("z", "0.3");
+
+            lightFilterSVG
+            .append("feComposite")
+            .attr("in", "SourceGraphic")
+            .attr("in2", "specOut")
+            .attr("operator", "arithmetic")
+            .attr("k1", "0")
+            .attr("k2", "1")
+            .attr("k3", "1")
+            .attr("k4", "0");
+            
+            console.log(nodes.links());
+            // links
+            svg.append("g")
+            .selectAll('line.link')
+            .data(nodes.links())
+            .enter()
+            .append('line')
+            .attr('x1', function(d) {return d.source.x;})
+            .attr('y1', function(d) {return d.source.y;})
+            .attr('x2', function(d) {return d.target.x;})
+            .attr('y2', function(d) {return d.target.y;})
+            .attr('stroke', "lightgray")
+            .attr('stroke-width', 2);
+
+            // nodes
+            svg.append("g")
+            .selectAll('circle.node')
+            .data(nodes.descendants())
+            .enter()
+            .append('circle')
+            .attr("class", d => "node " + (d.children ? "internal" : "circleleaf"))
+            .attr('cx', function(d) {return d.x;})
+            .attr('cy', function(d) {return d.y;})
+            //.attr('cx', 0)
+            //.attr('cy', d => -d.y)
+            //.attr("transform", d => `rotate(${d.x}, 0, 0)`)
+            .attr('r', 12)
+            .attr("fill", "blue")
+            .attr("filter", "url(#specular)")
+            .attr('stroke', "var(--mdb-white)")
+            .attr("stroke-opacity", 0.5)
+            .attr('stroke-width', 4)
+            .on("mouseover", function(event, d){
+                d3.selectAll(".node").style("opacity", 0.1);
+            })
+            .on("mouseout", function(event, d){
+                d3.selectAll(".node").transition().duration(500).style("opacity", 1);
+            });
+
+           
+            // node names
+            svg.append("g")
+            .selectAll('title')
+            .data(nodes.descendants())
+            .enter()
+            .append('text')
+            .attr("class", d => (d.children ? "internal" : "leaf"))
+            //.attr('x', function(d) {return d.x;})
+            //.attr('y', function(d) {return d.y;})
+            .attr('dy', -20)
+            .attr("fill","var(--mdb-dark)")
+            .attr("stroke", "var(--mdb-dark)")
+            .attr("transform-origin", function(d) {return d.x + " " + d.y})
+            .text(function(d) {return d.data.name;})
+            .attr("font-size", d => (d.children ? "1.2em" : "1em"))
+            .style("text-anchor", "middle")
+            .style("letter-spacing","2px")
+            .call(getBB);
+
+            // Remove the text elements (for background)
+            d3.selectAll("text").remove();
+
+            // add rects (background)
+            const xMargin = 5;
+            const yMargin = 3;
+            svg
+            .selectAll("rect")
+            .data(nodes.descendants())
+            .enter()
+            .append("rect")
+            .attr("class", d => (d.children ? "internal" : "rectleaf"))
+            .attr("x", d => d.x - d.bbox.width/2)
+            .attr("y", d => d.y - 20)
+            .attr("width", d => d.bbox.width + 2 * xMargin)
+            .attr("height", d => d.bbox.height + 2 * yMargin)
+            .style("fill", "var(--mdb-dark)")
+            .style("fill-opacity", 0.8)
+            .attr("opacity", d => (d.children ? 1 : 0))
+            .attr('transform', function(d) {
+                return `translate(-${xMargin}, -${d.bbox.height * 0.8 + yMargin})`
+                });
+
+            // node names
+            svg.append("g")
+            .selectAll('title')
+            .data(nodes.descendants())
+            .enter()
+            .append('text')
+            .attr("class", d => (d.children ? "internal" : "leaf"))
+            .attr('x', function(d) {return d.x;})
+            .attr('y', function(d) {return d.y;})
+            .attr('dy', -20)
+            .attr("fill", d => (d.children ? "var(--mdb-white)" : "var(--mdb-dark)"))
+            .attr("stroke", d => (d.children ? "var(--mdb-white)" : "var(--mdb-dark)"))
+            .attr("font-size", d => (d.children ? "1.2em" : "1em"))
+            .attr("transform-origin", function(d) {return d.x + " " + d.y})
+            .text(function(d) {return d.data.name;})
+            .style("letter-spacing","2px")
+            .style("text-anchor", "middle");
+            
+            
+            // rotate leaves and alternate delta
+            d3.selectAll(".leaf").attr("transform", "rotate(30)")
+            .attr("dy", function(d,i){
+                if(i%2==0){return 15};
+                return 15;
+            }).style("text-anchor", "start")
+            .style("letter-spacing","");
+
+            // colour for leaf nodes
+            d3.selectAll(".circleleaf")
+            .attr("fill", "salmon");
+            //.attr('stroke', "var(--mdb-dark)");
+
+            // filter for image nodes
+            const image_nodes = nodes.descendants().filter(v => v.data.image !== "");
+            
+            // add images
+            svg.append("g")
+            .selectAll('image')
+            .data(image_nodes)
+            .enter()
+            .append('image')
+            .attr('x', function(d) {return d.x - 50;})
+            .attr('y', function(d) {return d.y;})
+            .attr('width', 100)
+            .attr('height', 100)
+            //.attr("clip-path", "url(#ellipse-clip)") // clip the rectangle
+            .attr("href", function(d) {return "/images/" + d.data.image});
+
+            // get bb of text
+            function getBB(selection) {
+                selection.each(function(d){d.bbox = this.getBBox();})
+            }
+
+        }
+
+        
+        function draw_graph(){
+            // get width and height of plot area
+            var plot_area = document.getElementById("plot_tree");
             var plot_height = plot_area.offsetHeight;
             var plot_width = plot_area.offsetWidth;
 
@@ -54,7 +258,7 @@
             }
 
             // append the svg object to the plot area
-            var svg = d3.select("#plot_tree")
+            svg = d3.select("#plot_tree")
             .append("svg")
                 .attr("width", plot_width)
                 .attr("height", plot_height)
@@ -78,6 +282,17 @@
                 return radius;
             }))
             .force("center", d3.forceCenter(forceWidth / 2, forceHeight / 2));
+
+             // simulation link and nodes
+             simulation
+            .nodes(healthTree.nodes)
+            .on("tick", ticked);
+
+            simulation.force("link")
+                .links(healthTree.links)
+                .distance(function(d){
+                        return 260;
+                });
 
             // add links
             var link = svg.append("g")
@@ -129,13 +344,13 @@
 
 
             // add text (description)
-            var title = svg.append("g")
-            .selectAll("headers")
+            svg.append("g")
+            .selectAll("descriptors")
             .data(healthTree.nodes)
             .enter().append("text")
             .attr("class", "names label-force")
             .text(function(d){
-                return d.description;
+                return d.title;
             })
             .attr("fill", function(){
                 return "var(--mdb-dark)";
@@ -144,48 +359,57 @@
                 return "var(--mdb-dark)";
             })
             .style("text-anchor", "middle")
-            .call(wrap, 200);
-            
-            /*
-            // add text (description)
-           // var desc = d3.selectAll(".nodes")//.append("g")
-            //.selectAll("descriptors")
-            //.data(healthTree.nodes)
-            node.enter().append("text")
-            .attr("class", "names label-force")
-            .attr("x", function (d) { console.log(d); return d.parent.px; })
-            .attr("y", function (d) { return d.parent.py; })
-            .text(function(d){
-                var testLong = "For new arrivals to Australia, the healthcare system can seem confusing. It is a complex structure " +
-            "that is difficult to navigate and many visitors are forced into the private system to gain a visa. " +
-            "So lets explore the private healthcare system in Australia by viewing recent statistics and trends."
-                return testLong;
-            })
-            .attr("fill", function(){
-                return "var(--mdb-dark)";
-            })
-            .attr("stroke", function(){
-                return "var(--mdb-dark)";
-            })
-            .attr("dy", 2*radius)
-            .style("text-anchor", "middle")
-            .call(wrap, 30);
+            .style("font-size", "1.2rem")
+            .attr('dy', -32)
+            .call(getBB);
 
-            */
+            // Remove the text elements
+            d3.selectAll("text").remove();
 
-
-            // simulation link and nodes
-            simulation
-            .nodes(healthTree.nodes)
-            .on("tick", ticked);
-
-            simulation.force("link")
-                .links(healthTree.links)
-                .distance(function(d){
-                        return 200;
+            // add rects
+            const xMargin = 4
+            const yMargin = 2
+            svg
+            .selectAll("rect")
+            .data(healthTree.nodes)
+            .enter()
+            .append("rect")
+            //.attr("x", d => projection(d.location)[0] + 10)
+            //.attr("y", d => projection(d.location)[1])
+            .attr("width", d => d.bbox.width + 2 * xMargin)
+            .attr("height", d => d.bbox.height + 2 * yMargin)
+            .style("fill", "var(--mdb-dark)")
+            .style("fill-opacity", 0.5)
+            .attr('transform', function(d) {
+                return `translate(-${xMargin}, -${d.bbox.height * 0.8 + yMargin})`
                 });
 
+            // re add text
+            var title = svg.append("g")
+                .selectAll("descriptors")
+                .data(healthTree.nodes)
+                .enter().append("text")
+                .attr("class", "names label-force")
+                .text(function(d){
+                    return d.title;
+                })
+                .attr("fill", function(){
+                    return "var(--mdb-white)";
+                })
+                .attr("stroke", function(){
+                    return "var(--mdb-white)";
+                })
+                .style("text-anchor", "middle")
+                .style("font-size", "1.2rem")
+                .attr('dy', -32);
+                
             
+            // get bb of text
+            function getBB(selection) {
+                selection.each(function(d){d.bbox = this.getBBox();})
+            }
+            
+            // function to wrap text
             function wrap(text, width) {
                 text.each(function() {
                     var text = d3.select(this),
@@ -193,11 +417,11 @@
                         word,
                         line = [],
                         lineNumber = 0,
-                        lineHeight = 1.1, // ems
+                        lineHeight = 16, //1.1, // ems
                         x = text.attr("x"),
                         y = text.attr("y"),
-                        dy = 2, //parseFloat(text.attr("dy")),
-                        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+                        dy = text.attr("dy"), //parseFloat(text.attr("dy")),
+                        tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy);
                     while (word = words.pop()) {
                     line.push(word);
                     tspan.text(line.join(" "));
@@ -205,7 +429,7 @@
                         line.pop();
                         tspan.text(line.join(" "));
                         line = [word];
-                        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+                        tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy).text(word);
                     }
                     }
                 });
@@ -226,10 +450,15 @@
                 title
                 .attr("x",  d => d.x)
                 .attr("y", d => d.y);
-
+                
                 d3.selectAll("tspan")
                 .attr("x",  d => d.x)
                 .attr("y", d => d.y);
+
+                d3.selectAll("rect")
+                .attr("x",  d => d.x + d.bbox.x)
+                .attr("y", d => d.y - 32);
+
 
                 //desc
                 //.attr("x",  d => d.x)
