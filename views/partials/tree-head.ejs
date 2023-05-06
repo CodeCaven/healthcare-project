@@ -41,7 +41,7 @@
             var plot_width = plot_area.offsetWidth;
 
             // set the dimensions and margins of the graph
-            var margin = {top: 50, right: 50, bottom: 150, left: 50};
+            var margin = {top: 50, right: 170, bottom: 150, left: 5};
             width = plot_width - margin.left - margin.right;
             height = plot_height - margin.top - margin.bottom;
 
@@ -118,6 +118,37 @@
             .attr('stroke-width', 2);
 
             // nodes
+            /*
+            var innerCircle = svg.append("g")
+            .selectAll('circle.node')
+            .data(nodes.descendants())
+            .enter()
+            .append('circle')
+                .attr('cx', function(d) {return d.x;})
+                .attr('cy', function(d) {return d.y;})
+                .attr("fill", "none")
+                .attr('r', 12)
+                .attr('stroke-width', 4)
+                .attr('stroke', "blue")
+            .append('animate')
+                .attr('attributeName', 'r')
+                .attr('from', '10')
+                .attr('to','15')
+                .attr('dur', '1.5s')
+                .attr('begin', '0s')
+                .attr('repeatCount', 'indefinite')
+            .enter()
+            .append('animate')
+                .attr('attributeName', 'opacity')
+                .attr('from', '1')
+                .attr('to','0')
+                .attr('dur', '1.5s')
+                .attr('begin', '0s')
+                .attr('repeatCount', 'indefinite');
+            
+
+            */
+
             svg.append("g")
             .selectAll('circle.node')
             .data(nodes.descendants())
@@ -126,9 +157,6 @@
             .attr("class", d => "node " + (d.children ? "internal" : "circleleaf"))
             .attr('cx', function(d) {return d.x;})
             .attr('cy', function(d) {return d.y;})
-            //.attr('cx', 0)
-            //.attr('cy', d => -d.y)
-            //.attr("transform", d => `rotate(${d.x}, 0, 0)`)
             .attr('r', 12)
             .attr("fill", "blue")
             .attr("filter", "url(#specular)")
@@ -173,7 +201,7 @@
             .data(nodes.descendants())
             .enter()
             .append("rect")
-            .attr("class", d => (d.children ? "internal" : "rectleaf"))
+            .attr("class", d => (d.children ? "internalrect" : "rectleaf"))
             .attr("x", d => d.x - d.bbox.width/2)
             .attr("y", d => d.y - 20)
             .attr("width", d => d.bbox.width + 2 * xMargin)
@@ -181,9 +209,11 @@
             .style("fill", "var(--mdb-dark)")
             .style("fill-opacity", 0.8)
             .attr("opacity", d => (d.children ? 1 : 0))
+            //.attr("transform-origin", function(d) {return d.x - d.bbox.width/2 + " " + d.y - 20})
             .attr('transform', function(d) {
                 return `translate(-${xMargin}, -${d.bbox.height * 0.8 + yMargin})`
                 });
+            
 
             // node names
             svg.append("g")
@@ -191,7 +221,7 @@
             .data(nodes.descendants())
             .enter()
             .append('text')
-            .attr("class", d => (d.children ? "internal" : "leaf"))
+            .attr("class", d => (d.children ? "internaltext" : "leaf"))
             .attr('x', function(d) {return d.x;})
             .attr('y', function(d) {return d.y;})
             .attr('dy', -20)
@@ -212,10 +242,11 @@
             }).style("text-anchor", "start")
             .style("letter-spacing","");
 
+            
             // colour for leaf nodes
             d3.selectAll(".circleleaf")
             .attr("fill", "salmon");
-            //.attr('stroke', "var(--mdb-dark)");
+            
 
             // filter for image nodes
             const image_nodes = nodes.descendants().filter(v => v.data.image !== "");
@@ -227,7 +258,7 @@
             .enter()
             .append('image')
             .attr('x', function(d) {return d.x - 50;})
-            .attr('y', function(d) {return d.y;})
+            .attr('y', function(d) {return d.y + 50;})
             .attr('width', 100)
             .attr('height', 100)
             //.attr("clip-path", "url(#ellipse-clip)") // clip the rectangle

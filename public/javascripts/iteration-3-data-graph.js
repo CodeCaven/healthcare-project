@@ -60,15 +60,15 @@ healthGraph["links"] =
 var healthTree = {
     name: "National Health Act",   
     description: "This was passed in 1953 to regulate the provision of pharmaceutical, sickness and hospital benefits and of medical and dental services", 
-    image: "key_image_1.png",
+    image: "aus-gov.jpg",
     children:[
         {name: "Medicare", 
         description: "Medicare provides Australian residents with free treatment as a public patient in a public hospital and free or subsidised treatment for some optometrist services, some dental care services, some psychology services, and treatment by doctors", 
-        image: "key_image_2.jpg",
+        image: "medicare-card.jpg",
         children: [
-            {name: "Fees and Services",
+            {name: "Services",
             description: "",
-            image: "",
+            image: "fees-and-services.jpg",
             children: [
                 {name: "General practice",   
                 description: "For most general practice consultations, meaning interactions with your doctor in which he or she asks you questions, examines you and discusses a plan of treatment, Medicare now rebates 100 per cent of the Schedule fee", 
@@ -86,9 +86,9 @@ var healthTree = {
                 description: "The Pharmaceutical Benefits Scheme (PBS) provides Australian residents with access to prescription medicines. Most prescription medicines are subsidised under the PBS",
                 image: ""}
                 ]},
-            {name: "Cards and Safety Nets",
+            {name: "Safety Nets",
             description: "",
-            image: "",
+            image: "safety-net.jpg",
             children: [
                 {name: "Low Income Health Care card",   
                 description: "This entitles you to discounted prescription medicines under the Phamaceutical Benefits Scheme and you may also be eligible for concessions offered by private companies and on Commonwealth, State and Local Government health services",
@@ -143,6 +143,43 @@ var healthTree = {
                 description: "To avoid people joining funds and then making large claims,Individual health insurers set waiting times",
                 image: ""}
             ]}
-        ]}
+        ]},
+        {name: "Government agencies",
+        description: "",
+        image: "government-agencies.jpg",
+        children: [
+            {name: "Types of",
+            description: "",
+            image: "",
+            children : [
+                {name: "Services Australia", 
+                description: "",
+                image: ""},
+                {name: "Department of Health and Aged Care",
+                description: "",
+                image: ""},
+                {name: "Australian Institute of Health and Welfare (AIHW)",
+                description: "",
+                image: ""},
+                {name: "State and territory agencies",
+                description: "",
+                image: ""}
+            ]},
+            {name: "Services",
+            description: "",
+            image: "",
+            children: [
+                {name: "Australian Dietary Guidelines",
+                description: "",
+                image: ""},
+                {name: "Australian Physical Activity Guidelines",
+                description: "",
+                image: ""},
+                {name: "Primary Health Networks (PHN)",
+                description: "",
+                image: ""}
+            ]}
+        ]
+        }
     ]
 }
