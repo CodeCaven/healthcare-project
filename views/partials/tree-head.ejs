@@ -13,14 +13,14 @@
     <link rel="shortcut icon" type="image/jpg" href="/images/favicon.jpg"/> 
     <script src="https://d3js.org/d3.v6.js"></script> <!--D3-->
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/translucent.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css"/>
     <script src="./javascripts/control.js"></script>
     <script src="./javascripts/iteration-3-data-graph.js"></script>
     <script type="text/javascript">
 
         // global graph vars
-        let simulation; 
-        let forceWidth;
-        let forceHeight;
+        let toolTip;
         
         
         // DOM loaded callback
@@ -30,6 +30,26 @@
             console.log(healthTree);
 
             draw_tree();
+
+            // initialise tree tooltips (an array)
+            toolTip = tippy('.nodeinternal', {
+                content: "No content",
+                //theme: 'translucent',
+                placement: 'right-start',
+                animation: 'scale',
+                allowHTML: true
+               
+            });
+
+            // initialise tree tooltips (an array)
+            toolTipLeaf = tippy('.leaf', {
+                content: "No content",
+                //theme: 'translucent',
+                placement: 'right-start',
+                animation: 'scale',
+                allowHTML: true
+               
+            });
             
 
         }, false);
@@ -41,7 +61,7 @@
             var plot_width = plot_area.offsetWidth;
 
             // set the dimensions and margins of the graph
-            var margin = {top: 50, right: 170, bottom: 150, left: 5};
+            var margin = {top: 50, right: 170, bottom: 210, left: 5};
             width = plot_width - margin.left - margin.right;
             height = plot_height - margin.top - margin.bottom;
 
@@ -57,11 +77,24 @@
             let nodes = d3.hierarchy(healthTree, d => d.children);
             nodes = treemap(nodes);
 
+            // zoom
+            function zoomed(event) {
+                const {transform} = event;
+                svg.attr("transform", transform);
+                //svg.attr("stroke-width", 1 / transform.k);
+            }
+
+            let zoom = d3.zoom()
+                .scaleExtent([0.5, 5])
+                .on('zoom', zoomed);
+
             // append the svg object to the plot area
             var svg = d3.select("#plot_tree")
             .append("svg")
                 .attr("width", plot_width)
                 .attr("height", plot_height)
+                .attr("viewBox", [0, 0, plot_width, plot_height])
+                .attr("style", "width: 100%; height: auto; height: intrinsic;").call(zoom)
                 //.attr("filter", function(){
                     //if(theme == "dark"){return "url(#backLightDark)";}
                     //return "url(#backLightDark)";
@@ -103,7 +136,6 @@
             .attr("k3", "1")
             .attr("k4", "0");
             
-            console.log(nodes.links());
             // links
             svg.append("g")
             .selectAll('line.link')
@@ -117,59 +149,41 @@
             .attr('stroke', "lightgray")
             .attr('stroke-width', 2);
 
-            // nodes
-            /*
-            var innerCircle = svg.append("g")
-            .selectAll('circle.node')
-            .data(nodes.descendants())
-            .enter()
-            .append('circle')
-                .attr('cx', function(d) {return d.x;})
-                .attr('cy', function(d) {return d.y;})
-                .attr("fill", "none")
-                .attr('r', 12)
-                .attr('stroke-width', 4)
-                .attr('stroke', "blue")
-            .append('animate')
-                .attr('attributeName', 'r')
-                .attr('from', '10')
-                .attr('to','15')
-                .attr('dur', '1.5s')
-                .attr('begin', '0s')
-                .attr('repeatCount', 'indefinite')
-            .enter()
-            .append('animate')
-                .attr('attributeName', 'opacity')
-                .attr('from', '1')
-                .attr('to','0')
-                .attr('dur', '1.5s')
-                .attr('begin', '0s')
-                .attr('repeatCount', 'indefinite');
-            
-
-            */
+            // filter for internal nodes
+            const internal_nodes = nodes.descendants().filter(v => v.children);
 
             svg.append("g")
             .selectAll('circle.node')
-            .data(nodes.descendants())
+            .data(internal_nodes)
             .enter()
             .append('circle')
-            .attr("class", d => "node " + (d.children ? "internal" : "circleleaf"))
+            .attr("class", "nodeinternal")
             .attr('cx', function(d) {return d.x;})
             .attr('cy', function(d) {return d.y;})
             .attr('r', 12)
-            .attr("fill", "blue")
+            .attr("fill", "var(--mdb-dark)")
             .attr("filter", "url(#specular)")
             .attr('stroke', "var(--mdb-white)")
             .attr("stroke-opacity", 0.5)
             .attr('stroke-width', 4)
             .on("mouseover", function(event, d){
-                d3.selectAll(".node").style("opacity", 0.1);
-            })
-            .on("mouseout", function(event, d){
-                d3.selectAll(".node").transition().duration(500).style("opacity", 1);
+                console.log(d);
+                var content = "<div style='letter-spacing:2px'>";
+                content = content + "<i class='fas fa-heart-pulse' style='color:salmon; margin-right:5px'></i>";
+                content = content + "<strong >HEALTHCARE DOWN UNDER</strong>";
+                content = content + "<hr style='margin-top:0px'>" + d.data.description + "<hr>";
+                if(d.depth == 2){ // get parent names for depth 2
+                    content = content + "<strong>" + d.parent.data.name.toUpperCase() + "</strong>";
+                }   
+                content = content + "<strong> " + d.data.name.toUpperCase() + "</strong>";
+                content = content + "<br><img width='100' src=" + "/images/" + d.data.image + "></div>";
+                for(let tip in toolTip){
+                    toolTip[tip].setContent(content);
+                }
             });
-
+           
+            
+            
            
             // node names
             svg.append("g")
@@ -177,7 +191,6 @@
             .data(nodes.descendants())
             .enter()
             .append('text')
-            .attr("class", d => (d.children ? "internal" : "leaf"))
             //.attr('x', function(d) {return d.x;})
             //.attr('y', function(d) {return d.y;})
             .attr('dy', -20)
@@ -203,7 +216,7 @@
             .append("rect")
             .attr("class", d => (d.children ? "internalrect" : "rectleaf"))
             .attr("x", d => d.x - d.bbox.width/2)
-            .attr("y", d => d.y - 20)
+            .attr("y", d => d.y - 25)
             .attr("width", d => d.bbox.width + 2 * xMargin)
             .attr("height", d => d.bbox.height + 2 * yMargin)
             .style("fill", "var(--mdb-dark)")
@@ -221,10 +234,10 @@
             .data(nodes.descendants())
             .enter()
             .append('text')
-            .attr("class", d => (d.children ? "internaltext" : "leaf"))
+            .attr("class", d => (d.children ? "internaltext" : "leaftext"))
             .attr('x', function(d) {return d.x;})
             .attr('y', function(d) {return d.y;})
-            .attr('dy', -20)
+            .attr('dy', -25)
             .attr("fill", d => (d.children ? "var(--mdb-white)" : "var(--mdb-dark)"))
             .attr("stroke", d => (d.children ? "var(--mdb-white)" : "var(--mdb-dark)"))
             .attr("font-size", d => (d.children ? "1.2em" : "1em"))
@@ -235,19 +248,53 @@
             
             
             // rotate leaves and alternate delta
-            d3.selectAll(".leaf").attr("transform", "rotate(30)")
+            d3.selectAll(".leaftext").attr("transform", "rotate(30)")
             .attr("dy", function(d,i){
-                if(i%2==0){return 15};
-                return 15;
-            }).style("text-anchor", "start")
+                if(i%2==0){return 30};
+                return 30;
+            })
+            .attr("dx", function(d,i){
+                if(i%2==0){return 20};
+                return 20;
+            })
+            .style("text-anchor", "start")
             .style("letter-spacing","");
 
-            
-            // colour for leaf nodes
-            d3.selectAll(".circleleaf")
-            .attr("fill", "salmon");
-            
 
+            // filter for image nodes
+            const leaf_nodes = nodes.descendants().filter(v => !v.children);
+
+            // add hearts
+            svg.append("g")
+            .selectAll('image')
+            .data(leaf_nodes)
+            .enter()
+            .append('image')
+            .attr("class", "leaf")
+            .attr('x', function(d) {return d.x - 15;})
+            .attr('y', function(d) {return d.y;})
+            .attr('width', 30)
+            .attr('height', 30)
+            .attr("filter", "url(#specular)")
+            .on("mouseover", function(event, d){
+                var content = "<div style='letter-spacing:2px'>";
+                content = content + "<i class='fas fa-heart-pulse' style='color:salmon; margin-right:5px'></i>";
+                content = content + "<strong >HEALTHCARE DOWN UNDER</strong>";
+                content = content + "<hr style='margin-top:0px'>" + d.data.description + "<hr>" + "<strong>" + d.data.name.toUpperCase() + "</strong>";
+                for(let tip in toolTipLeaf){
+                    toolTipLeaf[tip].setContent(content);
+                }
+            })
+            .attr("href", function(d) {return "/svgs/heart-pulse-fill.svg"})
+            .append('animate')
+                .attr('attributeName', 'height')
+                .attr('from', '30')
+                .attr('to','35')
+                .attr('dur', '1.5s')
+                .attr('begin', '0s')
+                .attr('repeatCount', 'indefinite');
+            
+            
             // filter for image nodes
             const image_nodes = nodes.descendants().filter(v => v.data.image !== "");
             
@@ -258,7 +305,7 @@
             .enter()
             .append('image')
             .attr('x', function(d) {return d.x - 50;})
-            .attr('y', function(d) {return d.y + 50;})
+            .attr('y', function(d) {return d.y + 30;})
             .attr('width', 100)
             .attr('height', 100)
             //.attr("clip-path", "url(#ellipse-clip)") // clip the rectangle

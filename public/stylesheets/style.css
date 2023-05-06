@@ -205,6 +205,17 @@ a {
   }
   }
 
+  .tree-header{
+    color: white;
+    background-color: var(--mdb-dark);
+    opacity: 0.9;
+  }
+
+  #plot_tree{
+    padding-left: 5em;
+    padding-right: 5em;
+  }
+
  
 
 

@@ -140,11 +140,11 @@ var healthTree = {
                 description: "So-called ‘gap cover’ or ‘no-gap’ schemes aim to prevent you from having to pay the difference between the amount you are reimbursed from Medicare and your health fund and what your doctor or specialist charges when you go into hospital under your private health insurance",
                 image: ""},
                 {name: "Waiting periods",   
-                description: "To avoid people joining funds and then making large claims,Individual health insurers set waiting times",
+                description: "To avoid people joining funds and then making large claims, individual health insurers set waiting times",
                 image: ""}
             ]}
         ]},
-        {name: "Government agencies",
+        {name: "Government Agencies",
         description: "",
         image: "government-agencies.jpg",
         children: [
