@@ -19,11 +19,36 @@
         
         // DOM loaded callback
 		document.addEventListener('DOMContentLoaded', function() {
-            // https://gojs.net/latest/learn/
+            
             console.log("DOM ready");
+
+            // events (question buttons)
+            document.getElementById('question1').addEventListener("click", handleInput);
+            document.getElementById('question2').addEventListener("click", handleInput);
 
 
         }, false);
+
+        // event handlers
+
+        // radio buttons (change class)
+        function handleInput(event){
+
+            // get question buttons
+            let quest = event.target.parentNode.id;
+            let buttons = document.getElementsByName(quest);
+           
+            // update labels
+            for(let i=0; i < buttons.length; i++){
+                if(buttons[i].checked){
+                    buttons[i].nextElementSibling.className = "btn btn-primary";
+                }
+                else{
+                    buttons[i].nextElementSibling.className = "btn btn-secondary";
+                }
+            }
+
+        }
 
     </script>
 </head>
