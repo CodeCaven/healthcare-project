@@ -160,14 +160,14 @@
             .attr("class", "nodeinternal")
             .attr('cx', function(d) {return d.x;})
             .attr('cy', function(d) {return d.y;})
-            .attr('r', 12)
-            .attr("fill", "var(--mdb-dark)")
+            .attr('r', 15)
+            .attr("fill", "slategray")
             .attr("filter", "url(#specular)")
             .attr('stroke', "var(--mdb-white)")
             .attr("stroke-opacity", 0.5)
             .attr('stroke-width', 4)
             .on("mouseover", function(event, d){
-                console.log(d);
+                //console.log(d);
                 var content = "<div style='letter-spacing:2px'>";
                 content = content + "<i class='fas fa-heart-pulse' style='color:salmon; margin-right:5px'></i>";
                 content = content + "<strong >HEALTHCARE DOWN UNDER</strong>";

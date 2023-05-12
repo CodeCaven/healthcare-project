@@ -38,6 +38,21 @@
         }, false);
 
         // event handlers
+        function kessler_score(){
+            var kessler_inputs = document.getElementsByClassName("btn-check");
+
+            var total = 0;
+            for(let i=0; i<50; i++){
+                if(kessler_inputs[i].checked){
+                    total += parseInt(kessler_inputs[i].getAttribute('data-score'));
+                };
+            }
+            
+            // display total
+            var display_span = document.getElementById("display_score");
+            display_span.innerHTML = total;
+            display_span.parentNode.style.display = "block";
+        }
 
         // radio buttons (change class)
         function handleInput(event){
