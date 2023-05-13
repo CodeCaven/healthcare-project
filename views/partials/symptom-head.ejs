@@ -34,6 +34,9 @@
             document.getElementById('question9').addEventListener("click", handleInput);
             document.getElementById('question10').addEventListener("click", handleInput);
 
+            // scroll animation
+            window.addEventListener("scroll", reveal);
+
 
         }, false);
 
@@ -64,10 +67,10 @@
             // update labels
             for(let i=0; i < buttons.length; i++){
                 if(buttons[i].checked){
-                    buttons[i].nextElementSibling.className = "btn btn-primary";
+                    buttons[i].nextElementSibling.className = "btn btn-sm btn-primary";
                 }
                 else{
-                    buttons[i].nextElementSibling.className = "btn btn-secondary";
+                    buttons[i].nextElementSibling.className = "btn btn-sm btn-secondary";
                 }
             }
 

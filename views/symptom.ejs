@@ -79,308 +79,16 @@
           <!--Title-->
           <div class="col-md-7 text-center text-md-start ps-5 pt-5">
             <h1 class="mb-4 display-3 fw-bold ps-5">Symptom Checker.</h1>
-            <p class="mt-3 mb-4 fs-1 ps-5">Make an initial diagnosis of your health before going for healthcare.</p>
+            <p class="mt-3 mb-4 fs-1 ps-5">Make an initial diagnosis of your health before seeking healthcare.</p>
             <p class="mt-3 mb-4 fs-5 fst-italic ps-5">Last Update: 09/05/2023.</p>
           </div>
           <div class="col-md-5 pe-5 pt-5"><img class="img-fluid" src="/images/epic-5-main.png" alt="" width="350"/></div>
           
-          <!--Intro and Kessler-->
+          <!--Allergy-->
           <div class="col-lg-12">
             <div class="pt-8 fs-5 my-5 big-side-pads">
                 When you arrive in a new environment, you may find yourself experiencing some new health problems. However, facing the complex healthcare system in Australia, many people hesitate whether they really need further help for their symptoms. To help you better understand your health condition, we provide some symptom tests and information. Choose the health issue you want to confirm and conduct a preliminary self-diagnosis. We believe that these tests and information will help you have a relatively accurate understanding of your health condition.
                 <br><br>
-                <h3>How do I know if I need psychological councelling?</h3>
-                <br>
-                <p>New immigrants are facing challenges in terms of their mental health. Due to new cultural and language barriers, employment issues, and feelings of loneliness, immigrant populations are at a relatively higher risk of developing mental health disorders after immigrating. Research has found that the average weighted relative risk of schizophrenia in first-generation immigrants is 2.7, with even higher rates observed in the second generation.
-                     If you are concerned about your mental health, try the Kessler K10 test below. Answer the 10 questions about how you have been feeling in the last 30 days and click submit.
-                </p>
-                <br>
-                <!--Accordion-->
-                <div class="accordion" id="accordionExampleY">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOneY">
-                        <div class="text-center">
-                        <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" style="letter-spacing: 4px; color:white; background-color:var(--mdb-dark)"
-                          data-mdb-target="#collapseOneY" aria-expanded="false" aria-controls="collapseOneY">
-                          <i class="fas fa-heart-pulse fa-sm me-2 opacity-70"></i>Try the Kessler K10 test
-                        </button>
-                        </div>
-                      </h2>
-                      <div id="collapseOneY" class="accordion-collapse collapse" aria-labelledby="headingOneY"
-                        data-mdb-parent="#accordionExampleY" >
-                        <div class="accordion-body">
-
-                          <!--QUESTION 1-->
-                    <div class="card">
-                        <div class="card-body border-start border-info border-3">
-                      <h5 class="card-title">Question 1</h5>
-                      <p class="card-text fs-6">During the last 30 days, about how often did you feel tired out for no good reason?</p>
-                      <div id="question1">
-                        <input data-score="1"  type="radio" class="btn-check" name="question1" id="none1" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none1">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question1" id="little1" autocomplete="off">
-                        <label class="btn btn-secondary" for="little1">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question1" id="some1" autocomplete="off">
-                        <label class="btn btn-secondary" for="some1">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question1" id="most1" autocomplete="off">
-                        <label class="btn btn-secondary" for="most1">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question1" id="all1" autocomplete="off">
-                        <label class="btn btn-secondary" for="all1">All of the time</label>
-                    </div>
-                    </div>
-                  </div>
-                  <br>
-                  <!--QUESTION 2-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                      <h5 class="card-title">Question 2</h5>
-                      <p class="card-text fs-6">During the last 30 days, about how often did you feel nervous?</p>
-                      <div id="question2">
-                        <input data-score="1"  type="radio" class="btn-check" name="question2" id="none2" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none2">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question2" id="little2" autocomplete="off">
-                        <label class="btn btn-secondary" for="little2">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question2" id="some2" autocomplete="off">
-                        <label class="btn btn-secondary" for="some2">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question2" id="most2" autocomplete="off">
-                        <label class="btn btn-secondary" for="most2">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question2" id="all2" autocomplete="off">
-                        <label class="btn btn-secondary" for="all2">All of the time</label>
-                    </div>
-                    </div>
-                  </div>
-                  <br>
-                  <!--QUESTION 3-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                      <h5 class="card-title">Question 3</h5>
-                      <p class="card-text fs-6">During the last 30 days, about how often did you feel so nervous that nothing could calm you
-                        down?</p>
-                      <div id="question3">
-                        <input data-score="1"  type="radio" class="btn-check" name="question3" id="none3" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none3">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question3" id="little3" autocomplete="off">
-                        <label class="btn btn-secondary" for="little3">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question3" id="some3" autocomplete="off">
-                        <label class="btn btn-secondary" for="some3">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question3" id="most3" autocomplete="off">
-                        <label class="btn btn-secondary" for="most3">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question3" id="all3" autocomplete="off">
-                        <label class="btn btn-secondary" for="all3">All of the time</label>
-                    </div>
-                    </div>
-                  </div>
-                  <br>
-                  <!--QUESTION 4-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                    <h5 class="card-title">Question 4</h5>
-                    <p class="card-text fs-6">During the last 30 days, about how often did you feel hopeless?</p>
-                    <div id="question4">
-                        <input data-score="1"  type="radio" class="btn-check" name="question4" id="none4" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none4">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question4" id="little4" autocomplete="off">
-                        <label class="btn btn-secondary" for="little4">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question4" id="some4" autocomplete="off">
-                        <label class="btn btn-secondary" for="some4">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question4" id="most4" autocomplete="off">
-                        <label class="btn btn-secondary" for="most4">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question4" id="all4" autocomplete="off">
-                        <label class="btn btn-secondary" for="all4">All of the time</label>
-                    </div>
-                    </div>
-                </div>
-                <br>
-                  <!--QUESTION 5-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                    <h5 class="card-title">Question 5</h5>
-                    <p class="card-text fs-6"> During the last 30 days, about how often did you feel restless or fidgety?</p>
-                    <div id="question5">
-                        <input data-score="1"  type="radio" class="btn-check" name="question5" id="none5" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none5">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question5" id="little5" autocomplete="off">
-                        <label class="btn btn-secondary" for="little5">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question5" id="some5" autocomplete="off">
-                        <label class="btn btn-secondary" for="some5">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question5" id="most5" autocomplete="off">
-                        <label class="btn btn-secondary" for="most5">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question5" id="all5" autocomplete="off">
-                        <label class="btn btn-secondary" for="all5">All of the time</label>
-                    </div>
-                    </div>
-                </div>
-                <br>
-                <!--QUESTION 6-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                      <h5 class="card-title">Question 6</h5>
-                      <p class="card-text fs-6">During the last 30 days, about how often did you feel so restless you could not sit still?</p>
-                      <div id="question6">
-                        <input data-score="1"  type="radio" class="btn-check" name="question6" id="none6" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none6">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question6" id="little6" autocomplete="off">
-                        <label class="btn btn-secondary" for="little6">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question6" id="some6" autocomplete="off">
-                        <label class="btn btn-secondary" for="some6">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question6" id="most6" autocomplete="off">
-                        <label class="btn btn-secondary" for="most6">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question6" id="all6" autocomplete="off">
-                        <label class="btn btn-secondary" for="all6">All of the time</label>
-                    </div>
-                    </div>
-                  </div>
-                  <br>
-                  <!--QUESTION 7-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                      <h5 class="card-title">Question 7</h5>
-                      <p class="card-text fs-6">During the last 30 days, about how often did you feel depressed?</p>
-                      <div id="question7">
-                        <input data-score="1"  type="radio" class="btn-check" name="question7" id="none7" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none7">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question7" id="little7" autocomplete="off">
-                        <label class="btn btn-secondary" for="little7">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question7" id="some7" autocomplete="off">
-                        <label class="btn btn-secondary" for="some7">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question7" id="most7" autocomplete="off">
-                        <label class="btn btn-secondary" for="most7">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question7" id="all7" autocomplete="off">
-                        <label class="btn btn-secondary" for="all7">All of the time</label>
-                    </div>
-                    </div>
-                  </div>
-                  <br>
-                  <!--QUESTION 8-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                      <h5 class="card-title">Question 8</h5>
-                      <p class="card-text fs-6">During the last 30 days, about how often did you feel that everything was an effort?</p>
-                      <div id="question8">
-                        <input data-score="1"  type="radio" class="btn-check" name="question8" id="none8" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none8">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question8" id="little8" autocomplete="off">
-                        <label class="btn btn-secondary" for="little8">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question8" id="some8" autocomplete="off">
-                        <label class="btn btn-secondary" for="some8">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question8" id="most8" autocomplete="off">
-                        <label class="btn btn-secondary" for="most8">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question8" id="all8" autocomplete="off">
-                        <label class="btn btn-secondary" for="all8">All of the time</label>
-                    </div>
-                    </div>
-                  </div>
-                  <br>
-                  <!--QUESTION 9-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                    <h5 class="card-title">Question 9</h5>
-                    <p class="card-text fs-6">During the last 30 days, about how often did you feel so sad that nothing could cheer you up?</p>
-                    <div id="question9">
-                        <input data-score="1"  type="radio" class="btn-check" name="question9" id="none9" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none9">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question9" id="little9" autocomplete="off">
-                        <label class="btn btn-secondary" for="little9">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question9" id="some9" autocomplete="off">
-                        <label class="btn btn-secondary" for="some9">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question9" id="most9" autocomplete="off">
-                        <label class="btn btn-secondary" for="most9">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question9" id="all9" autocomplete="off">
-                        <label class="btn btn-secondary" for="all9">All of the time</label>
-                    </div>
-                    </div>
-                </div>
-                <br>
-                  <!--QUESTION 10-->
-                <div class="card">
-                    <div class="card-body border-start border-info border-3">
-                    <h5 class="card-title">Question 10</h5>
-                    <p class="card-text fs-6"> During the last 30 days, about how often did you feel worthless?</p>
-                    <div id="question10">
-                        <input data-score="1"  type="radio" class="btn-check" name="question10" id="none10" autocomplete="off" checked>
-                        <label class="btn btn-primary" for="none10">None of the time</label>
-
-                        <input data-score="2"  type="radio" class="btn-check" name="question10" id="little10" autocomplete="off">
-                        <label class="btn btn-secondary" for="little10">A little of the time</label>
-
-                        <input data-score="3"  type="radio" class="btn-check" name="question10" id="some10" autocomplete="off">
-                        <label class="btn btn-secondary" for="some10">Some of the time</label>
-
-                        <input data-score="4"  type="radio" class="btn-check" name="question10" id="most10" autocomplete="off">
-                        <label class="btn btn-secondary" for="most10">Most of the time</label>
-
-                        <input data-score="5"  type="radio" class="btn-check" name="question10" id="all10" autocomplete="off">
-                        <label class="btn btn-secondary" for="all10">All of the time</label>
-                    </div>
-                    </div>
-                </div>
-                <br>
-                <button class="btn btn-outline-primary btn-rounded" onclick="kessler_score()">SUBMIT</button>
-                </div>
-                </div>
-            </div>
-            </div>
-
-                <!--score display-->
-                <div class="mt-5 card">
-                    <img src="/images/kessler-pic.jpeg" class="card-img-top" alt="kessler"/>
-
-                    <div class="card-body border-start border-info border-3">
-                    <h5 class="card-title" style="display:none;">Your Kessler K10 test score is <span id="display_score"></span></h5>
-                        
-                        <!--<img src="/images/doctor.avif" width=200 alt="doctor"/>-->
-                        <ul>
-                            <li><p class="card-text fs-6"> score under 20 are likely to be well</p></li>
-                            <li><p class="card-text fs-6"> score 20-24 are likely to have a mild mental disorder</p></li>
-                            <li><p class="card-text fs-6"> score 25-29 are likely to have moderate mental disorder</p></li>
-                            <li><p class="card-text fs-6"> score 30 and over are likely to have a severe mental disorder</p></li>
-                        </ul>
-                        
-                    </div>
-                </div>
-                
-            </div>
-          </div>
-
-          <!--Allergy-->
-          <div class="col-lg-12">
-            <div class="pt-8 fs-5 my-5 big-side-pads">
                 <h3>How do I know if I need an allergy test?</h3>
                 <br>
                 <p>
@@ -388,38 +96,70 @@
                 </p>
                 <br>
                 <!--Accordion-->
-                <div class="accordion" id="accordionExampleY1">
+                <div class="accordion" id="accordionExampleY2">
                     <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOneY1">
+                      <h2 class="accordion-header" id="headingOneY2">
                         <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" style="letter-spacing: 4px; color:white; background-color:var(--mdb-dark)"
-                          data-mdb-target="#collapseOneY1" aria-expanded="false" aria-controls="collapseOneY1">
+                          data-mdb-target="#collapseOneY2" aria-expanded="false" aria-controls="collapseOneY2">
                           <i class="fas fa-heart-pulse fa-sm me-2 opacity-70"></i>Check for Allergy Symptoms
                         </button>
                       </h2>
-                      <div id="collapseOneY1" class="accordion-collapse collapse" aria-labelledby="headingOneY1"
-                        data-mdb-parent="#accordionExampleY1">
+                      <div id="collapseOneY2" class="accordion-collapse collapse" aria-labelledby="headingOneY2"
+                        data-mdb-parent="#accordionExampleY2">
                         <div class="accordion-body">
-                          
+                            <div class="card">
+                                <div class="card-body border-start border-info border-3">
+                                    <h5 class="card-title">Hayfever Symptoms</h5>
+                                    <p class="card-text fs-6">If you experience the following symptoms:</p>
+                                    <ul>
+                                        <li>Headaches</li>
+                                        <li>Itchy, watery eyes</li>
+                                        <li>Nasal congestion, sneezing, or runny nose</li>
+                                        <li>Shortness of breath, wheezing, or chronic cough</li>
+                                        <li>Sore throat</li>
+                                    </ul>
+                                    <p class="card-text fs-6">It may be allergic rhinitis, also known as hay fever, caused by allergens in the air such as dust, pollen, or pet dander.</p>
+                                    
+                                    <h5 class="card-title">Food Allergy Symptoms</h5>
+                                    <p class="card-text fs-6">If you experience the following symptoms:</p>
+                                    <ul>
+                                        <li>Skin symptoms, such as hives, swelling of the face, lips, or tongue, generalized itching
+                                        </li>
+                                        <li>Itchy, watery eyesRespiratory symptoms, such as coughing, wheezing, shortness of breath, chest or throat tightness</li>
+                                        <li>GI symptoms, such as nausea and vomiting, abdominal pain and cramps, vomiting, and diarrhea</li>
+                                        <li>Cardiovascular symptoms, such as pale skin, weak pulse, dizziness, or lightheadedness
+                                        </li>
+                                    </ul>
+                                    <p class="card-text fs-6">It may be a food allergy. Food allergy symptoms typically occur within 30 minutes of food ingestion but may occur up to two hours after ingestion.
+                                    </p>
+
+                                    <h5 class="card-title">Dermatitis Symptoms</h5>
+                                    <p class="card-text fs-6">If you experience the following symptoms when in contact with rubber, fragrances, or metals such as nickel:</p>
+                                    <ul>
+                                        <li>Burning sensation on skin or blisters</li>
+                                        <li>Hives and swelling</li>
+                                        <li>Skin rash or itchy skin</li>
+                                    </ul>
+                                    <p class="card-text fs-6">It may be allergic rhinitis, also known as hay fever, caused by allergens in the air such as dust, pollen, or pet dander.It may be contact dermatitis, an allergic reaction affecting the skin caused by exposure to a substance that triggers an allergic reaction.</p>
+                              </div>
+                            </div>
+
+
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <!--allergy display-->
-                <div class="mt-5 card">
-                    <img src="/images/allergy-pic.jpeg" class="card-img-top" alt="kessler"/>
+                  <div class="d-flex justify-content-center">
+                    <div class="mt-5 card" style="max-width:60% ;">
+                        
 
-                    <div class="card-body border-start border-info border-3">
-                    <h5 class="card-title" style="display:none;">Your Kessler K10 test score is <span id="display_score"></span></h5>
-                        
-                        <!--<img src="/images/doctor.avif" width=200 alt="doctor"/>-->
-                        <ul>
-                            <li><p class="card-text fs-6"> score under 20 are likely to be well</p></li>
-                            <li><p class="card-text fs-6"> score 20-24 are likely to have a mild mental disorder</p></li>
-                            <li><p class="card-text fs-6"> score 25-29 are likely to have moderate mental disorder</p></li>
-                            <li><p class="card-text fs-6"> score 30 and over are likely to have a severe mental disorder</p></li>
-                        </ul>
-                        
+                        <div class="card-body border-start border-info border-3">
+                            <p class="card-text fs-6">If you suspect that you are experiencing an allergic reaction to a particular allergen, it is recommended that you consult a doctor for diagnosis and treatment as soon as possible.</p>
+                            
+                        </div>
+                        <img src="/images/allergy-pic.jpeg" class="card-img-bottom" alt="kessler"/>
                     </div>
                 </div>
             </div>
@@ -427,7 +167,7 @@
           </div>
 
           <!--Cardi-->
-          <div class="col-lg-12">
+          <div class="col-lg-12 reveal">
             <div class="pt-8 fs-5 my-5 big-side-pads">
                 <h3>How do I know if I need to be screened for cardiovascular disease?</h3>
                 <br>
@@ -447,18 +187,340 @@
                       <div id="collapseOneY1" class="accordion-collapse collapse" aria-labelledby="headingOneY1"
                         data-mdb-parent="#accordionExampleY1">
                         <div class="accordion-body">
-                          
+                            <div class="card">
+                                <div class="card-body border-start border-info border-3">
+                                    <h5 class="card-title">Coronary Heart Disease Symptoms</h5>
+                                    <p class="card-text fs-6">If you experience the following symptoms:</p>
+                                    <ul>
+                                        <li>Angina: chest pain caused by restricted blood flow to the heart muscle.</li>
+                                        <li>Heart attack: sudden blockage of blood flow to the heart muscle, resulting in a heart attack.</li>
+                                        <li>Heart failure: the heart is unable to pump blood properly, causing abnormalities in blood circulation around the body.</li>
+                                        
+                                    </ul>
+                                    <p class="card-text fs-6">These symptoms may indicate coronary heart disease caused by oxygen-rich blood flowing to the heart muscle.</p>
+                                    
+                                    <h5 class="card-title">Stroke Symptoms</h5>
+                                    <p class="card-text fs-6">If you experience the following symptoms:</p>
+                                    <ul>
+                                        <li>Facial drooping or loss of facial expression.
+                                        </li>
+                                        <li>Arm weakness or numbness.</li>
+                                        <li>Confusion or difficulty speaking.</li>
+                                    </ul>
+                                    <p class="card-text fs-6">These symptoms may indicate a stroke or transient ischemic attack (TIA).
+                                    </p>
+
+                                    <h5 class="card-title">Peripheral Artery Disease Symptoms</h5>
+                                    <p class="card-text fs-6">If you experience the following symptoms:</p>
+                                    <ul>
+                                        <li>Dull or cramping leg pain while walking.</li>
+                                        <li>Symptoms worsen after resting.</li>
+                                        <li>Hair loss.</li>
+                                        <li>Numbness or weakness in the legs.</li>
+                                        <li>Continuous ulcers (open sores) on the legs and feet.</li>
+                                    </ul>
+                                    <p class="card-text fs-6">These symptoms may indicate peripheral artery disease.</p>
+                              </div>
+                            </div>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <!--cardi display-->
-                <div class="mt-5 card">
-                    <img src="/images/cardi-pic.jpeg" class="card-img-top" alt="kessler"/>
+                  <div class="d-flex justify-content-center">
+                    <div class="mt-5 card" style="max-width:60% ;">
+                        
+
+                        <div class="card-body border-start border-info border-3">
+                            <p class="card-text fs-6">If you suspect you have any of these symptoms, it is recommended that you consult a doctor for diagnosis and treatment as soon as possible.</p>
+                        </div>
+                        <img src="/images/cardi-pic.jpeg" class="card-img-bottom" alt="kessler"/>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+          <!--Intro and Kessler-->
+          <div class="col-lg-12 reveal">
+            <div class="pt-8 fs-5 my-5 big-side-pads">
+                
+                <h3>How do I know if I need psychological councelling?</h3>
+                <br>
+                <p>New immigrants are facing challenges in terms of their mental health. Due to new cultural and language barriers, employment issues, and feelings of loneliness, immigrant populations are at a relatively higher risk of developing mental health disorders after immigrating. Research has found that the average weighted relative risk of schizophrenia in first-generation immigrants is 2.7, with even higher rates observed in the second generation.
+                     If you are concerned about your mental health, try the Kessler K10 test below. Answer the 10 questions about how you have been feeling in the last 30 days and click submit.
+                </p>
+                <br>
+                <!--Accordion-->
+                <div class="accordion" id="accordionExampleY">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOneY">
+                        <div class="text-center">
+                        <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" style="letter-spacing: 4px; color:white; background-color:var(--mdb-dark)"
+                          data-mdb-target="#collapseOneY" aria-expanded="false" aria-controls="collapseOneY">
+                          <i class="fas fa-heart-pulse fa-sm me-2 opacity-70"></i>Try the Kessler K10 Test
+                        </button>
+                        </div>
+                      </h2>
+                      <div id="collapseOneY" class="accordion-collapse collapse" aria-labelledby="headingOneY"
+                        data-mdb-parent="#accordionExampleY" >
+                        <div class="accordion-body">
+
+                          <!--QUESTION 1-->
+                    <div class="card">
+                        <div class="card-body border-start border-info border-3">
+                      <h5 class="card-title">Question 1</h5>
+                      <p class="card-text fs-6">During the last 30 days, about how often did you feel tired out for no good reason?</p>
+                      <div id="question1">
+                        <input data-score="1"  type="radio" class="btn-check" name="question1" id="none1" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none1">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question1" id="little1" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little1">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question1" id="some1" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some1">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question1" id="most1" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most1">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question1" id="all1" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all1">All of the time</label>
+                    </div>
+                    </div>
+                  </div>
+                  <br>
+                  <!--QUESTION 2-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                      <h5 class="card-title">Question 2</h5>
+                      <p class="card-text fs-6">During the last 30 days, about how often did you feel nervous?</p>
+                      <div id="question2">
+                        <input data-score="1"  type="radio" class="btn-check" name="question2" id="none2" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none2">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question2" id="little2" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little2">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question2" id="some2" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some2">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question2" id="most2" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most2">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question2" id="all2" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all2">All of the time</label>
+                    </div>
+                    </div>
+                  </div>
+                  <br>
+                  <!--QUESTION 3-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                      <h5 class="card-title">Question 3</h5>
+                      <p class="card-text fs-6">During the last 30 days, about how often did you feel so nervous that nothing could calm you
+                        down?</p>
+                      <div id="question3">
+                        <input data-score="1"  type="radio" class="btn-check" name="question3" id="none3" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none3">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question3" id="little3" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little3">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question3" id="some3" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some3">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question3" id="most3" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most3">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question3" id="all3" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all3">All of the time</label>
+                    </div>
+                    </div>
+                  </div>
+                  <br>
+                  <!--QUESTION 4-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                    <h5 class="card-title">Question 4</h5>
+                    <p class="card-text fs-6">During the last 30 days, about how often did you feel hopeless?</p>
+                    <div id="question4">
+                        <input data-score="1"  type="radio" class="btn-check" name="question4" id="none4" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none4">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question4" id="little4" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little4">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question4" id="some4" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some4">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question4" id="most4" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most4">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question4" id="all4" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all4">All of the time</label>
+                    </div>
+                    </div>
+                </div>
+                <br>
+                  <!--QUESTION 5-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                    <h5 class="card-title">Question 5</h5>
+                    <p class="card-text fs-6"> During the last 30 days, about how often did you feel restless or fidgety?</p>
+                    <div id="question5">
+                        <input data-score="1"  type="radio" class="btn-check" name="question5" id="none5" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none5">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question5" id="little5" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little5">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question5" id="some5" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some5">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question5" id="most5" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most5">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question5" id="all5" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all5">All of the time</label>
+                    </div>
+                    </div>
+                </div>
+                <br>
+                <!--QUESTION 6-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                      <h5 class="card-title">Question 6</h5>
+                      <p class="card-text fs-6">During the last 30 days, about how often did you feel so restless you could not sit still?</p>
+                      <div id="question6">
+                        <input data-score="1"  type="radio" class="btn-check" name="question6" id="none6" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none6">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question6" id="little6" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little6">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question6" id="some6" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some6">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question6" id="most6" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most6">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question6" id="all6" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all6">All of the time</label>
+                    </div>
+                    </div>
+                  </div>
+                  <br>
+                  <!--QUESTION 7-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                      <h5 class="card-title">Question 7</h5>
+                      <p class="card-text fs-6">During the last 30 days, about how often did you feel depressed?</p>
+                      <div id="question7">
+                        <input data-score="1"  type="radio" class="btn-check" name="question7" id="none7" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none7">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question7" id="little7" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little7">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question7" id="some7" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some7">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question7" id="most7" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most7">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question7" id="all7" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all7">All of the time</label>
+                    </div>
+                    </div>
+                  </div>
+                  <br>
+                  <!--QUESTION 8-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                      <h5 class="card-title">Question 8</h5>
+                      <p class="card-text fs-6">During the last 30 days, about how often did you feel that everything was an effort?</p>
+                      <div id="question8">
+                        <input data-score="1"  type="radio" class="btn-check" name="question8" id="none8" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none8">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question8" id="little8" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little8">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question8" id="some8" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some8">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question8" id="most8" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most8">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question8" id="all8" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all8">All of the time</label>
+                    </div>
+                    </div>
+                  </div>
+                  <br>
+                  <!--QUESTION 9-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                    <h5 class="card-title">Question 9</h5>
+                    <p class="card-text fs-6">During the last 30 days, about how often did you feel so sad that nothing could cheer you up?</p>
+                    <div id="question9">
+                        <input data-score="1"  type="radio" class="btn-check" name="question9" id="none9" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none9">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question9" id="little9" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little9">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question9" id="some9" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some9">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question9" id="most9" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most9">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question9" id="all9" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all9">All of the time</label>
+                    </div>
+                    </div>
+                </div>
+                <br>
+                  <!--QUESTION 10-->
+                <div class="card">
+                    <div class="card-body border-start border-info border-3">
+                    <h5 class="card-title">Question 10</h5>
+                    <p class="card-text fs-6"> During the last 30 days, about how often did you feel worthless?</p>
+                    <div id="question10">
+                        <input data-score="1"  type="radio" class="btn-check" name="question10" id="none10" autocomplete="off" checked>
+                        <label class="btn btn-sm btn-primary" for="none10">None of the time</label>
+
+                        <input data-score="2"  type="radio" class="btn-check" name="question10" id="little10" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="little10">A little of the time</label>
+
+                        <input data-score="3"  type="radio" class="btn-check" name="question10" id="some10" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="some10">Some of the time</label>
+
+                        <input data-score="4"  type="radio" class="btn-check" name="question10" id="most10" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="most10">Most of the time</label>
+
+                        <input data-score="5"  type="radio" class="btn-check" name="question10" id="all10" autocomplete="off">
+                        <label class="btn btn-sm btn-secondary" for="all10">All of the time</label>
+                    </div>
+                    </div>
+                </div>
+                <br>
+                <button class="btn btn-sm btn-outline-primary btn-rounded" onclick="kessler_score()">SUBMIT</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+                <!--score display-->
+                <div class="d-flex justify-content-center">
+                <div class="mt-5 card" style="max-width:60% ;">
+                    
 
                     <div class="card-body border-start border-info border-3">
-                    <h5 class="card-title" style="display:none;">Your Kessler K10 test score is <span id="display_score"></span></h5>
+                    <h5 class="card-title" style="display:none;">Your Kessler K10 Test Score is <span id="display_score"></span></h5>
                         
                         <!--<img src="/images/doctor.avif" width=200 alt="doctor"/>-->
                         <ul>
@@ -469,11 +531,12 @@
                         </ul>
                         
                     </div>
+                    <img src="/images/kessler-pic.jpeg" class="card-img-bottom" alt="kessler"/>
                 </div>
             </div>
-
+                
+            </div>
           </div>
-
 
         </div>
       </div>
