@@ -40,7 +40,7 @@
         let legend_axis;
         let legendScale;
         let survey_map;
-        let colour_schemes = {"blue": d3.interpolateBlues, "red": d3.interpolateReds,
+        let colour_schemes = {"blue": d3.interpolateBlues, "red": d3.interpolateYlOrBr,
                                 "green": d3.interpolateGreens, "magma": d3.interpolateMagma}
 
         // DOM loaded callback
@@ -62,6 +62,9 @@
            document.getElementById('collapseDiv').addEventListener("click", handleSurveys);
            document.getElementById('collapseSchemes').addEventListener("click", handleSchemes);
            document.getElementById('collapseThemes').addEventListener("click", handleTheme);
+
+           // scroll animation
+           window.addEventListener("scroll", reveal);
 
            // set radio survey
            let survey_radios = document.getElementsByName("surveys");
@@ -113,62 +116,6 @@
           // show and init controls
           dragElement(document.getElementById("controls"));
           document.getElementById("controls").style.visibility = "visible";
-
-          // load tables
-
-           // cost
-           var survey_table_body = document.getElementById('table-survey-body');
-             
-           for(let i in survey_data){
-                // new row
-                var table_row = document.createElement("tr");
-
-                // entries
-                var table_td_1 = document.createElement("td");
-                table_td_1.innerHTML = survey_data[i]["PHN_area_name"];
-                table_row.append(table_td_1);
-
-                var table_td_2 = document.createElement("td");
-                table_td_2.innerHTML = survey_data[i]["state"];
-                table_row.append(table_td_2);
-
-                var table_td_4 = document.createElement("td");
-                table_td_4.innerHTML = survey_data[i]["per_cent"];
-                table_row.append(table_td_4);
-
-                var table_td_5 = document.createElement("td");
-                table_td_5.innerHTML = survey_data[i]["95_upper_bound"];
-                table_row.append(table_td_5);
-
-                var table_td_6 = document.createElement("td");
-                table_td_6.innerHTML = survey_data[i]["95_lower_bound"];
-                table_row.append(table_td_6);
-
-                var table_td_7 = document.createElement("td");
-                table_td_7.innerHTML = survey_data[i]["survey_desc"];
-                table_row.append(table_td_7);
-
-                var table_td_8 = document.createElement("td");
-                table_td_8.innerHTML = survey_data[i]["year"];
-                table_row.append(table_td_8);
-
-                survey_table_body.append(table_row);
-                
-            }
-
-            // initialise tables
-           let table_survey = new DataTable('#table-survey');
-
-           // add margins to inputs
-           var inputs = document.getElementsByTagName('input');
-    
-           // use 'of' loop for html collections
-           for(let input of inputs){
-            if(!(input.classList.contains('form-check-input'))){ // exclude radios
-                input.style.marginBottom = "1em";
-            }
-           }
-
 
         }, false);
 
@@ -290,7 +237,7 @@
 
             // set controls header 
             let buttonHTML = '<button class="btn btn-dark" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseDiv" aria-expanded="false" aria-controls="collapseDiv">' +
-                    '<i class="fas fa-bars" style="cursor:pointer;"></i></button>'
+                    '<i class="fas fa-caret-down" style="cursor:pointer;"></i></button>'
             let display_title = "<i class='fas fa-heart-pulse' style='color:salmon'></i><br>" + desc + "<br>" + buttonHTML;
             document.getElementById("controlsheader").innerHTML = display_title;
             

@@ -92,6 +92,9 @@
           document.getElementById('weight').addEventListener("input", handleWeight);
           document.getElementById('metrics').addEventListener("input", handleMetric);
 
+          // scroll animation
+          window.addEventListener("scroll", reveal);
+
           // set calories
           document.getElementById('calories').innerHTML = calculate();
 
