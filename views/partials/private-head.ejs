@@ -59,149 +59,8 @@
            draw_stream_graph("usersStream", "users", private_age, "age_group");
            draw_stream_graph_charge("careStream", "charge", private_charge, "charge_component");
 
-           // load tables
-
-           // cost
-           var cost_table_body = document.getElementById('table-cost-body');
-           for(let i in private_cost){
-            // new row
-             var table_row = document.createElement("tr");
-
-            // entries
-            var table_td_1 = document.createElement("td");
-            table_td_1.innerHTML = private_cost[i]["ave_length_stay_days"];
-            table_row.append(table_td_1);
-
-            var table_td_2 = document.createElement("td");
-            table_td_2.innerHTML = private_cost[i]["average_hospital_charge_per_separation"];
-            table_row.append(table_td_2);
-
-            var table_td_4 = document.createElement("td");
-            table_td_4.innerHTML = private_cost[i]["number_of_hospitals_reporting"];
-            table_row.append(table_td_4);
-
-            var table_td_5 = document.createElement("td");
-            table_td_5.innerHTML = private_cost[i]["separation_year"];
-            table_row.append(table_td_5);
-
-            var table_td_6 = document.createElement("td");
-            table_td_6.innerHTML = private_cost[i]["separations"];
-            table_row.append(table_td_6);
-
-            var table_td_7 = document.createElement("td");
-            table_td_7.innerHTML = private_cost[i]["separations_with_charge"];
-            table_row.append(table_td_7);
-
-            cost_table_body.append(table_row);
-             
-           }
-
-           // user
-           var user_table_body = document.getElementById('table-user-body');
-           for(let i in private_age){
-            // new row
-             var table_row = document.createElement("tr");
-
-            // entries
-            var table_td_1 = document.createElement("td");
-            table_td_1.innerHTML = private_age[i]["age_group"];
-            table_row.append(table_td_1);
-
-            var table_td_2 = document.createElement("td");
-            table_td_2.innerHTML = private_age[i]["average_hospital_charge_per_separation"];
-            table_row.append(table_td_2);
-
-            var table_td_4 = document.createElement("td");
-            table_td_4.innerHTML = private_age[i]["average_length_of_stay_days"];
-            table_row.append(table_td_4);
-
-            var table_td_5 = document.createElement("td");
-            table_td_5.innerHTML = private_age[i]["hospital_type"];
-            table_row.append(table_td_5);
-
-            var table_td_6 = document.createElement("td");
-            table_td_6.innerHTML = private_age[i]["patient_days"];
-            table_row.append(table_td_6);
-
-            var table_td_7 = document.createElement("td");
-            table_td_7.innerHTML = private_age[i]["pct_of_all_separations"];
-            table_row.append(table_td_7);
-
-            var table_td_8 = document.createElement("td");
-            table_td_8.innerHTML = private_age[i]["proportion_of_same_day_separations"];
-            table_row.append(table_td_8);
-
-            var table_td_9 = document.createElement("td");
-            table_td_9.innerHTML = private_age[i]["same_day_separations"];
-            table_row.append(table_td_9);
-
-            var table_td_10 = document.createElement("td");
-            table_td_10.innerHTML = private_age[i]["separation_year"];
-            table_row.append(table_td_10);
-
-            var table_td_11 = document.createElement("td");
-            table_td_11.innerHTML = private_age[i]["separations"];
-            table_row.append(table_td_11);
-
-            var table_td_12 = document.createElement("td");
-            table_td_12.innerHTML = private_age[i]["separations_with_charge_reported"];
-            table_row.append(table_td_12);
-
-            user_table_body.append(table_row);
-             
-           }
-
-           // charge
-           var charge_table_body = document.getElementById('table-charge-body');
-           for(let i in private_charge){
-            // new row
-             var table_row = document.createElement("tr");
-
-            // entries
-            var table_td_1 = document.createElement("td");
-            table_td_1.innerHTML = private_charge[i]["charge_component"];
-            table_row.append(table_td_1);
-
-            var table_td_2 = document.createElement("td");
-            table_td_2.innerHTML = private_charge[i]["average_charge_per_separation"];
-            table_row.append(table_td_2);
-
-            var table_td_4 = document.createElement("td");
-            table_td_4.innerHTML = private_charge[i]["hospital_type"];
-            table_row.append(table_td_4);
-
-            var table_td_5 = document.createElement("td");
-            table_td_5.innerHTML = private_charge[i]["pct_of_charges"];
-            table_row.append(table_td_5);
-
-            var table_td_6 = document.createElement("td");
-            table_td_6.innerHTML = private_charge[i]["separation_year"];
-            table_row.append(table_td_6);
-
-            var table_td_7 = document.createElement("td");
-            table_td_7.innerHTML = private_charge[i]["separations_with_charge_reported"];
-            table_row.append(table_td_7);
-
-            var table_td_8 = document.createElement("td");
-            table_td_8.innerHTML = private_charge[i]["total_charges"];
-            table_row.append(table_td_8);
-
-            charge_table_body.append(table_row);
-             
-           }
-
-           // initialise tables
-           let table_cost = new DataTable('#table-cost');
-           let table_user = new DataTable('#table-user');
-           let table_charge = new DataTable('#table-charge');
-
-           // add margins to inputs
-           var inputs = document.getElementsByTagName('input');
-    
-           // use 'of' loop for html collections
-           for(let input of inputs){
-                input.style.marginBottom = "1em";
-           }
+           // scroll animation
+           window.addEventListener("scroll", reveal);
 
         }, false);
 
@@ -305,22 +164,27 @@
 
             gradFill.append('stop')
             .attr('offset', '0%')
-            .style('stop-color', 'var(--mdb-info)')
+            .style('stop-color', 'var(--mdb-primary)')
             .style('stop-opacity', 1);
 
             gradFill.append('stop')
             .attr('offset', '50%')
-            .style('stop-color', 'var(--mdb-info)')
+            .style('stop-color', 'var(--mdb-primary)')
             .style('stop-opacity', 1);
 
             gradFill.append('stop')
             .attr('offset', '100%')
-            .style('stop-color', 'whitesmoke')
+            .style('stop-color', 'var(--mdb-dark)')
             .style('stop-opacity', 1);
 
             // x-axis 
             var x_axis = d3.axisBottom().scale(xScale)
-                .tickSize(vhu/2).ticks(5).tickSizeOuter(0).tickFormat(d => d);
+                .tickSize(vhu/2).ticks(5).tickSizeOuter(0).tickFormat(function(d){
+                    if(d%5 == 0){
+                        return d;
+                    }
+                    return "";
+                });
 
             // grid x 
             var xAxisGrid = d3.axisBottom().scale(xScale)
@@ -436,6 +300,7 @@
                 //.style('stroke-width', '0.4vh')
                 .style('font-size', '1.5vh')
                 .attr('class', 'axis-light');
+                
 
         }
 
@@ -547,6 +412,8 @@
         // HERE: keys length and colour schemes by key lengths (11 and 14)
 
         // color palettes by chatgpt!!!!
+        var blueColors = ["#F0F8FF", "#ADD8E6", "#87CEFA", "#6495ED", "#1E90FF", "#007FFF", "#00308F", "#021C4F", "#0D1B2A", "#6D7B8D", "#4B5769", "#2E3440", "#0A0A2A"];
+        var blueRedColors = ["#F08080", "#CD5C5C", "#FF6347", "#FF4500", "#FFA07A", "#4169E1", "#6495ED", "#87CEFA", "#1E90FF", "#FF69B4", "#FF1493", "#C71585", "#800000"];
         var lightColors = ["#FADADD", "#F5D5E3", "#E8D8C3", "#D5ECC2", "#BEE3F8", "#C3C9E9", "#B1D4E0", "#FAD6A5", "#F7D6CF", "#EAE0C8", "#D6D2B6", "#CFE5C5", "#D1B2F2"];
         var brightColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#FF6F61", "#6B5B95", "#88D8B0", "#E27D60", "#41B3A3", "#FAC863", "#D9AFD9"];
         var categoryColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#F012BE", "#39CCCC", "#01FF70", "#85144b", "#3D9970", "#7FDBFF", "#F012BE"];
@@ -559,7 +426,7 @@
 
         const colour = d3.scaleOrdinal()
             .domain(stackKeys) // chatgpt color scheme!
-            .range(categoryColors2);
+            .range(blueColors);
 
         // create stacked areas
         var stackedData = d3.stack()
@@ -756,6 +623,7 @@
             // HERE: keys length and colour schemes by key lengths (11 and 14)
 
             // color palettes by chatgpt!!!!
+            var brownRedColors = ["#8B0000", "#A52A2A", "#B22222", "#CD5C5C", "#D2691E", "#8B4513", "#A0522D", "#BC8F8F", "#D2B48C", "#F4A460", "#FF6347", "#FF4500", "#FF8C00"];
             var lightColors = ["#FADADD", "#F5D5E3", "#E8D8C3", "#D5ECC2", "#BEE3F8", "#C3C9E9", "#B1D4E0", "#FAD6A5", "#F7D6CF", "#EAE0C8", "#D6D2B6", "#CFE5C5", "#D1B2F2"];
             var brightColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#FF6F61", "#6B5B95", "#88D8B0", "#E27D60", "#41B3A3", "#FAC863", "#D9AFD9"];
             var categoryColors = ["#FF4136", "#FF851B", "#FFDC00", "#2ECC40", "#0074D9", "#B10DC9", "#F012BE", "#39CCCC", "#01FF70", "#85144b", "#3D9970", "#7FDBFF", "#F012BE"];
@@ -768,7 +636,7 @@
 
             const colour = d3.scaleOrdinal()
                 .domain(stackKeys) // chatgpt color scheme!
-                .range(brightColors);
+                .range(brownRedColors);
 
             // create stacked areas
             var stackedData = d3.stack()

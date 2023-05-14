@@ -32,8 +32,9 @@
             draw_tree();
 
             // initialise tree tooltips (an array)
-            toolTip = tippy('.nodeinternal', {
+            toolTip = tippy('.node', {
                 content: "No content",
+                trigger: "click",
                 //theme: 'translucent',
                 placement: 'right-start',
                 animation: 'scale',
@@ -41,15 +42,8 @@
                
             });
 
-            // initialise tree tooltips (an array)
-            toolTipLeaf = tippy('.leaf', {
-                content: "No content",
-                //theme: 'translucent',
-                placement: 'right-start',
-                animation: 'scale',
-                allowHTML: true
-               
-            });
+            // scroll animation
+            window.addEventListener("scroll", reveal);
             
 
         }, false);
@@ -94,7 +88,7 @@
                 .attr("width", plot_width)
                 .attr("height", plot_height)
                 .attr("viewBox", [0, 0, plot_width, plot_height])
-                .attr("style", "width: 100%; height: auto; height: intrinsic;").call(zoom)
+                .attr("style", "width: 100%; height: auto; height: intrinsic;")//.call(zoom) zoom removed
                 //.attr("filter", function(){
                     //if(theme == "dark"){return "url(#backLightDark)";}
                     //return "url(#backLightDark)";
@@ -135,6 +129,9 @@
             .attr("k2", "1")
             .attr("k3", "1")
             .attr("k4", "0");
+
+            console.log("LINKS");
+            console.log(nodes.links());
             
             // links
             svg.append("g")
@@ -142,32 +139,99 @@
             .data(nodes.links())
             .enter()
             .append('line')
+            .attr("class", "links")
             .attr('x1', function(d) {return d.source.x;})
             .attr('y1', function(d) {return d.source.y;})
             .attr('x2', function(d) {return d.target.x;})
             .attr('y2', function(d) {return d.target.y;})
-            .attr('stroke', "lightgray")
+            .attr('source', d => d.source.data.id)
+            .attr('target', d => d.target.data.id)
+            .attr('stroke', "var(--mdb-dark)")
             .attr('stroke-width', 2);
 
             // filter for internal nodes
             const internal_nodes = nodes.descendants().filter(v => v.children);
+            
+            console.log("NODES");
+            console.log(nodes.descendants());
 
             svg.append("g")
             .selectAll('circle.node')
-            .data(internal_nodes)
+            .data(nodes.descendants())
             .enter()
             .append('circle')
-            .attr("class", "nodeinternal")
+            .attr("id", d => d.data.id)
+            .attr("class", d => (d.children ? "node nodeinternal" : "node nodeleaf"))
             .attr('cx', function(d) {return d.x;})
             .attr('cy', function(d) {return d.y;})
             .attr('r', 15)
-            .attr("fill", "slategray")
+            .attr("fill", "skyblue")
             .attr("filter", "url(#specular)")
             .attr('stroke', "var(--mdb-white)")
             .attr("stroke-opacity", 0.5)
-            .attr('stroke-width', 4)
+            .attr('stroke-width', 2)
             .on("mouseover", function(event, d){
-                //console.log(d);
+
+                // root node
+                if(d.data.id == "1"){return;}
+
+                // highlight links
+                d3.selectAll(".links").style("opacity",function(l){
+                    let sourceId = l.source.data.id;
+                    let targetId = l.target.data.id;
+                    let pathId = sourceId + "L" + targetId;
+                    if(d.data.paths.includes(pathId)){
+                        return 1;
+                    }
+                    return 0.1
+
+                });
+
+                // highlight images
+                d3.selectAll(".images").style("opacity",function(l){
+                    let imageId = l.data.id;
+                    
+                    if(d.data.images.includes(imageId)){
+                        return 1;
+                    }
+                    return 0.1
+
+                });
+
+                // highlight nodes
+                d3.selectAll(".node").style("opacity",function(l){
+                    let nodeId = l.data.id;
+                    
+                    if(d.data.nodes.includes(nodeId)){
+                        return 1;
+                    }
+                    return 0.1
+
+                });
+
+                // highlight text
+                d3.selectAll(".treetext").style("opacity",function(l){
+                    let nodeId = l.data.id;
+                    
+                    if(d.data.nodes.includes(nodeId)){
+                        return 1;
+                    }
+                    return 0.1
+
+                });
+
+                // HERE hover rect hightlight
+                // .attr("opacity", d => (d.children ? 1 : 0))
+
+            })
+            .on("mouseout", function(d){
+                d3.selectAll(".links").style("opacity" ,1);
+                d3.selectAll(".images").style("opacity" ,1);
+                d3.selectAll(".node").style("opacity" ,1);
+                d3.selectAll(".treetext").style("opacity" ,1);
+            })
+            .on("click", function(event, d){
+               // create content
                 var content = "<div style='letter-spacing:2px'>";
                 content = content + "<i class='fas fa-heart-pulse' style='color:salmon; margin-right:5px'></i>";
                 content = content + "<strong >HEALTHCARE DOWN UNDER</strong>";
@@ -176,15 +240,34 @@
                     content = content + "<strong>" + d.parent.data.name.toUpperCase() + "</strong>";
                 }   
                 content = content + "<strong> " + d.data.name.toUpperCase() + "</strong>";
-                content = content + "<br><img width='100' src=" + "/images/" + d.data.image + "></div>";
-                for(let tip in toolTip){
-                    toolTip[tip].setContent(content);
+                if(d.depth < 3){ // no images for leaves
+                    content = content + "<br><img width='100' src=" + "/images/" + d.data.image + "></div>";
                 }
+
+                // find and show
+                for(let tip in toolTip){
+                    if(toolTip[tip].reference.id == d.data.id){
+                        toolTip[tip].setContent(content);
+                        toolTip[tip].show();
+                    };
+                    
+                }
+                
             });
-           
+
+            // check links
+            d3.selectAll('.links').style("opacity", function(d){
+               if(d.source.data.id == "25"){
+                return 1;
+               };
+                return 1;
+            });
+                
             
             
-           
+            // leaf colour
+            d3.selectAll(".nodeleaf").style("fill", "salmon");
+            
             // node names
             svg.append("g")
             .selectAll('title')
@@ -215,6 +298,7 @@
             .enter()
             .append("rect")
             .attr("class", d => (d.children ? "internalrect" : "rectleaf"))
+            .attr("id", d => d.data.id)
             .attr("x", d => d.x - d.bbox.width/2)
             .attr("y", d => d.y - 25)
             .attr("width", d => d.bbox.width + 2 * xMargin)
@@ -234,7 +318,8 @@
             .data(nodes.descendants())
             .enter()
             .append('text')
-            .attr("class", d => (d.children ? "internaltext" : "leaftext"))
+            .attr("class", d => (d.children ? "treetext internaltext" : "treetext leaftext"))
+            .attr("id", d => d.data.id)
             .attr('x', function(d) {return d.x;})
             .attr('y', function(d) {return d.y;})
             .attr('dy', -25)
@@ -250,21 +335,22 @@
             // rotate leaves and alternate delta
             d3.selectAll(".leaftext").attr("transform", "rotate(30)")
             .attr("dy", function(d,i){
-                if(i%2==0){return 30};
-                return 30;
-            })
-            .attr("dx", function(d,i){
                 if(i%2==0){return 20};
                 return 20;
+            })
+            .attr("dx", function(d,i){
+                if(i%2==0){return 10};
+                return 10;
             })
             .style("text-anchor", "start")
             .style("letter-spacing","");
 
 
-            // filter for image nodes
+            // filter for leaf nodes
             const leaf_nodes = nodes.descendants().filter(v => !v.children);
 
-            // add hearts
+            // REMOVED add hearts
+            /*
             svg.append("g")
             .selectAll('image')
             .data(leaf_nodes)
@@ -293,6 +379,7 @@
                 .attr('dur', '1.5s')
                 .attr('begin', '0s')
                 .attr('repeatCount', 'indefinite');
+            */
             
             
             // filter for image nodes
@@ -304,11 +391,12 @@
             .data(image_nodes)
             .enter()
             .append('image')
+            .attr("class", "images")
+            .attr('id', d => d.data.id)
             .attr('x', function(d) {return d.x - 50;})
             .attr('y', function(d) {return d.y + 30;})
             .attr('width', 100)
             .attr('height', 100)
-            //.attr("clip-path", "url(#ellipse-clip)") // clip the rectangle
             .attr("href", function(d) {return "/images/" + d.data.image});
 
             // get bb of text
