@@ -220,8 +220,16 @@
 
                 });
 
-                // HERE hover rect hightlight
-                // .attr("opacity", d => (d.children ? 1 : 0))
+                // highlight text
+                d3.selectAll(".treerect").style("opacity",function(l){
+                    let nodeId = l.data.id;
+                    
+                    if(d.data.images.includes(nodeId)){
+                        return 1;
+                    }
+                    return 0;
+
+                });
 
             })
             .on("mouseout", function(d){
@@ -229,6 +237,7 @@
                 d3.selectAll(".images").style("opacity" ,1);
                 d3.selectAll(".node").style("opacity" ,1);
                 d3.selectAll(".treetext").style("opacity" ,1);
+                d3.selectAll(".internalrect").style("opacity", 1);
             })
             .on("click", function(event, d){
                // create content
@@ -254,17 +263,7 @@
                 }
                 
             });
-
-            // check links
-            d3.selectAll('.links').style("opacity", function(d){
-               if(d.source.data.id == "25"){
-                return 1;
-               };
-                return 1;
-            });
                 
-            
-            
             // leaf colour
             d3.selectAll(".nodeleaf").style("fill", "salmon");
             
@@ -297,7 +296,7 @@
             .data(nodes.descendants())
             .enter()
             .append("rect")
-            .attr("class", d => (d.children ? "internalrect" : "rectleaf"))
+            .attr("class", d => (d.children ? "treerect internalrect" : "treerect rectleaf"))
             .attr("id", d => d.data.id)
             .attr("x", d => d.x - d.bbox.width/2)
             .attr("y", d => d.y - 25)
