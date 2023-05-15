@@ -18,6 +18,16 @@ function met(){
     window.location.assign(new_path);
 }
 
+function symptom(){
+    var new_path = "http://" + window.location.hostname + ":" + window.location.port + "/symptom";
+    window.location.assign(new_path);
+}
+
+function tree(){
+    var new_path = "http://" + window.location.hostname + ":" + window.location.port + "/tree";
+    window.location.assign(new_path);
+}
+
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
     for (var i = 0; i < reveals.length; i++) {
