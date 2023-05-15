@@ -267,14 +267,12 @@
             // leaf colour
             d3.selectAll(".nodeleaf").style("fill", "salmon");
             
-            // node names
+            // node names (before removal)
             svg.append("g")
             .selectAll('title')
             .data(nodes.descendants())
             .enter()
             .append('text')
-            //.attr('x', function(d) {return d.x;})
-            //.attr('y', function(d) {return d.y;})
             .attr('dy', -20)
             .attr("fill","var(--mdb-dark)")
             .attr("stroke", "var(--mdb-dark)")
@@ -405,7 +403,7 @@
 
         }
 
-        
+        // NOT USED
         function draw_graph(){
             // get width and height of plot area
             var plot_area = document.getElementById("plot_tree");
