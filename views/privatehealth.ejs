@@ -29,9 +29,9 @@
             </a>
             <!-- Left links -->
             
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ms-auto">
               <!-- Dropdown -->
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown mx-5">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -41,42 +41,74 @@
                   aria-expanded="false"
                   style="letter-spacing: 2px;"
                 >
-                 Discover More
+                 BEFORE SEEKING HEALTHCARE
                 </a>
                 <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
                   <li>
-                    <a class="dropdown-item" href="#" onclick="guides()">Good Health Guidelines
-                      <i class="fas fa-person-walking ms-2"></i></a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#" onclick="private()">The Private Healthcare System
+                    <a class="dropdown-item" href="/privatehealth">Private Healthcare in Australia
                       <i class="fas fa-suitcase-medical ms-2"></i></a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#" onclick="maps()">Patient Survey Maps
+                    <a class="dropdown-item" href="/maps" onclick="maps()">Patient Survey Maps
                       <i class="fas fa-map ms-2"></i></a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="#" onclick="met()">Activity Tracker
-                      <i class="fas fa-calculator ms-2"></i></a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#" onclick="tree()">Australian Healthcare Tree Diagram
-                      <i class="fas fa-map ms-2"></i></a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#" onclick="symptom()">Symptom Checker
-                      <i class="fas fa-calculator ms-2"></i></a>
+                    <a class="dropdown-item" href="/symptom" onclick="symptoms()">Symptom Checker 
+                      <i class="fas fa-prescription-bottle-medical"></i></a>
                   </li>
                 </ul>
               </li>
+
+              <li class="nav-item dropdown mx-5">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                  style="letter-spacing: 2px;"
+                >
+                  SEEKING HEALTHCARE
+                </a>
+                <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="/tree" onclick="tree()">Australian Healthcare Tree Diagram
+                      <i class="fas fa-diagram-project ms-2"></i></a>
+                  </li>
+                </ul>
+                </li>
+
+              <li class="nav-item dropdown mx-5">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                  style="letter-spacing: 2px;"
+                >
+                 AFTER SEEKING HEALTHCARE
+                </a>
+                <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="/healthguidelines" onclick="guides()">Good Health Guidelines
+                      <i class="fas fa-person-walking ms-2"></i></a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/met" onclick="met()">Activity Tracker
+                      <i class="fas fa-calculator ms-2"></i></a>
+                  </li>
+                </ul>
+                </li>
             </ul>
             <!-- Left links -->
           </div>
           <!-- Collapsible wrapper -->
   
           <!-- Right elements -->
-          
+         
           <!-- Right elements -->
         </div>
         <!-- Container wrapper -->
@@ -358,76 +390,28 @@
     <footer class="text-center text-lg-start bg-light text-muted">
   
       <div class="container">
-        <!-- Section: Social media -->
-        <section class="d-flex justify-content-center justify-content-lg-between p-4 pb-1">
-          <!-- Left -->
-          <div class="me-5 d-none d-lg-block">
-            <span>Get connected with us on social networks:</span>
-          </div>
-          <!-- Left -->
-  
-          <!-- Right -->
-          <div>
-            <a href="" class="me-4 text-reset">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="https://github.com/CodeCaven/healthcare-project" class="me-4 text-reset">
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-          <!-- Right -->
-        </section>
-        <!-- Section: Social media -->
-  
-      </div>
-  
-      <hr class="hr">
-  
-      <div class="container">
         <!-- Section: Links  -->
         <section class="">
           <div class="container text-center text-md-start mt-5">
             <!-- Grid row -->
             <div class="row mt-3">
               <!-- Grid column -->
-              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+              <div class="col-lg-5 mx-auto mb-4 mt-4">
                 <!-- Content -->
                 <h3 class="text-uppercase fw-bold mb-4">
-                  <i class="fas fa-heart-pulse me-3"></i>About us
+                  <i class="fas fa-heart-pulse me-3"></i>Healthcare in Australia
                 </h3>
                 <p>
-                  This project is built by masters students from the IT Faculty of Monash University. 
-                  It is designed for international students to understand the healthcare structure and issues with healthcare in Australia. 
+                  Amidst the global recovery from the catastrophic COVID-19 pandemic in 2021 and 2022, Australia experienced a major influx of new migrants as the Australian bureau of statistics displayed an increase of 171% from the year before. This includes 61% of temporary visa holders and an increase of 84% in permanent  residents.
                 </p>
               </div>
-              <!-- Grid column -->
   
               <!-- Grid column -->
-              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                              
-              </div>
-              <!-- Grid column -->
-  
-              <!-- Grid column -->
-              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <div class="col-lg-5 mx-auto mb-md-0 mt-4 mb-4">
                 <!-- Links -->
-                <h3 class="text-uppercase fw-bold mb-4">
-                  Useful links
-                </h3>
+                <h3 class="text-uppercase fw-bold mb-4"><i class="fas fa-heart-pulse me-3"></i>About Us</h3>
                 <p>
-                  <a href="http://bit.ly/3zr1v1j" class="text-reset">Mahara Page</a>
-                </p>
-              </div>
-              <!-- Grid column -->
-  
-              <!-- Grid column -->
-              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <!-- Links -->
-                <h3 class="text-uppercase fw-bold mb-4">Contact</h3>
-                <p><i class="fas fa-home me-3"></i> Clayton, Melbourne, AU </p>
-                <p>
-                  <i class="fas fa-envelope me-3"></i>
-                  monashtechtitans@gmail.com
+                  We want every new migrant to be more comfortable in joining the Australian family. Whether you are a temporary visa holder or a permanent resident, our website can help you to enjoy the services of the Australian healthcare system more easily and with greater confidence.
                 </p>
               </div>
               <!-- Grid column -->
@@ -437,7 +421,6 @@
         </section>
         <!-- Section: Links  -->
       </div>
-  
   
   
       <!-- Copyright -->
