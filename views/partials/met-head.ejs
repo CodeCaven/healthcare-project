@@ -68,8 +68,8 @@
 
                 // set initial
                 if(met_table[i][j]['activity'] == display_activity){
-                    table_td_1.style.backgroundColor = "#d8e3f4";//"var(--mdb-dark)";
-                    table_td_1.style.color = "var(--mdb-dark)";
+                    table_td_1.style.backgroundColor = "var(--mdb-primary)";//"var(--mdb-dark)";
+                    table_td_1.style.color = "var(--mdb-white)";
                 }
 
                 var new_icon = document.createElement("i");
@@ -355,7 +355,6 @@
 
         function tableClick(event){
 
-            // here table color
 
             // unhighlight all
            let cells = document.getElementsByTagName("td");
@@ -366,14 +365,14 @@
 
            // highlight cell
            if(event.target.tagName == "TD"){
-                event.target.style.backgroundColor = "#d8e3f4";
-                event.target.style.color = "var(--mdb-dark)";
+                event.target.style.backgroundColor = "var(--mdb-primary)";
+                event.target.style.color = "var(--mdb-white)";
                 display_activity = event.target.id;
             }
 
             if(event.target.tagName == "I"){
-                event.target.parentNode.style.backgroundColor = "#d8e3f4"; //"var(--mdb-dark)";
-                event.target.parentNode.style.color = "var(--mdb-dark)";
+                event.target.parentNode.style.backgroundColor = "var(--mdb-primary)"; //"var(--mdb-dark)";
+                event.target.parentNode.style.color = "var(--mdb-white)";
                 display_activity = event.target.parentNode.id;
             }
             

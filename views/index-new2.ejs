@@ -6,7 +6,7 @@
   <body>
 
     <!--Main Navigation-->
-    <header class="mb-5 mb-lg-7">
+    
   
       <!-- Navbar -->
       <nav style="z-index: 10;
@@ -116,8 +116,7 @@
       <!-- Navbar -->
     
       <!-- Background image -->
-      <div class="landing bg-image vh-100" style="
-                   margin-top: -58.59px;">
+      <div class="landing bg-image vh-100" style="margin-top: -58.59px;">
     
         <!-- Mask -->
         <div class="mask" style="background-color: hsla(0, 0%, 0%, 0.5)">
@@ -128,43 +127,75 @@
             <!-- Call to action -->
             
               <div class="text-white text-center ">
-                <h1 class="mb-3">Healthcare Down Under</h1>
-
+                <h1 style="letter-spacing:2px;" >Healthcare Down Under</h1>
+                <i class="fas fa-heart-pulse me-3 fs-1" style="color:salmon;"></i>
                 <div class="d-flex justify-content-center" style="width:100vw; height:20vh;">
                 <svg width="100%" height="100%" viewBox="240 50 300 100" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
                   <path id="path">
                      <animate attributeName="d" from="m0,110 h10" to="m0,110 h1100" dur="6.8s" begin="0s" repeatCount="indefinite"/>
                    </path>
-                   <text font-size="26" fill='hsla(36, 95%, 85%, 1)'>
+                   <text font-size="26" fill='white' fill-opacity="'0.8"> <!--'hsla(36, 95%, 85%, 1)'-->>
                      <textPath xlink:href="#path">Discover Australia's Healthcare System...and Discover Good Health.
                      </textPath>
                    </text>
                  </svg>
                 </div>
 
-                <!--<h4 class="mb-4"><q>Discover Australia's Healthcare System...and Discover Good Health.</q></h4>-->
-                <a class="btn btn-primary btn-rounded btn-lg m-2" data-ripple-color="primary" href="/healthguidelines" role="button">
-                  Good Health Guidelines<i class="fas fa-person-walking ms-2"></i>
-                </a>
-                <a class="btn btn-primary btn-rounded btn-lg m-2" data-ripple-color="primary" href="/privatehealth" role="button">The Private Healthcare System
-                <i class="fas fa-suitcase-medical ms-2"></i></a>
-                <a class="btn btn-primary btn-rounded btn-lg m-2" data-ripple-color="primary" href="/maps" role="button">Patient Survey Maps
-                <i class="fas fa-map ms-2"></i></a>
-                <a class="btn btn-primary btn-rounded btn-lg m-2" data-ripple-color="primary" href="/met" role="button">Activity Tracker
-                <i class="fas fa-calculator ms-2"></i></a>
-                
+                <h3 style="background-color:var(--mdb-dark);" >New to Australia? </h3>
+                <h3 style="background-color:var(--mdb-dark);" >Scroll below to begin your journey to better health.</h3>
+                <i class="fas fa-angles-down me-3 fs-1"></i>
               </div>
-  
           </div>
-
         </div>
-
       </div>
-    </header>
-    <!--Main Navigation-->
     
     <!--Main layout-->
-  
+      <!--cards-->
+      <br>
+      <div class="row d-flex justify-content-center align-items-center" style="color:var(--mdb-dark)">
+                  
+        <div class="col-sm-5 reveal">
+          <div class="card">
+            <img src="/images/epic-5-main.png" class="card-img-top" alt="privatehealth" width="300"/>
+            <div class="card-body">
+              <h5 class="card-title">Before Seeking Healthcare</h5>
+              <p class="card-text">If you are experiencing health issues, start your path to better health.</p>
+              <a href="./symptom" class="btn btn-primary">Try the Symptom Checker <i class="fas fa-hand-point-right me-2"></i></a>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <br>
+        <div class="row d-flex justify-content-center align-items-center" style="color:var(--mdb-dark)">
+        <div class="col-sm-5 reveal">
+          <div class="card">
+            <img src="/images/nav-health.jpeg" class="card-img-top" alt="privatehealth"/>
+            <div class="card-body">
+              <h5 class="card-title">Seeking Healthcare</h5>
+              <p class="card-text">Navigate Australia's complex healthcare system.</p>
+              <a href="./tree" class="btn btn-primary">View the Healthcare Tree Map <i class="fas fa-hand-point-right me-2"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <div class="row d-flex justify-content-center align-items-center" style="color:var(--mdb-dark)">
+        <div class="col-sm-5 reveal">
+          <div class="card">
+            <img src="/images/calories1.jpg" class="card-img-top" alt="calories"/>
+            <div class="card-body">
+              <h5 class="card-title">After Seeking Healthcare</h5>
+              <p class="card-text">Maintain your health and reach your health goals.</p>
+              <a href="./met" class="btn btn-primary">Use the Activity Tracker <i class="fas fa-hand-point-right me-2"></i></a>
+            </div>
+          </div>
+        </div>
+        </div>
+      
+      <!--cards-->
+
     <!-- Footer -->
     <footer class="text-center text-lg-start bg-light text-muted">
   
