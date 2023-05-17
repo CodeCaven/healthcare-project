@@ -21,6 +21,7 @@
 
         // global graph vars
         let toolTip;
+        let treeClick = false;
         
         
         // DOM loaded callback
@@ -171,57 +172,59 @@
             .attr("stroke-opacity", 0.5)
             .attr('stroke-width', 2)
             .on("mouseover", function(event, d){
+                // click mode
+                if(treeClick){return;}
 
                 // root node
                 if(d.data.id == "1"){return;}
 
                 // highlight links
-                d3.selectAll(".links").style("opacity",function(l){
+                d3.selectAll(".links").transition().duration(500).style("opacity",function(l){
                     let sourceId = l.source.data.id;
                     let targetId = l.target.data.id;
                     let pathId = sourceId + "L" + targetId;
                     if(d.data.paths.includes(pathId)){
                         return 1;
                     }
-                    return 0.1
+                    return 0
 
                 });
 
                 // highlight images
-                d3.selectAll(".images").style("opacity",function(l){
+                d3.selectAll(".images").transition().duration(500).style("opacity",function(l){
                     let imageId = l.data.id;
                     
                     if(d.data.images.includes(imageId)){
                         return 1;
                     }
-                    return 0.1
+                    return 0
 
                 });
 
                 // highlight nodes
-                d3.selectAll(".node").style("opacity",function(l){
+                d3.selectAll(".node").transition().duration(500).style("opacity",function(l){
                     let nodeId = l.data.id;
                     
                     if(d.data.nodes.includes(nodeId)){
                         return 1;
                     }
-                    return 0.1
+                    return 0
 
                 });
 
                 // highlight text
-                d3.selectAll(".treetext").style("opacity",function(l){
+                d3.selectAll(".treetext").transition().duration(500).style("opacity",function(l){
                     let nodeId = l.data.id;
                     
                     if(d.data.nodes.includes(nodeId)){
                         return 1;
                     }
-                    return 0.1
+                    return 0
 
                 });
 
                 // highlight text
-                d3.selectAll(".treerect").style("opacity",function(l){
+                d3.selectAll(".treerect").transition().duration(500).style("opacity",function(l){
                     let nodeId = l.data.id;
                     
                     if(d.data.images.includes(nodeId)){
@@ -233,13 +236,28 @@
 
             })
             .on("mouseout", function(d){
-                d3.selectAll(".links").style("opacity" ,1);
-                d3.selectAll(".images").style("opacity" ,1);
-                d3.selectAll(".node").style("opacity" ,1);
-                d3.selectAll(".treetext").style("opacity" ,1);
-                d3.selectAll(".internalrect").style("opacity", 1);
+                if(treeClick){return;}
+                d3.selectAll(".links").transition().duration(500).style("opacity" ,1);
+                d3.selectAll(".images").transition().duration(500).style("opacity" ,1);
+                d3.selectAll(".node").transition().duration(500).style("opacity" ,1);
+                d3.selectAll(".treetext").transition().duration(500).style("opacity" ,1);
+                d3.selectAll(".internalrect").transition().duration(500).style("opacity", 1);
             })
             .on("click", function(event, d){
+                // already clicked, reset
+                if(treeClick){
+                    d3.selectAll(".links").style("opacity" ,1);
+                    d3.selectAll(".images").style("opacity" ,1);
+                    d3.selectAll(".node").style("opacity" ,1);
+                    d3.selectAll(".treetext").style("opacity" ,1);
+                    d3.selectAll(".internalrect").style("opacity", 1);
+                    treeClick = false;
+                    return;
+                }
+
+                // update boolean
+                treeClick = !treeClick;
+
                // create content
                 var content = "<div style='letter-spacing:2px'>";
                 content = content + "<i class='fas fa-heart-pulse' style='color:salmon; margin-right:5px'></i>";
@@ -261,11 +279,70 @@
                     };
                     
                 }
-                
+
+                // highlight
+                // root node
+                if(d.data.id == "1"){return;}
+
+                // highlight links
+                d3.selectAll(".links").style("opacity",function(l){
+                    let sourceId = l.source.data.id;
+                    let targetId = l.target.data.id;
+                    let pathId = sourceId + "L" + targetId;
+                    if(d.data.paths.includes(pathId)){
+                        return 1;
+                    }
+                    return 0;
+
+                });
+
+                // highlight images
+                d3.selectAll(".images").style("opacity",function(l){
+                    let imageId = l.data.id;
+                    
+                    if(d.data.images.includes(imageId)){
+                        return 1;
+                    }
+                    return 0;
+
+                });
+
+                // highlight nodes
+                d3.selectAll(".node").style("opacity",function(l){
+                    let nodeId = l.data.id;
+                    
+                    if(d.data.nodes.includes(nodeId)){
+                        return 1;
+                    }
+                    return 0;
+
+                });
+
+                // highlight text
+                d3.selectAll(".treetext").style("opacity",function(l){
+                    let nodeId = l.data.id;
+                    
+                    if(d.data.nodes.includes(nodeId)){
+                        return 1;
+                    }
+                    return 0;
+
+                });
+
+                // highlight text
+                d3.selectAll(".treerect").style("opacity",function(l){
+                    let nodeId = l.data.id;
+                    
+                    if(d.data.images.includes(nodeId)){
+                        return 1;
+                    }
+                    return 0;
+
+                });
             });
                 
             // leaf colour
-            d3.selectAll(".nodeleaf").style("fill", "salmon");
+            d3.selectAll(".nodeleaf").style("fill", "seaGreen");
             
             // node names (before removal)
             svg.append("g")
