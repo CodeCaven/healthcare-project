@@ -412,14 +412,14 @@
                 .transition().duration(500).style("opacity",1);
 
                 // highlight the area
-                d3.selectAll('.maparea').attr("opacity", 0.1);
-                d3.select(this).attr("opacity", 1);
+                d3.selectAll('.maparea').transition().duration(500).attr("opacity", 0.1);
+                d3.select(this).transition().duration(500).attr("opacity", 1);
                 
                 })
             .on("mouseout", function(event, d){
                 var tooltip = d3.select("#tooltip");
                 tooltip.style("visibility", "hidden");  
-                d3.selectAll('.maparea').attr("opacity", 1);
+                d3.selectAll('.maparea').transition().duration(500).attr("opacity", 1);
             });
 
             

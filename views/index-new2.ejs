@@ -125,13 +125,35 @@
           <div class="container d-flex justify-content-center align-items-center h-100">
             
               <div class="text-white text-center ">
+
                 <!--SVG HEART-->
                 <svg width="60px" height="60px" viewBox="0 0 40 40">
-                  <image href="/svgs/heart-pulse-fill.svg" width="40" height="40">
+                  <filter id="specular" primitiveUnits="objectBoundingBox"> 
+                    <feSpecularLighting
+                      result="specOut" 
+                      in="SourceGraphic" 
+                      specularExponent="30" 
+                      specularConstant="0.4" 
+                      surfaceScale="1" 
+                      lighting-color="#bbbbbb">
+                      <fePointLight x="0.5" y="0.5" z="0.3" />
+                    </feSpecularLighting>
+                    <feComposite
+                      in="SourceGraphic"
+                      in2="specOut"
+                      operator="arithmetic"
+                      k1="0"
+                      k2="1"
+                      k3="1"
+                      k4="0" />
+                  </filter>
+                  <image href="/svgs/heart-pulse-fill.svg" width="40" height="40" style="filter:url(#specular)">
                     <animate attributeName="height" from="35" to="40" dur="1.5s" begin="0s" repeatCount="indefinite"/>
                   </image>
                 </svg>
-                <h1 style="letter-spacing:2px;" >Healthcare Down Under</h1>
+                <hr class="hr">
+                <h1 style="letter-spacing:2px;" >HEALTHCARE DOWN UNDER</h1>
+                <hr class="hr">
 
                 <div class="d-flex justify-content-center" style="width:100vw; height:20vh;">
                    <!--SVG TEXT-->
@@ -250,5 +272,6 @@
   
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+
   </body>
 </html>
