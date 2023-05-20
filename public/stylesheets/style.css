@@ -159,14 +159,14 @@ a {
   border: 1px solid #d3d3d3;
   text-align: center;
   width: 250px;
-  opacity: 0.8;
+  opacity: 1;
   padding: 10px;
   border-radius:0.5rem;
   left: 4em;
 }
 
 #controlsheader {
-  cursor: move;
+  cursor: pointer;
 }
 
 .controlsheader {
@@ -184,6 +184,11 @@ a {
 .theme{
   background-color: var(--mdb-white);
   color:var(--mdb-dark);
+  transition: 1s;
+}
+
+#svgArea{
+  background-color: wheat;
   transition: 1s;
 }
 
