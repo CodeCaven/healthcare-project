@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  
+  <% include ./partials/health-head %>
+  <body>
+
+  
+      <!-- Navbar -->
+      <nav style="z-index: 10;
+                   min-height: 58.59px;
+                  " class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient text-white sticky-top px-5">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Toggle button -->
+          <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+            data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+          </button>
+  
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Navbar brand -->
+            <a class="navbar-brand mt-2 mt-lg-0" href="./index">
+              <i class="fas fa-heart-pulse" style="color:darkSalmon"></i>
+            </a>
+            <!-- Left links -->
+            
+            <ul class="navbar-nav ms-auto">
+              <!-- Dropdown -->
+              <li class="nav-item dropdown mx-5">
+                <div class="dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                  style="letter-spacing: 2px;"
+                >
+                 BEFORE SEEKING HEALTHCARE
+                </a>
+                <ul class="dropdown-menu fs-6 dropdown-menu-dark" style="letter-spacing:2px; background-color:var(--mdb-dark);" aria-labelledby="navbarDropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="/symptom" onclick="symptoms()">Symptom Checker 
+                      <i class="fas fa-prescription-bottle-medical"></i></a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/maps" onclick="maps()">Patient Survey Maps
+                      <i class="fas fa-map ms-2"></i></a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/privatehealth">Private Healthcare in Australia
+                      <i class="fas fa-suitcase-medical ms-2"></i></a>
+                  </li>
+                </ul>
+              </div>
+              </li>
+
+              <li class="nav-item dropdown mx-5">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                  style="letter-spacing: 2px;"
+                >
+                  SEEKING HEALTHCARE
+                </a>
+                <ul class="dropdown-menu fs-6 dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink" style="letter-spacing:2px; background-color:var(--mdb-dark);">
+                  <li>
+                    <a class="dropdown-item" href="/tree" onclick="tree()">Australian Healthcare Tree Diagram
+                      <i class="fas fa-diagram-project ms-2"></i></a>
+                  </li>
+                </ul>
+                </li>
+
+              <li class="nav-item dropdown mx-5">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                  style="letter-spacing: 2px;"
+                >
+                 AFTER SEEKING HEALTHCARE
+                </a>
+                <ul class="dropdown-menu fs-6 dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink" style="letter-spacing:2px; background-color:var(--mdb-dark);">
+                  <li>
+                    <a class="dropdown-item" href="/met" onclick="met()">Activity Tracker
+                      <i class="fas fa-calculator ms-2"></i></a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/healthguidelines" onclick="guides()">Good Health Guidelines
+                      <i class="fas fa-person-walking ms-2"></i></a>
+                  </li>
+                  
+                </ul>
+                </li>
+            </ul>
+            <!-- Left links -->
+          </div>
+          <!-- Collapsible wrapper -->
+  
+          <!-- Right elements -->
+         
+          <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+
+      <div class="container-fluid">
+        <div class="row">
+          <!--Title-->
+          <div class="col-md-7 text-center text-md-start px-5 pt-5">
+            <!--Breadcrumbs-->
+            <nav aria-label="breadcrumb" class="mx-5">
+              <ol class="breadcrumb" style="letter-spacing:2px;">
+                <li class="breadcrumb-item"><a href="./index" style="color:darksalmon;">HOME</a></li>
+                <li class="breadcrumb-item active" aria-current="page">AFTER SEEKING HEALTHCARE</li>
+                
+              </ol>
+            </nav>
+            <h1 class="mb-4 display-3 fw-bold px-5">Australian Good Health Guidelines.</h1>
+            <p class="mt-3 mb-4 fs-1 px-5">Use the good health guidelines to improve your health and reach your health goals.</p>
+            <p class="mt-3 mb-4 fs-5 fst-italic px-5">Last Update: 21/05/2023.</p>
+          </div>
+          <div class="col-md-5 px-5 pt-5 mt-5"><img class="img-fluid" src="/images/health-pic.jpg" alt="" /></div>
+          
+          <div class="row">
+            <div class="col-md-12">
+              <div class="fs-5 big-side-pads pt-5">
+                For new arrivals to Australia , there is a major change of environment. From the conditions of the surroundings 
+                all the way to the portion sizes of food. The Australian Good Health Guidelines aim to promote healthy habits 
+                and daily lifestyle behaviours to aid individuals to achieve and maintain an optimal level of <strong>physical health  
+                and well-being</strong>. The guidelines provide information and key recommendations 
+                regarding nutrition, physical activity, and substance use. By following these guidelines, individuals can <strong> reduce the 
+                risk of chronic diseases, improve their quality of life</strong> and increase their lifespan. The recommendations are tailored to the demographic groups 
+                <strong>Adult Males, Adult Females and Young People</strong>. Explore the good health guidelines below.
+                
+            </div>
+            </div>
+          </div>
+
+          <!--Allergy-->
+          <div class="col-lg-12 reveal">
+            <div class="pt-8 fs-5 my-5 big-side-pads">
+                <h3>Adult Males</h3>
+                <br>
+                <p> In 2018, just under half of Australia’s population 49%, or <strong>12.4 million people were male.</strong>  
+                    The following poor health risk factors are likely to occur for males: smoking tobacco, alcohol consumption, 
+                    overweight, poor nutrition from a lack of friut and vegatables. 
+                </p>
+                <br>
+                <!--Accordion-->
+                <div class="accordion" id="accordionExampleY2">
+                    <div class="accordion-item">
+                        
+                      <h2 class="accordion-header" id="headingOneY2">
+                        
+                        <button class="accordion-button collapsed fw-bold" type="button" data-mdb-toggle="collapse" style="letter-spacing: 2px; color:var(--mdb-dark); background-color:lightblue"
+                          data-mdb-target="#collapseOneY2" aria-expanded="false" aria-controls="collapseOneY2">
+                          <i class="fas fa-heart-pulse fa-sm me-2"></i>HEALTH GUIDELINES FOR MEN
+                        </button>
+                       
+                      </h2>
+                    
+                      <div id="collapseOneY2" class="accordion-collapse collapse" aria-labelledby="headingOneY2"
+                        data-mdb-parent="#accordionExampleY2">
+                        <div class="accordion-body">
+                            <div class="card">
+                                <div class="card-body border-start border-info border-3">
+                                    <h4 class="card-title">Health Facts for Males</h4>
+                                    <ul>
+                                        <li>3 in 4 men were overweight or obese in 2017–18</li>
+                                        <li>In 2017-2018, fewer than 1 in 30 men ate the recomended amount of fruit and vegatables.</li>
+                                    </ul>
+                                    <br>
+                                    
+                                    <h4 class="card-title">How to stay healthy:</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-utensils me-2"></i>Eat 6 serves of vegetables and fruit in different type and colour per day</li>
+                                        <li><i class="fas fa-person-walking me-2"></i>5 hours moderate intensity physical activity each week</li>
+                                        <li><i class="fas fa-person-walking me-2"></i>2.5 hours of vigorous intensity physical activity each week</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Check in with your local GP</li>
+                                        <li><i class="fas fa-xmark text-danger me-2"></i>Avoid sitting or lying for extended periods</li>
+                                    </ul>
+                              </div>
+                            </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--men display-->
+                  <div class="d-flex justify-content-center">
+                    <div class="mt-5 card" style="max-width:60% ;">
+                        
+
+                        <div class="card-body border-start border-info border-3 text-center">
+                            <a class="btn btn-outline-secondary mb-2" href="https://www.aihw.gov.au/reports/men-women/male-health/contents/lifestyle-and-risk-factors/diet" role="button" data-mdb-ripple-color="primary">Australian male diet guidelines</a>
+                            <a class="btn btn-outline-secondary mb-2" href="https://www.aihw.gov.au/reports/men-women/male-health/contents/lifestyle-and-risk-factors/overweight-and-obesity" role="button" data-mdb-ripple-color="primary">Obesity risk factors for males</a>
+                            <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/male-health/contents/lifestyle-and-risk-factors/tobacco-smoking-alcohol-and-illicit-drugs" role="button" data-mdb-ripple-color="primary">Smoking and alcohol risk factors for males</a>
+                            
+                        </div>
+                        <img src="/images/male6.jpg" class="card-img-bottom" alt="kessler"/>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+          <!--FEMALE-->
+          <div class="col-lg-12 reveal">
+            <div class="pt-8 fs-5 my-5 big-side-pads">
+                <h3>Adult Females</h3>
+                <br>
+                <p>
+                    In 2018, just over half of Australia’s population 51% or <strong>12.6 million people were female.</strong> 
+                    The following poor health risk factors are likely to occur for females: smoking tobacco, alcohol consumption, obesity. 
+                </p>
+                <br>
+                <!--Accordion-->
+                <div class="accordion" id="accordionExampleY1">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOneY1">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-mdb-toggle="collapse" style="letter-spacing: 2px; color:var(--mdb-dark); background-color:lightblue"
+                          data-mdb-target="#collapseOneY1" aria-expanded="false" aria-controls="collapseOneY1">
+                          <i class="fas fa-heart-pulse fa-sm me-2"></i>HEALTH GUIDELINES FOR FEMALES
+                        </button>
+                      </h2>
+                      <div id="collapseOneY1" class="accordion-collapse collapse" aria-labelledby="headingOneY1"
+                        data-mdb-parent="#accordionExampleY1">
+                        <div class="accordion-body">
+                            <div class="card">
+                                <div class="card-body border-start border-info border-3">
+                                    <h4 class="card-title">Health Facts for Females</h4>
+                                    <ul>
+                                        <li>1 in 3 women exceeded the single occasion risk of alcohol consumption in 2017–18.</li>
+                                        <li>3 in 5 women were overweight or obese in 2017–18.</li>
+                                    </ul>
+                                    <br>
+                                    
+                                    <h4 class="card-title">How to stay healthy:</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-utensils me-2"></i>Eat 4 serves of vegetables and fruit in different type and colour per day</li>
+                                        <li><i class="fas fa-person-walking me-2"></i>2.5 hours moderate intensity physical activity each week</li>
+                                        <li><i class="fas fa-person-walking me-2"></i>1.25 hours of vigorous intensity physical activity each week</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Be active and social</li>
+                                        <li><i class="fas fa-xmark text-danger me-2"></i>Avoid sitting or lying for extended periods</li>
+                                    </ul>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--female display-->
+                  <div class="d-flex justify-content-center">
+                    <div class="mt-5 card" style="max-width:60% ;">
+                        
+
+                        <div class="card-body border-start border-info border-3 text-center">
+                            <a class="btn btn-outline-secondary mb-2" href="https://www.aihw.gov.au/reports/men-women/female-health/contents/lifestyle-risk-factors/diet" role="button" data-mdb-ripple-color="primary">Australian female diet guidelines</a>
+                  <a class="btn btn-outline-secondary mb-2" href="https://www.aihw.gov.au/reports/men-women/female-health/contents/lifestyle-risk-factors/overweight-and-obesity" role="button" data-mdb-ripple-color="primary">Obesity risk factors for females</a>
+                  <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/men-women/female-health/contents/lifestyle-risk-factors/tobacco-smoking-alcohol-and-illicit-drugs" role="button" data-mdb-ripple-color="primary">Smoking and alcohol risk factors for females</a>
+                            
+                        </div>
+                        <img src="/images/female2.PNG" class="card-img-bottom" alt="kessler"/>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+
+          <!--Young People-->
+          <div class="col-lg-12 reveal">
+            <div class="pt-8 fs-5 my-5 big-side-pads">
+                
+                <h3>Young People</h3>
+                <br>
+                <p>In 2020, an estimated 3.2 million young people aged 15–24 lived in Australia, making up <strong>12% of the whole population.</strong>
+                    The following poor health risk factors are likely to occur for young people: smoking and alcohol, nutrition and psychological distress. 
+                </p>
+                <br>
+                <!--Accordion-->
+                <div class="accordion" id="accordionExampleY">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOneY">
+                        <div class="text-center">
+                        <button class="accordion-button collapsed fw-bold" type="button" data-mdb-toggle="collapse" style="letter-spacing: 2px; color:var(--mdb-dark); background-color:lightblue"
+                          data-mdb-target="#collapseOneY" aria-expanded="false" aria-controls="collapseOneY">
+                          <i class="fas fa-heart-pulse fa-sm me-2"></i>HEALTH GUIDELINES FOR YOUNG PEOPLE
+                        </button>
+                        </div>
+                      </h2>
+                      <div id="collapseOneY" class="accordion-collapse collapse" aria-labelledby="headingOneY"
+                        data-mdb-parent="#accordionExampleY" >
+                        <div class="accordion-body">
+                            <div class="card">
+                                <div class="card-body border-start border-info border-3">
+                                    <h4 class="card-title">Health Facts for Young People</h4>
+                                    <ul>
+                                        <li>Severe psychological distress among 18-24 years olds increased 14% from 2017 to 2020.</li>
+                                        <li>Rate of 14-24 years old who drank at risky levels and smoked daily fell.</li>
+                                    </ul>
+                                    <br>
+                                    
+                                    <h4 class="card-title">How to stay healthy:</h4>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-utensils me-2"></i>Eat up to 10 different colored vegetables and fruit per day</li>
+                                        <li><i class="fas fa-person-walking me-2"></i> At least 60 minutes each day of moderate to vigorous physical activity</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Play sport and keep active</li>
+                                        <li><i class="fas fa-xmark text-danger me-2"></i>Limit time sitting and playing computer games</li>
+                                    </ul>
+                              </div>
+                            </div>
+                         
+                  
+                        </div>
+                </div>
+            </div>
+            </div>
+
+                <!--young people-->
+                <div class="d-flex justify-content-center">
+                <div class="mt-5 card" style="max-width:60% ;">
+                    
+
+                    <div class="card-body border-start border-info border-3 text-center">
+                        <a class="btn btn-outline-secondary mb-2" href="https://www.aihw.gov.au/reports/children-youth/nutrition" role="button" data-mdb-ripple-color="primary">Australia's youth nutrition guidelines</a>
+                        <a class="btn btn-outline-secondary mb-2" href="https://www.aihw.gov.au/reports/children-youth/mental-illness" role="button" data-mdb-ripple-color="primary">Information on mental health for young people</a>
+                        <a class="btn btn-outline-secondary" href="https://www.aihw.gov.au/reports/alcohol/alcohol-tobacco-other-drugs-australia/contents/priority-populations/younger-people" role="button" data-mdb-ripple-color="primary">Information on the effects of smoking and alcohol</a>
+                    </div>
+                    <img src="/images/young2.png" class="card-img-bottom" alt="kessler"/>
+                </div>
+            </div>
+                
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+  
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted">
+  
+        <div class="container">
+          <!-- Section: Links  -->
+          <section class="">
+            <div class="container text-center text-md-start mt-5">
+              <!-- Grid row -->
+              <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-lg-5 mx-auto mb-4 mt-4">
+                  <!-- Content -->
+                  <h3 class="text-uppercase fw-bold mb-4">
+                    <i class="fas fa-earth-oceania me-3"></i>New Australians
+                  </h3>
+                  <p>
+                    In the recovery from the global COVID-19 pandemic in 2021-2022, Australia experienced a large influx of new migrants, a 171% increase compared to the previous year, according to the Australian Bureau of Statistics. This includes a 61% increase in temporary visa holders and an 84% increase in permanent residents. New migrants are at high risk of experiencing chronic illness in Australia, added to by confusion in understanding the complexities of Australian healthcare delivery and cultural differences.
+                  </p>
+                </div>
+    
+                <!-- Grid column -->
+                <div class="col-lg-5 mx-auto mb-md-0 mt-4 mb-4">
+                  <!-- Links -->
+                  <h3 class="text-uppercase fw-bold mb-4"><i class="fas fa-heart-pulse me-3"></i>About Us</h3>
+                  <p>
+                    We want every new migrant to be more comfortable in joining the Australian family. Whether you are a temporary visa holder or a permanent resident, our website can help you to enjoy the services of the Australian healthcare system more easily and with greater confidence.
+                  </p>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!-- Grid row -->
+            </div>
+          </section>
+          <!-- Section: Links  -->
+        </div>
+    
+    
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+          © 2023 Copyright:
+          <a class="text-reset fw-bold" href="#">MonashTechTitans</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
+  
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"></script>
+  </body>
+</html>

@@ -24,10 +24,13 @@
 		document.addEventListener('DOMContentLoaded', function() {
             
             // carousel
-            const myCarousel = document.getElementById('carouselBasicExample');
+            //const myCarousel = document.getElementById('carouselBasicExample');
 
             // event lsiteners
-            myCarousel.addEventListener('slide.bs.carousel', changeSlide);
+            //myCarousel.addEventListener('slide.bs.carousel', changeSlide);
+
+             // scroll animation
+             window.addEventListener("scroll", reveal);
 
 
         }, false);

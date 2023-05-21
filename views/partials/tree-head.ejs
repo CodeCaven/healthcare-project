@@ -176,6 +176,17 @@
                 // root node
                 if(d.data.id == "1"){return;}
 
+                // highlight nodes
+                d3.selectAll(".node").transition().duration(500).style("opacity",function(l){
+                    let nodeId = l.data.id;
+                    
+                    if(d.data.nodes.includes(nodeId)){
+                        return 1;
+                    }
+                    return 0
+
+                });
+
                 // highlight links
                 d3.selectAll(".links").transition().duration(500).style("opacity",function(l){
                     let sourceId = l.source.data.id;
@@ -199,17 +210,6 @@
 
                 });
 
-                // highlight nodes
-                d3.selectAll(".node").transition().duration(500).style("opacity",function(l){
-                    let nodeId = l.data.id;
-                    
-                    if(d.data.nodes.includes(nodeId)){
-                        return 1;
-                    }
-                    return 0
-
-                });
-
                 // highlight text
                 d3.selectAll(".treetext").transition().duration(500).style("opacity",function(l){
                     let nodeId = l.data.id;
@@ -221,7 +221,7 @@
 
                 });
 
-                // highlight text
+                // highlight text rect
                 d3.selectAll(".treerect").transition().duration(500).style("opacity",function(l){
                     let nodeId = l.data.id;
                     
@@ -234,9 +234,9 @@
 
             })
             .on("mouseout", function(d){
+                d3.selectAll(".node").transition().duration(500).style("opacity" ,1);
                 d3.selectAll(".links").transition().duration(500).style("opacity" ,1);
                 d3.selectAll(".images").transition().duration(500).style("opacity" ,1);
-                d3.selectAll(".node").transition().duration(500).style("opacity" ,1);
                 d3.selectAll(".treetext").transition().duration(500).style("opacity" ,1);
                 d3.selectAll(".internalrect").transition().duration(500).style("opacity", 1);
             })

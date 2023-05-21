@@ -237,19 +237,32 @@ a {
     transform: translateY(0);
     opacity: 1;
   }
+
+  .revealX{
+    position: relative;
+    transform: translateX(150px);
+    opacity: 0;
+    transition: 1.5s all ease;
+  }
+  .revealX.active{
+    transform: translateX(0);
+    opacity: 1;
+  }
  
   .dropdown-menu{
     --mdb-dropdown-border-radius: 0rem;
     --mdb-dropdown-item-border-radius: 0rem;
   }
 
+  /*
+  add for hover dropdown
   .dropdown:hover>.dropdown-menu {
     display: block;
   }
   
   .dropdown>.dropdown-toggle:active {
-    /*Without this, clicking will make it sticky*/
       pointer-events: none;
   }
+  */
 
 
