@@ -238,6 +238,18 @@ a {
     opacity: 1;
   }
  
+  .dropdown-menu{
+    --mdb-dropdown-border-radius: 0rem;
+    --mdb-dropdown-item-border-radius: 0rem;
+  }
 
+  .dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }
 
 

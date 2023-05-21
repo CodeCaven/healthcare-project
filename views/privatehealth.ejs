@@ -32,6 +32,7 @@
             <ul class="navbar-nav ms-auto">
               <!-- Dropdown -->
               <li class="nav-item dropdown mx-5">
+                <div class="dropdown">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -43,7 +44,7 @@
                 >
                  BEFORE SEEKING HEALTHCARE
                 </a>
-                <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
+                <ul class="dropdown-menu fs-6 dropdown-menu-dark" style="letter-spacing:2px; background-color:var(--mdb-dark);" aria-labelledby="navbarDropdownMenuLink">
                   <li>
                     <a class="dropdown-item" href="/privatehealth">Private Healthcare in Australia
                       <i class="fas fa-suitcase-medical ms-2"></i></a>
@@ -57,6 +58,7 @@
                       <i class="fas fa-prescription-bottle-medical"></i></a>
                   </li>
                 </ul>
+              </div>
               </li>
 
               <li class="nav-item dropdown mx-5">
@@ -71,7 +73,7 @@
                 >
                   SEEKING HEALTHCARE
                 </a>
-                <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
+                <ul class="dropdown-menu fs-6 dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink" style="letter-spacing:2px; background-color:var(--mdb-dark);">
                   <li>
                     <a class="dropdown-item" href="/tree" onclick="tree()">Australian Healthcare Tree Diagram
                       <i class="fas fa-diagram-project ms-2"></i></a>
@@ -91,15 +93,16 @@
                 >
                  AFTER SEEKING HEALTHCARE
                 </a>
-                <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
-                  <li>
-                    <a class="dropdown-item" href="/healthguidelines" onclick="guides()">Good Health Guidelines
-                      <i class="fas fa-person-walking ms-2"></i></a>
-                  </li>
+                <ul class="dropdown-menu fs-6 dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink" style="letter-spacing:2px; background-color:var(--mdb-dark);">
                   <li>
                     <a class="dropdown-item" href="/met" onclick="met()">Activity Tracker
                       <i class="fas fa-calculator ms-2"></i></a>
                   </li>
+                  <li>
+                    <a class="dropdown-item" href="/healthguidelines" onclick="guides()">Good Health Guidelines
+                      <i class="fas fa-person-walking ms-2"></i></a>
+                  </li>
+                  
                 </ul>
                 </li>
             </ul>

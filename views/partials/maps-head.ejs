@@ -35,12 +35,12 @@
         let surveys = [];
         let color;
         let domain;
-        let COLOUR_SCHEME = d3.interpolateBlues;
+        let COLOUR_SCHEME = d3.interpolateReds;
         let THEME = "light";
         let legend_axis;
         let legendScale;
         let survey_map;
-        let colour_schemes = {"blue": d3.interpolateBlues, "red": d3.interpolateYlOrBr,
+        let colour_schemes = {"blue": d3.interpolateReds, "red": d3.interpolateYlOrBr,
                                 "green": d3.interpolateGreens, "magma": d3.interpolateMagma}
 
         // DOM loaded callback
@@ -142,7 +142,7 @@
                         //item.style.color = "var(--mdb-dark)";   
                         // axis
                         //legend_axis.style.color = "var(--mdb-dark)";
-                        d3.select("#svgArea").transition().duration(500).style("background-color", "wheat");
+                        d3.select("#svgArea").transition().duration(500).style("background-color", "lightblue");
                     }
                 }
             }
@@ -314,7 +314,7 @@
                 .attr("height", plot_height)
                 .attr("viewBox", [0, 0, plot_width, plot_height]) // add zoom here to avoid pan jitter
                 .attr("style", "width: 100%; height: auto; height: intrinsic;")
-                .style("background-color", "wheat")
+                .style("background-color", "lightblue")
                 .call(zoom)
             .append("g")
                 .attr("transform",
@@ -403,7 +403,7 @@
             .attr("fill", function(d){
                 return color(survey_map.get(d.properties.FIRST_PHN_)['per_cent']);
             })
-            .on("mousemove", function(event, d){
+            .on("mouseover", function(event, d){
 
                 
                 // set colour by theme
@@ -439,12 +439,18 @@
                 // highlight the area
                 d3.selectAll('.maparea').transition().duration(500).attr("opacity", 0.1);
                 d3.select(this).transition().duration(500).attr("opacity", 1);
+                d3.selectAll('circle').transition().duration(500).attr("opacity", 0.1);
+                d3.selectAll('.maprect').transition().duration(500).attr("opacity", 0.1);
+                d3.selectAll('.maptext').transition().duration(500).attr("opacity", 0.1);
                 
                 })
             .on("mouseout", function(event, d){
                 var tooltip = d3.select("#tooltip");
                 tooltip.style("visibility", "hidden");  
                 d3.selectAll('.maparea').transition().duration(500).attr("opacity", 1);
+                d3.selectAll('circle').transition().duration(500).attr("opacity", 1);
+                d3.selectAll('.maprect').transition().duration(500).attr("opacity", 1);
+                d3.selectAll('.maptext').transition().duration(500).attr("opacity", 1);
             });
 
             
@@ -497,6 +503,7 @@
             .data(cities)
             .enter()
             .append("rect")
+            .attr("class", "maprect")
             .attr("x", d => projection(d.location)[0] + 10)
             .attr("y", d => projection(d.location)[1])
             .attr("width", d => d.bbox.width + 2 * xMargin)
@@ -513,6 +520,7 @@
             .data(cities)
             .enter()
             .append("text")
+            .attr('class', 'maptext')
             .attr("x", d => projection(d.location)[0])
             .attr("y", d => projection(d.location)[1])
             .attr("text-anchor", "start")

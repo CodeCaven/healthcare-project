@@ -12,108 +12,111 @@
      <nav style="z-index: 10;
      min-height: 58.59px;
     " class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient text-white sticky-top px-5">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-      <!-- Toggle button -->
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-      data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-      </button>
+<!-- Container wrapper -->
+<div class="container-fluid">
+<!-- Toggle button -->
+<button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+aria-label="Toggle navigation">
+<i class="fas fa-bars"></i>
+</button>
 
-      <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-lg-0" href="./index">
-      <i class="fas fa-heart-pulse" style="color:darkSalmon"></i>
-      </a>
-      <!-- Left links -->
+<!-- Collapsible wrapper -->
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<!-- Navbar brand -->
+<a class="navbar-brand mt-2 mt-lg-0" href="./index">
+<i class="fas fa-heart-pulse" style="color:darkSalmon"></i>
+</a>
+<!-- Left links -->
 
-      <ul class="navbar-nav ms-auto">
-      <!-- Dropdown -->
-      <li class="nav-item dropdown mx-5">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-          style="letter-spacing: 2px;"
-        >
-        BEFORE SEEKING HEALTHCARE
-        </a>
-        <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
-          <li>
-            <a class="dropdown-item" href="/privatehealth">Private Healthcare in Australia
-              <i class="fas fa-suitcase-medical ms-2"></i></a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/maps" onclick="maps()">Patient Survey Maps
-              <i class="fas fa-map ms-2"></i></a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/symptom" onclick="symptoms()">Symptom Checker 
-              <i class="fas fa-prescription-bottle-medical"></i></a>
-          </li>
-        </ul>
-      </li>
+<ul class="navbar-nav ms-auto">
+<!-- Dropdown -->
+<li class="nav-item dropdown mx-5">
+  <div class="dropdown">
+  <a
+    class="nav-link dropdown-toggle"
+    href="#"
+    id="navbarDropdownMenuLink"
+    role="button"
+    data-mdb-toggle="dropdown"
+    aria-expanded="false"
+    style="letter-spacing: 2px;"
+  >
+   BEFORE SEEKING HEALTHCARE
+  </a>
+  <ul class="dropdown-menu fs-6 dropdown-menu-dark" style="letter-spacing:2px; background-color:var(--mdb-dark);" aria-labelledby="navbarDropdownMenuLink">
+    <li>
+      <a class="dropdown-item" href="/privatehealth">Private Healthcare in Australia
+        <i class="fas fa-suitcase-medical ms-2"></i></a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="/maps" onclick="maps()">Patient Survey Maps
+        <i class="fas fa-map ms-2"></i></a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="/symptom" onclick="symptoms()">Symptom Checker 
+        <i class="fas fa-prescription-bottle-medical"></i></a>
+    </li>
+  </ul>
+</div>
+</li>
 
-      <li class="nav-item dropdown mx-5">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-          style="letter-spacing: 2px;"
-        >
-          SEEKING HEALTHCARE
-        </a>
-        <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
-          <li>
-            <a class="dropdown-item" href="/tree" onclick="tree()">Australian Healthcare Tree Diagram
-              <i class="fas fa-diagram-project ms-2"></i></a>
-          </li>
-        </ul>
-        </li>
+<li class="nav-item dropdown mx-5">
+  <a
+    class="nav-link dropdown-toggle"
+    href="#"
+    id="navbarDropdownMenuLink"
+    role="button"
+    data-mdb-toggle="dropdown"
+    aria-expanded="false"
+    style="letter-spacing: 2px;"
+  >
+    SEEKING HEALTHCARE
+  </a>
+  <ul class="dropdown-menu fs-6 dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink" style="letter-spacing:2px; background-color:var(--mdb-dark);">
+    <li>
+      <a class="dropdown-item" href="/tree" onclick="tree()">Australian Healthcare Tree Diagram
+        <i class="fas fa-diagram-project ms-2"></i></a>
+    </li>
+  </ul>
+  </li>
 
-      <li class="nav-item dropdown mx-5">
-        <a
-          class="nav-link dropdown-toggle"
-          href="#"
-          id="navbarDropdownMenuLink"
-          role="button"
-          data-mdb-toggle="dropdown"
-          aria-expanded="false"
-          style="letter-spacing: 2px;"
-        >
-        AFTER SEEKING HEALTHCARE
-        </a>
-        <ul class="dropdown-menu fs-6" aria-labelledby="navbarDropdownMenuLink">
-          <li>
-            <a class="dropdown-item" href="/healthguidelines" onclick="guides()">Good Health Guidelines
-              <i class="fas fa-person-walking ms-2"></i></a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="/met" onclick="met()">Activity Tracker
-              <i class="fas fa-calculator ms-2"></i></a>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      <!-- Left links -->
-      </div>
-      <!-- Collapsible wrapper -->
+<li class="nav-item dropdown mx-5">
+  <a
+    class="nav-link dropdown-toggle"
+    href="#"
+    id="navbarDropdownMenuLink"
+    role="button"
+    data-mdb-toggle="dropdown"
+    aria-expanded="false"
+    style="letter-spacing: 2px;"
+  >
+   AFTER SEEKING HEALTHCARE
+  </a>
+  <ul class="dropdown-menu fs-6 dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink" style="letter-spacing:2px; background-color:var(--mdb-dark);">
+    <li>
+      <a class="dropdown-item" href="/met" onclick="met()">Activity Tracker
+        <i class="fas fa-calculator ms-2"></i></a>
+    </li>
+    <li>
+      <a class="dropdown-item" href="/healthguidelines" onclick="guides()">Good Health Guidelines
+        <i class="fas fa-person-walking ms-2"></i></a>
+    </li>
+    
+  </ul>
+  </li>
+</ul>
+<!-- Left links -->
+</div>
+<!-- Collapsible wrapper -->
 
-      <!-- Right elements -->
+<!-- Right elements -->
 
-      <!-- Right elements -->
-      </div>
-      <!-- Container wrapper -->
-      </nav>
-      <!-- Navbar -->
+<!-- Right elements -->
+</div>
+<!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
 
       <!--How does it work-->
     <div class="container-fluid">
@@ -231,7 +234,7 @@
         <div>
           <div class="form-check " data-colour="blue" name="colours">
             <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio1Colour" value="option1"/>
-            <label class="form-check-label" for="inlineRadio1Colour">Blues</label>
+            <label class="form-check-label" for="inlineRadio1Colour">Reds</label>
           </div>
 
           <div class="form-check " data-colour="magma" name="colours">
